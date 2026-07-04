@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harmony Cleaning | Professional Cleaning Services in Los Angeles</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#C4A35A;--gold-l:#E8D5A3;--cream:#FAFAF7;--ivory:#F4F0E8;--char:#2A2826;--gray:#6B6762;--gray-l:#D8D4CC}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--char);font-size:16px;line-height:1.7}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,247,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--gray-l);padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;letter-spacing:.1em;color:var(--char);text-decoration:none}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+
+/* HERO */
+#home{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 40px 80px;background:linear-gradient(160deg,var(--ivory) 0%,var(--cream) 60%)}
+.hero-co{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,7vw,70px);font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--char);margin-bottom:24px}
+.hero-co span{color:var(--gold)}
+.hero-div{width:60px;height:1px;background:var(--gold);margin:0 auto 22px}
+.hero-tag{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.5vw,34px);font-weight:300;font-style:italic;color:var(--gray);margin-bottom:14px}
+.hero-sub{font-size:14px;color:var(--gray);max-width:400px;margin:0 auto 32px;font-weight:300}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.hbtn{display:inline-block;padding:13px 28px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;font-family:'Inter',sans-serif;transition:all .25s;cursor:pointer;border:none}
+.hbtn-dark{background:var(--char);color:var(--cream);border:1px solid var(--char)}
+.hbtn-dark:hover{background:var(--gold);border-color:var(--gold)}
+.hbtn-outline{background:transparent;color:var(--char);border:1px solid var(--char)}
+.hbtn-outline:hover{background:var(--char);color:var(--cream)}
+.hbtn-gold{background:var(--gold);color:var(--char);border:1px solid var(--gold)}
+.hbtn-gold:hover{background:var(--gold-l)}
+.hero-bdg{display:flex;justify-content:center;gap:40px;margin-top:50px;flex-wrap:wrap}
+.bdg{text-align:center}
+.bdg-n{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--gold);line-height:1}
+.bdg-l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-top:4px}
+
+.ey{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.ti{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,46px);font-weight:300;color:var(--char);margin-bottom:14px}
+.ti em{font-style:italic;color:var(--gold)}
+.li{width:40px;height:1px;background:var(--gold);margin-bottom:38px}
+.wrap{max-width:1100px;margin:0 auto;padding:80px 40px}
+
+/* SERVICES */
+.svcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:2px;background:var(--gray-l)}
+.svc{background:var(--cream)}
+.svc-hd{padding:26px 22px 18px;display:flex;justify-content:space-between;align-items:flex-start;cursor:pointer;transition:background .2s}
+.svc-hd:hover{background:var(--ivory)}
+.svc-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.svc-nm{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--char);margin-bottom:5px}
+.svc-pr{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--char)}
+.svc-pr span{font-family:'Inter',sans-serif;font-size:11px;color:var(--gray)}
+.svc-tog{font-size:20px;color:var(--gold);flex-shrink:0;margin-left:8px;line-height:1}
+.svc-bd{display:none;padding:0 22px 22px;border-top:1px solid var(--gray-l)}
+.svc-bd.open{display:block}
+.svc-sec{margin-top:16px}
+.svc-st{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.cl{list-style:none;display:flex;flex-direction:column;gap:4px}
+.cl li{font-size:12px;color:var(--gray);display:flex;gap:6px;line-height:1.5}
+.cl li::before{content:'—';color:var(--gold-l);flex-shrink:0}
+.cl li.inc::before{content:'✓';color:var(--gold);font-weight:600}
+.el{list-style:none;display:flex;flex-direction:column;gap:4px;margin-top:6px}
+.el li{font-size:12px;color:var(--gray);display:flex;gap:6px}
+.el li::before{content:'+';color:var(--gold);flex-shrink:0;font-weight:600}
+.an{margin-top:12px;padding:9px 13px;background:var(--ivory);border-left:2px solid var(--gold);font-size:11px;color:var(--gray)}
+.an-btn{color:var(--gold);font-size:11px;text-decoration:none;letter-spacing:0.05em;margin-left:4px;white-space:nowrap}
+.an-btn:hover{text-decoration:underline;text-underline-offset:3px}
+
+
+/* ORGANIZATION ANIMATIONS */
+.org-examples{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.org-ex{background:var(--ivory);padding:16px;text-align:center;border-top:2px solid var(--gold)}
+.org-anim{height:80px;position:relative;margin-bottom:10px;overflow:hidden}
+.org-ex-title{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--char);margin-bottom:4px}
+.org-ex-desc{font-size:11px;color:var(--gray);line-height:1.5}
+
+/* Closet animation */
+@keyframes item1{0%,100%{transform:translateX(0) rotate(0deg)}50%{transform:translateX(10px) rotate(5deg)}}
+@keyframes item2{0%,100%{transform:translateX(0) rotate(0deg)}50%{transform:translateX(-8px) rotate(-3deg)}}
+@keyframes slideIn{0%{transform:translateX(-20px);opacity:0}100%{transform:translateX(0);opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-8px)}60%{transform:translateY(-4px)}}
+
+.anim-closet{display:flex;align-items:flex-end;justify-content:center;gap:4px;height:100%;padding-bottom:4px}
+.anim-closet .hanger{width:18px;height:32px;background:linear-gradient(180deg,var(--gold) 0%,var(--gold) 30%,#8B9DC3 30%,#8B9DC3 100%);border-radius:2px 2px 0 0;animation:float 2s ease-in-out infinite}
+.anim-closet .hanger:nth-child(2){background:linear-gradient(180deg,var(--gold) 0%,var(--gold) 30%,#C3998B 30%,#C3998B 100%);animation-delay:.3s;height:36px}
+.anim-closet .hanger:nth-child(3){background:linear-gradient(180deg,var(--gold) 0%,var(--gold) 30%,#8BC39A 30%,#8BC39A 100%);animation-delay:.6s;height:30px}
+.anim-closet .hanger:nth-child(4){background:linear-gradient(180deg,var(--gold) 0%,var(--gold) 30%,#C3C38B 30%,#C3C38B 100%);animation-delay:.9s;height:34px}
+.anim-closet .hanger:nth-child(5){background:linear-gradient(180deg,var(--gold) 0%,var(--gold) 30%,#B08BC3 30%,#B08BC3 100%);animation-delay:1.2s;height:28px}
+.anim-closet .shelf{position:absolute;bottom:0;left:10%;right:10%;height:4px;background:var(--gold-l);border-radius:2px}
+.anim-closet .box{width:16px;height:14px;background:var(--gold-l);border:1px solid var(--gold);border-radius:2px;position:absolute;bottom:6px;animation:pulse 2s ease-in-out infinite}
+.anim-closet .box.b1{left:15%;animation-delay:.2s}
+.anim-closet .box.b2{right:15%;animation-delay:.8s}
+
+.anim-kitchen{display:flex;align-items:flex-end;justify-content:center;gap:6px;height:100%;padding-bottom:4px}
+.anim-kitchen .item{border-radius:3px;animation:float 2.5s ease-in-out infinite}
+.anim-kitchen .pot{width:28px;height:22px;background:#8B9DC3;border-radius:3px 3px 6px 6px;border-top:3px solid var(--gold);animation-delay:.1s}
+.anim-kitchen .pan{width:32px;height:8px;background:#C3998B;border-radius:2px;animation-delay:.5s}
+.anim-kitchen .jar{width:16px;height:26px;background:#8BC39A;border-radius:3px 3px 5px 5px;border-top:4px solid var(--gold);animation-delay:.9s}
+.anim-kitchen .jar2{width:14px;height:22px;background:#C3C38B;border-radius:3px 3px 5px 5px;border-top:4px solid var(--gold-l);animation-delay:1.3s}
+.anim-kitchen .shelf-k{position:absolute;bottom:0;left:5%;right:5%;height:4px;background:var(--gold-l);border-radius:2px}
+
+.anim-papers{display:flex;align-items:center;justify-content:center;gap:4px;height:100%}
+.anim-papers .paper{width:22px;height:28px;border-radius:2px;animation:float 2s ease-in-out infinite}
+.anim-papers .paper:nth-child(1){background:#fff;border:1px solid var(--gray-l);transform-origin:bottom;animation:item1 3s ease-in-out infinite}
+.anim-papers .paper:nth-child(2){background:#F0E8F4;border:1px solid #D4C3E0;animation-delay:.5s}
+.anim-papers .paper:nth-child(3){background:#E8F0F4;border:1px solid #C3D4E0;animation-delay:1s;animation:item2 2.5s ease-in-out infinite}
+.anim-papers .folder{width:36px;height:30px;background:var(--gold-l);border:1px solid var(--gold);border-radius:3px 3px 2px 2px;animation:pulse 3s ease-in-out infinite;animation-delay:1.5s}
+.anim-papers .folder::before{content:'';position:absolute;top:-6px;left:4px;width:16px;height:7px;background:var(--gold-l);border:1px solid var(--gold);border-bottom:none;border-radius:3px 3px 0 0}
+
+/* CALC */
+.calc-wrap{max-width:680px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:14px}
+.cg{display:flex;flex-direction:column;gap:6px}
+.cg.full{grid-column:1/-1}
+.clbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--char);font-weight:500}
+.csel{background:var(--cream);border:1px solid var(--gray-l);color:var(--char);padding:10px 12px;font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s;width:100%;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C4A35A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.csel:focus{border-color:var(--gold)}
+.add-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:7px;margin-top:4px}
+.add-chk{display:flex;align-items:center;gap:8px;padding:8px 11px;background:var(--cream);border:1px solid var(--gray-l);cursor:pointer;font-size:12px;color:var(--char);transition:border-color .2s}
+.add-chk:hover{border-color:var(--gold)}
+.add-chk input{accent-color:var(--gold);width:14px;height:14px;cursor:pointer}
+.add-chk.dis{opacity:.4;cursor:not-allowed;pointer-events:none}
+.pr-res{margin-top:22px;padding:22px 26px;background:var(--char);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.pr-lbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-l)}
+.pr-amt{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--cream);line-height:1}
+.pr-note{font-size:10px;color:var(--gray-l);margin-top:3px}
+.pr-btn{display:inline-block;background:var(--gold);color:var(--char);padding:10px 22px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;border:none;font-family:'Inter',sans-serif;cursor:pointer;transition:background .2s}
+.pr-btn:hover{background:var(--gold-l)}
+.base-note{margin-top:10px;padding:9px 12px;background:var(--ivory);border-left:2px solid var(--gold);font-size:11px;color:var(--gray)}
+
+/* ABOUT */
+.about-g{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.about-t p{font-size:14px;color:var(--gray);font-weight:300;margin-bottom:15px}
+.about-f{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.about-fi{display:flex;gap:10px;font-size:13px;color:var(--char)}
+.about-fi::before{content:'—';color:var(--gold);flex-shrink:0}
+.sbox{padding:26px;background:var(--ivory);border-left:2px solid var(--gold)}
+.sbox h4{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;margin-bottom:13px}
+.sbox p{font-size:13px;color:var(--gray);font-weight:300;line-height:1.7;margin-bottom:11px}
+.sbox p:last-child{margin-bottom:0}
+
+/* REVIEWS */
+.rev-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
+.rev-c{background:var(--cream);padding:30px;border-top:2px solid var(--gold)}
+.rev-s{color:var(--gold);font-size:12px;letter-spacing:3px;margin-bottom:13px}
+.rev-t{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;font-style:italic;color:var(--char);line-height:1.5;margin-bottom:16px}
+.rev-a{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
+
+/* FORM */
+.form-g{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg.full{grid-column:1/-1}
+.fl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-l)}
+input[type=text],input[type=tel],input[type=date],select,textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--cream);padding:10px 12px;font-family:'Inter',sans-serif;font-size:13px;font-weight:300;outline:none;transition:border-color .2s;width:100%;-webkit-appearance:none;appearance:none}
+input[type=text]::placeholder,input[type=tel]::placeholder,textarea::placeholder{color:rgba(255,255,255,.28)}
+input[type=text]:focus,input[type=tel]:focus,input[type=date]:focus,select:focus,textarea:focus{border-color:var(--gold)}
+select option{background:#2A2826;color:var(--cream)}
+textarea{resize:vertical;min-height:80px}
+.tr-row{margin-top:18px;display:flex;gap:11px;align-items:flex-start;padding:13px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+.tr-row input[type=checkbox]{width:17px;height:17px;min-width:17px;flex-shrink:0;margin-top:2px;accent-color:var(--gold);cursor:pointer}
+.tr-t{font-size:11px;color:var(--gold-l);font-weight:300;line-height:1.6}
+.tr-t a{color:var(--gold);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.btn-sub{margin-top:16px;width:100%;background:var(--gold);color:var(--char);border:none;padding:13px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:background .2s}
+.btn-sub:hover{background:var(--gold-l)}
+.btn-sub:disabled{opacity:.45;cursor:not-allowed}
+.f-ok{display:none;text-align:center;padding:44px;border:1px solid var(--gold)}
+.f-ok h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--cream);margin-bottom:9px}
+.f-ok p{font-size:13px;color:var(--gray-l);font-weight:300}
+
+/* MODAL */
+.modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.mc{background:var(--cream);max-width:580px;width:100%;max-height:80vh;overflow-y:auto;padding:40px;position:relative}
+.mc-cls{position:absolute;top:16px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--gray)}
+.mc h2{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:400;margin-bottom:6px}
+.ms{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:20px 0 7px;font-weight:600}
+.mc p{font-size:12px;color:var(--gray);font-weight:300;margin-bottom:7px;line-height:1.7}
+.mh{background:var(--ivory);border-left:2px solid var(--gold);padding:11px 14px;margin:9px 0;font-size:12px;color:var(--char)}
+
+footer{background:#1E1C1A;padding:48px 40px;text-align:center}
+.fl-logo{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:300;letter-spacing:.1em;color:var(--cream);margin-bottom:6px}
+.fl-logo span{color:var(--gold)}
+.fl-sub{font-size:11px;color:var(--gray);letter-spacing:.1em;margin-bottom:18px}
+.fl-lnks{display:flex;justify-content:center;gap:22px;margin-bottom:22px;flex-wrap:wrap}
+.fl-lnks a{font-size:11px;color:var(--gray-l);text-decoration:none;transition:color .2s}
+.fl-lnks a:hover{color:var(--gold)}
+.fl-copy{font-size:10px;color:var(--gray)}
+
+@media(max-width:768px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .wrap{padding:60px 20px}
+  .calc-grid{grid-template-columns:1fr}
+  .form-g{grid-template-columns:1fr}
+  .about-g{grid-template-columns:1fr;gap:30px}
+  #home{padding:100px 20px 60px}
+  .pr-res{flex-direction:column}
+  footer{padding:36px 20px}
+  .mc{padding:26px 18px}
+  .org-examples{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">Harmony <span>Cleaning</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#calculator">Pricing</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="tel:+14242357405">📞 (424) 235-7405</a></li>
+    <li><a href="#book">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="promo-banner" style="display:none;background:var(--gold);padding:10px 40px;text-align:center;position:relative;z-index:99;margin-top:64px">
+  <span id="promo-text" style="font-size:13px;color:var(--char);font-weight:500;letter-spacing:0.05em"></span>
+</div>
+
+<section id="home" style="padding-top:80px">
+  <div>
+    <div style="margin-bottom:20px">
+      <svg width="64" height="72" viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Handle -->
+        <rect x="30.5" y="44" width="3" height="20" rx="1.5" fill="url(#hg)"/>
+        <!-- Collar -->
+        <ellipse cx="32" cy="45" rx="5" ry="2.5" fill="#C4A35A" opacity="0.6"/>
+        <!-- Leaves - leftmost -->
+        <path d="M32,44 C28,40 22,30 25,16 C27,22 30,34 32,44Z" fill="url(#lg1)"/>
+        <!-- Left leaf -->
+        <path d="M32,44 C29,38 27,26 31,12 C32,18 32,32 32,44Z" fill="url(#lg2)"/>
+        <!-- Center leaf -->
+        <path d="M32,44 C30,36 30,20 32,8 C34,20 34,36 32,44Z" fill="url(#lg3)"/>
+        <!-- Right leaf -->
+        <path d="M32,44 C35,38 37,26 33,12 C32,18 32,32 32,44Z" fill="url(#lg2)"/>
+        <!-- Rightmost leaf -->
+        <path d="M32,44 C36,40 42,30 39,16 C37,22 34,34 32,44Z" fill="url(#lg1)"/>
+        <!-- Sparkle left (4-point star) -->
+        <path d="M14,22 L15.2,18.5 L16.4,22 L20,21 L16.4,23.5 L15.2,27 L14,23.5 L10.5,21 Z" fill="#C4A35A" opacity="0.85" transform="scale(0.85) translate(2,2)"/>
+        <!-- Sparkle right small -->
+        <path d="M48,14 L48.8,11.5 L49.6,14 L52,13.4 L49.6,15.3 L48.8,17.8 L48,15.3 L45.5,13.4 Z" fill="#C4A35A" opacity="0.65"/>
+        <!-- Tiny dot -->
+        <circle cx="51" cy="20" r="1.2" fill="#C4A35A" opacity="0.45"/>
+        <defs>
+          <linearGradient id="hg" x1="32" y1="44" x2="32" y2="64" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#C4A35A"/>
+            <stop offset="100%" stop-color="#A0833A"/>
+          </linearGradient>
+          <linearGradient id="lg1" x1="28" y1="14" x2="32" y2="44" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#F0E4BC"/>
+            <stop offset="100%" stop-color="#C4A35A" stop-opacity="0.7"/>
+          </linearGradient>
+          <linearGradient id="lg2" x1="31" y1="10" x2="32" y2="44" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#E8D5A3"/>
+            <stop offset="100%" stop-color="#C4A35A" stop-opacity="0.8"/>
+          </linearGradient>
+          <linearGradient id="lg3" x1="32" y1="8" x2="32" y2="44" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#D4B866"/>
+            <stop offset="100%" stop-color="#C4A35A" stop-opacity="0.9"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="hero-co">Harmony <span>Cleaning</span></div>
+    <div class="hero-div"></div>
+    <div class="hero-tag">A cleaner home, a clearer mind</div>
+    <p class="hero-sub">Professional cleaning services across Los Angeles</p>
+    <div class="hero-btns">
+      <a href="#book" class="hbtn hbtn-dark">Book a Cleaning</a>
+      <a href="#services" class="hbtn hbtn-outline">Our Services</a>
+      <a href="#calculator" class="hbtn hbtn-gold">Get a Price</a>
+    </div>
+    <div class="hero-bdg">
+      <div class="bdg"><div class="bdg-n">5★</div><div class="bdg-l">Rated</div></div>
+      <div class="bdg"><div class="bdg-n">Euro–Asian</div><div class="bdg-l">Cleaning Style</div></div>
+      <div class="bdg"><div class="bdg-n">LA</div><div class="bdg-l">Based</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<div id="services" style="background:var(--cream);padding:80px 0">
+  <div class="wrap" style="padding-top:0;padding-bottom:0">
+    <p class="ey">What We Offer</p>
+    <h2 class="ti">Services &amp; <em>What's Included</em></h2>
+    <div class="li"></div>
+    <p style="font-size:13px;color:var(--gray);font-weight:300;margin-bottom:32px;max-width:520px">Click any service to see exactly what's included.</p>
+    <div class="svcs">
+
+      <!-- STANDARD -->
+      <div class="svc">
+        <div class="svc-hd" onclick="T('std')">
+          <div>
+            <p class="svc-tag">Most Popular</p>
+            <h3 class="svc-nm">Standard Cleaning</h3>
+            <div class="svc-pr">From $130 <span>per visit</span></div>
+          </div>
+          <span class="svc-tog" id="tg-std">+</span>
+        </div>
+        <div class="svc-bd" id="bd-std">
+          <div class="svc-sec">
+            <p class="svc-st">🍳 Kitchen</p>
+            <ul class="cl">
+              <li>Wipe countertops — remove crumbs, stains and dirt</li>
+              <li>Clean sink and dry thoroughly</li>
+              <li>Wipe kitchen cabinets exterior</li>
+              <li>Clean stovetop — remove food residue and grease stains</li>
+              <li>Wipe exterior of appliances — fridge, oven, dishwasher</li>
+              <li>Wipe dining table and chairs</li>
+              <li>Vacuum and mop floors</li>
+              <li>Empty trash and replace bags</li>
+            </ul>
+          </div>
+          <div class="svc-sec">
+            <p class="svc-st">🛀 Bathroom</p>
+            <ul class="cl">
+              <li>Clean mirrors and glass surfaces</li>
+              <li>Clean sink and faucets — remove soap residue</li>
+              <li>Clean bathtub or shower</li>
+              <li>Clean toilet inside and outside</li>
+              <li>Vacuum and mop floor</li>
+              <li>Wipe exterior of washing machine</li>
+              <li>Empty trash and replace bag</li>
+            </ul>
+          </div>
+          <div class="svc-sec">
+            <p class="svc-st">🛌 Bedrooms &amp; Living Room</p>
+            <ul class="cl">
+              <li>Dust top, side and front surfaces of all furniture</li>
+              <li>Make bed; fold items if left on bed</li>
+              <li>Vacuum and mop all floors</li>
+              <li>Clean glass surfaces and mirrors</li>
+              <li>Wipe window sills</li>
+              <li>Empty trash</li>
+            </ul>
+          </div>
+          <div class="svc-sec">
+            <p class="svc-st" style="color:var(--gray)">➕ Add-on Services</p>
+            <ul class="el">
+              <li>Inside oven — $30 standard / $50 deep clean</li>
+              <li>Inside refrigerator — $30 standard / $50 deep clean</li>
+              <li>Baseboards — $10 per bedroom / $10 per bathroom</li>
+              <li>Dish washing — from $30</li>
+              <li>Interior window — $8 per window</li>
+              <li>Glass door — $15 one side / $25 both sides</li>
+              <li>Laundry — $30 per load (wash &amp; dry)</li>
+            </ul>
+          </div>
+
+		<div class="an">
+  			📲 Book online below — we'll confirm details and timing with you directly.
+  			<a href="#book" class="an-btn">Book Now</a>
+		</div>
+
+        </div>
+      </div>
+
+      <!-- DEEP -->
+      <div class="svc">
+        <div class="svc-hd" onclick="T('deep')">
+          <div>
+            <p class="svc-tag">Thorough</p>
+            <h3 class="svc-nm">Deep Cleaning</h3>
+            <div class="svc-pr">From $155 <span>per visit</span></div>
+          </div>
+          <span class="svc-tog" id="tg-deep">+</span>
+        </div>
+        <div class="svc-bd" id="bd-deep">
+          <div class="svc-sec">
+            <p class="svc-st">🍳 Kitchen</p>
+            <ul class="cl">
+              <li>Deep clean countertops and cabinets including interior (if empty)</li>
+              <li>Deep clean stovetop and oven exterior — remove grease and residue</li>
+              <li>Clean microwave, fridge and all appliances exterior</li>
+              <li>Vacuum and mop floors</li>
+              <li>Clean and polish sink and faucet — remove limescale</li>
+              <li>Wash doors and handles — remove fingerprints and stains</li>
+              <li>Empty trash</li>
+              <li class="inc">Baseboards ✓ included</li>
+            </ul>
+          </div>
+          <div class="svc-sec">
+            <p class="svc-st">🛁 Bathroom</p>
+            <ul class="cl">
+              <li>Deep clean tiles — remove stubborn dirt</li>
+              <li>Deep clean bathtub or shower — remove stains, limescale and soap scum</li>
+              <li>Clean toilet — under rim, base and tank</li>
+              <li>Clean and polish faucets and taps — remove limescale</li>
+              <li>Clean all cabinet surfaces and shelves including interior (if empty)</li>
+              <li>Deep floor cleaning — vacuum and mop</li>
+              <li>Clean mirrors and glass — streak-free</li>
+              <li class="inc">Baseboards ✓ included</li>
+            </ul>
+          </div>
+          <div class="svc-sec">
+            <p class="svc-st">🛌 Bedrooms &amp; Living Room</p>
+            <ul class="cl">
+              <li>Dust top, side and front surfaces of all furniture</li>
+              <li>Vacuum and mop floors</li>
+              <li>Clean glass surfaces and mirrors</li>
+              <li>Wipe window sills</li>
+              <li>Dust lamps and all light fixtures</li>
+              <li>Wipe light switches</li>
+              <li>Empty trash</li>
+              <li>Make bed; fold items if left on bed</li>
+              <li class="inc">Baseboards ✓ included</li>
+            </ul>
+          </div>
+          <div class="svc-sec">
+            <p class="svc-st" style="color:var(--gray)">➕ Add-on Services</p>
+            <ul class="el">
+              <li>Inside oven — $30 standard / $50 deep clean</li>
+              <li>Inside refrigerator — $30 standard / $50 deep clean</li>
+              <li>Interior windows — $8 per window</li>
+              <li>Glass door — $15 one side / $25 both sides</li>
+              <li>Dish washing — from $30</li>
+              <li>Laundry — $30 per load (wash &amp; dry)</li>
+            </ul>
+          </div>
+
+		<div class="an">
+  			📲 Book online below — we'll confirm details and timing with you directly.
+  			<a href="#book" class="an-btn">Book Now</a>
+		</div>
+
+
+
+        </div>
+      </div>
+
+      <!-- MOVE -->
+      <div class="svc">
+        <div class="svc-hd" onclick="T('move')">
+          <div>
+            <p class="svc-tag">Transition</p>
+            <h3 class="svc-nm">Move In / Move Out</h3>
+            <div class="svc-pr">From $170 <span>per visit</span></div>
+          </div>
+          <span class="svc-tog" id="tg-move">+</span>
+        </div>
+        <div class="svc-bd" id="bd-move">
+          <div class="svc-sec">
+            <p class="svc-st">🍳 Kitchen</p>
+            <ul class="cl">
+              <li>Clean all countertops, cabinets and shelves — inside and out</li>
+              <li>Clean all appliances: stove, oven, hood, fridge — exterior</li>
+              <li>Clean microwave interior</li>
+              <li>Clean sink thoroughly</li>
+              <li>Wet wipe window sills throughout</li>
+            </ul>
+          </div>
+          <div class="svc-sec">
+            <p class="svc-st">🛁 Bathroom</p>
+            <ul class="cl">
+              <li>Deep clean tiles</li>
+              <li>Deep clean bathtub or shower</li>
+              <li>Clean toilet — under rim, base and tank</li>
+              <li>Clean and polish faucets — remove limescale</li>
+              <li>Clean all cabinets and shelves inside and out</li>
+              <li>Deep floor cleaning</li>
+              <li>Clean mirrors and glass — streak-free</li>
+              <li class="inc">Baseboards ✓ included</li>
+            </ul>
+          </div>
+          <div class="svc-sec">
+            <p class="svc-st">✅ Throughout the Home</p>
+            <ul class="cl">
+              <li class="inc">Baseboards in every room ✓ included</li>
+              <li>Vacuum and mop all floors</li>
+              <li>Dust all accessible surfaces — window sills, door frames, shelves</li>
+              <li>Remove cobwebs from ceilings and corners</li>
+              <li>Wipe all doors, door frames and handles</li>
+              <li>Wipe all light fixtures and chandeliers</li>
+              <li>Spot clean walls</li>
+            </ul>
+          </div>
+          <div class="svc-sec">
+            <p class="svc-st" style="color:var(--gray)">➕ Add-on Services</p>
+            <ul class="el">
+              <li>Inside oven — $30 standard / $50 deep clean</li>
+              <li>Inside refrigerator — $30 standard / $50 deep clean</li>
+              <li>Interior windows — $8 per window</li>
+              <li>Glass door — $15 one side / $25 both sides</li>
+              <li>Laundry — $30 per load</li>
+              <li>Dish washing — from $30</li>
+            </ul>
+          </div>
+
+
+		<div class="an">
+  			📲 Book online below — we'll confirm details and timing with you directly.
+  			<a href="#book" class="an-btn">Book Now</a>
+		</div>
+
+
+        </div>
+      </div>
+
+      <!-- OFFICE -->
+      <div class="svc">
+        <div class="svc-hd" onclick="T('off')">
+          <div>
+            <p class="svc-tag">Commercial</p>
+            <h3 class="svc-nm">Office Cleaning</h3>
+            <div class="svc-pr">Custom <span>quote</span></div>
+          </div>
+          <span class="svc-tog" id="tg-off">+</span>
+        </div>
+        <div class="svc-bd" id="bd-off">
+          <div class="svc-sec">
+            <ul class="cl">
+              <li>Dusting desks, shelves and all surfaces</li>
+              <li>Vacuuming and mopping all floors</li>
+              <li>Bathrooms and kitchen area</li>
+              <li>Trash removal and bin replacement</li>
+              <li>Common areas and conference rooms</li>
+              <li>Reception area</li>
+            </ul>
+          </div>
+          <div class="an">💡 Pricing based on square footage and frequency. Contact us for a custom quote. <a href="#book" class="an-btn">Book Now</a> </div>
+
+  			
+
+
+        </div>
+      </div>
+
+      <!-- AIRBNB -->
+      <div class="svc">
+        <div class="svc-hd" onclick="T('airbnb')">
+          <div>
+            <p class="svc-tag">Short-term Rental</p>
+            <h3 class="svc-nm">Airbnb Turnover</h3>
+            <div class="svc-pr">From $170 <span>per visit</span></div>
+          </div>
+          <span class="svc-tog" id="tg-airbnb">+</span>
+        </div>
+        <div class="svc-bd" id="bd-airbnb">
+          <div class="svc-sec">
+            <p class="svc-st">✅ Included</p>
+            <ul class="cl">
+             	<li>Full bathroom clean and disinfect</li>
+		<li>Kitchen cleaning — countertops, sink, backsplash, stovetop, and appliance exteriors</li>
+		<li>Light cleaning inside refrigerator (remove spills and wipe shelves)</li>
+		<li>Light cleaning inside microwave</li>
+		<li>Light wipe-down inside oven (if needed)</li>
+		<li>Vacuum carpets, rugs, and all floors</li>
+		<li>Mop all hard floors</li>
+		<li>Dust all accessible surfaces, furniture, shelves, and baseboards</li>
+		<li>Wipe mirrors and interior glass surfaces</li>
+		<li>Empty all trash bins and replace liners</li>
+		<li>Change bed linens and make beds with fresh sheets</li>
+		<li>Replace used towels with fresh towels</li>
+		<li>Laundry service (wash, dry, and start linens if needed)</li>
+		<li>Restock basic guest supplies (using supplies provided by the host)</li>
+		<li>Check for visible damages or missing items and notify the host</li>
+		<li>Organize and stage the property for the next guest</li>
+		<li>Final quality inspection before guest arrival</li>
+
+ <div class="an">Deep cleaning of the oven, refrigerator, interior windows, and other specialty services are available as add-ons.</div>
+
+		<div class="an">
+  			📲 Book online below — we'll confirm details and timing with you directly.
+  			<a href="#book" class="an-btn">Book Now</a>
+		</div>
+
+            </ul>
+          </div>
+          <div class="svc-sec">
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- ORGANIZATION -->
+      <div class="svc">
+        <div class="svc-hd" onclick="T('org')">
+          <div>
+            <p class="svc-tag">Premium Add-on</p>
+            <h3 class="svc-nm">Space Organization</h3>
+            <div class="svc-pr">From $50 <span>/ hour</span></div>
+          </div>
+          <span class="svc-tog" id="tg-org">+</span>
+        </div>
+        <div class="svc-bd" id="bd-org">
+          <div class="svc-sec">
+            <p class="svc-st">🗂 What We Do</p>
+            <ul class="cl">
+              <li>We go through everything with you — fully sorting and organizing a space</li>
+              <li>Arrange items by category, color, or your preference</li>
+              <li>Organize closets, drawers, cabinets, shelves beautifully</li>
+              <li>Create systems that are easy to maintain</li>
+              <li>Kitchen pantry, wardrobe, home office, kids' rooms and more</li>
+              <li>Everything gets a home — nothing left out of place</li>
+            </ul>
+
+           	<div class="an">
+  			📲 Book online below — we'll confirm details and timing with you directly.
+  			<a href="#book" class="an-btn">Book Now</a>
+		</div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CALCULATOR -->
+<div id="calculator" style="background:var(--ivory);padding:80px 40px">
+  <div class="wrap calc-wrap" style="padding:0">
+    <p class="ey">Instant Estimate</p>
+    <h2 class="ti">Price <em>Calculator</em></h2>
+    <div class="li"></div>
+    <p style="font-size:13px;color:var(--gray);font-weight:300;margin-bottom:26px">Get an approximate price instantly. Final price confirmed after booking.</p>
+    <div class="calc-grid">
+      <div class="cg">
+        <label class="clbl">Service Type</label>
+        <select class="csel" id="c-s" onchange="calc()">
+          <option value="">Select service...</option>
+          <option value="standard">Standard Cleaning (from $110)</option>
+          <option value="deep">Deep Cleaning (from $135)</option>
+          <option value="move">Move In / Move Out (from $150)</option>
+          <option value="airbnb">Airbnb Turnover (from $170)</option>
+          <option value="office">Office (custom quote)</option>
+        </select>
+      </div>
+      <div class="cg">
+        <label class="clbl">Bedrooms</label>
+        <select class="csel" id="c-b" onchange="calc()">
+          <option value="">Select...</option>
+          <option value="0" data-n="0">Studio</option>
+          <option value="20" data-n="1">1 Bedroom</option>
+          <option value="40" data-n="2">2 Bedrooms</option>
+          <option value="70" data-n="3">3 Bedrooms</option>
+          <option value="100" data-n="4">4 Bedrooms</option>
+          <option value="130" data-n="5">5 Bedrooms</option>
+          <option value="160" data-n="6">6+ Bedrooms</option>
+        </select>
+      </div>
+      <div class="cg">
+        <label class="clbl">Bathrooms</label>
+        <select class="csel" id="c-ba" onchange="calc()">
+          <option value="">Select...</option>
+          <option value="0" data-n="1">1 Bathroom</option>
+          <option value="20" data-n="2">2 Bathrooms</option>
+          <option value="40" data-n="3">3 Bathrooms</option>
+          <option value="60" data-n="4">4 Bathrooms</option>
+          <option value="80" data-n="5">5 Bathrooms</option>
+          <option value="100" data-n="6">6+ Bathrooms</option>
+        </select>
+      </div>
+      <div class="cg">
+        <label class="clbl">Square Footage (approx.)</label>
+        <select class="csel" id="c-sq" onchange="calc()">
+          <option value="0">Not sure / Skip</option>
+          <option value="0">Under 1,000 sq ft</option>
+          <option value="20">1,001 – 1,400 sq ft</option>
+          <option value="40">1,401 – 1,800 sq ft</option>
+          <option value="60">1,801 – 2,200 sq ft</option>
+          <option value="80">2,201 – 2,600 sq ft</option>
+          <option value="100">2,601 – 3,000 sq ft</option>
+          <option value="120">3,001 – 3,500 sq ft</option>
+          <option value="140">3,501 – 4,000 sq ft</option>
+          <option value="160">4,001 – 4,500 sq ft</option>
+          <option value="180">4,501 – 5,000 sq ft</option>
+          <option value="200">5,001+ sq ft</option>
+        </select>
+      </div>
+      <div class="cg full">
+        <label class="clbl">Add-on Services</label>
+        <div class="add-grid">
+          <label class="add-chk" id="l-ov"><input type="checkbox" id="a-ov" onchange="calc()"> Inside Oven (+$30)</label>
+          <label class="add-chk" id="l-fr"><input type="checkbox" id="a-fr" onchange="calc()"> Inside Fridge (+$30)</label>
+          <label class="add-chk" id="l-bs"><input type="checkbox" id="a-bs" onchange="calc()"> Baseboards (+$10/room)</label>
+          <label class="add-chk" id="l-lw"><input type="checkbox" id="a-lw" onchange="calc()"> Laundry (+$30/load)</label>
+          <label class="add-chk" id="l-dw"><input type="checkbox" id="a-dw" onchange="calc()"> Dish Washing (+$30)</label>
+          <label class="add-chk" id="l-or"><input type="checkbox" id="a-or" onchange="calc()"> Organization (+$50/hr)</label>
+        </div>
+      </div>
+    </div>
+    <div class="pr-res" id="pr-res" style="display:none">
+      <div>
+        <div class="pr-lbl">Estimated Price</div>
+        <div class="pr-amt" id="pr-amt">$0</div>
+        <div class="pr-note">Approximate estimate — final price confirmed after booking</div>
+      </div>
+      <a href="#book" class="pr-btn">Book This Service</a>
+    </div>
+    <div id="base-note" class="base-note" style="display:none"></div>
+    <div id="off-note" style="display:none;margin-top:18px;padding:16px 20px;border-left:2px solid var(--gold);background:var(--cream);font-size:13px;color:var(--gray)">
+      Office cleaning is priced individually. Fill out the booking form and we'll contact you with a custom quote.
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ABOUT -->
+<div id="about" style="background:var(--ivory);padding:80px 40px">
+  <div class="wrap about-g" style="padding:0">
+    <div class="about-t">
+      <p class="ey">Our Approach</p>
+      <h2 class="ti">Where Europe Meets <em>Asia</em></h2>
+      <div class="li"></div>
+      <p>Harmony Cleaning brings together two of the world's most respected cleaning philosophies — European precision and Asian dedication to cleanliness — to create a standard that goes far beyond what typical services offer.</p>
+      <p>Every home receives the same meticulous, methodical treatment. Nothing is rushed. Nothing is overlooked.</p>
+      <div class="about-f">
+        <div class="about-fi">Methodical top-to-bottom cleaning process</div>
+        <div class="about-fi">Carefully selected professional cleaners</div>
+        <div class="about-fi">Flexible scheduling to fit your lifestyle</div>
+        <div class="about-fi">Proudly serving Los Angeles</div>
+      </div>
+    </div>
+    <div>
+      <div class="sbox">
+        <h4>The Euro-Asian Cleaning Standard</h4>
+        <p><strong>European cleaning</strong> is known for its systematic, room-by-room approach — working methodically from ceiling to floor, leaving no corner untouched. It's cleaning with a plan, not just a cloth.</p>
+        <p><strong>Asian cleanliness culture</strong> brings an equally powerful tradition — a deep respect for the home as a sacred, harmonious space. In many Asian cultures, cleanliness is a form of care, discipline, and respect for those who live in the space.</p>
+        <p>Together, these two philosophies create a cleaning experience that is thorough, intentional, and truly transformative — not just clean to the eye, but clean to the core.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div id="reviews" style="background:var(--cream);padding:80px 40px">
+  <div style="max-width:1100px;margin:0 auto">
+    <p class="ey">Client Reviews</p>
+    <h2 class="ti">What our clients <em>say</em></h2>
+    <div class="li"></div>
+    <div class="rev-g">
+      <div class="rev-c"><div class="rev-s">★★★★★</div><p class="rev-t">"The most thorough cleaning I've ever experienced. They didn't miss a single corner — truly a different level."</p><div class="rev-a">Sarah M. — Calabasas</div></div>
+      <div class="rev-c"><div class="rev-s">★★★★★</div><p class="rev-t">"Professional, reliable, and incredibly detailed. My home has never looked this clean."</p><div class="rev-a">James T. — Studio City</div></div>
+      <div class="rev-c"><div class="rev-s">★★★★★</div><p class="rev-t">"Booked a move-out clean and they went above and beyond. Got my full deposit back."</p><div class="rev-a">Elena R. — Pasadena</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOK -->
+<div id="book" style="background:var(--char);padding:80px 40px">
+  <div style="max-width:660px;margin:0 auto">
+    <p class="ey" style="color:var(--gold-l)">Get Started</p>
+    <h2 class="ti" style="color:var(--cream)">Book a <em style="color:var(--gold)">Cleaning</em></h2>
+    <div class="li"></div>
+    <p style="font-size:13px;color:var(--gray-l);font-weight:300;margin-bottom:32px">Fill out the form and we'll contact you to confirm your appointment and final price.</p>
+    <form id="bForm" name="booking" data-netlify="true" netlify>
+      <input type="hidden" name="form-name" value="booking">
+      <div class="form-g">
+        <div class="fg"><label class="fl">Full Name *</label><input type="text" name="name" placeholder="Your full name" required></div>
+        <div class="fg"><label class="fl">Phone Number *</label><input type="tel" name="phone" placeholder="(310) 000-0000" required></div>
+        <div class="fg full"><label class="fl">Property Address *</label><input type="text" name="address" placeholder="Full address including city" required></div>
+        <div class="fg full"><label class="fl">Type of Cleaning *</label>
+          <select name="service" required>
+            <option value="" disabled selected>Select a service</option>
+            <option>Standard Cleaning</option>
+            <option>Deep Cleaning</option>
+            <option>Move In / Move Out</option>
+            <option>Airbnb Turnover</option>
+            <option>Office / Commercial</option>
+            <option>Space Organization</option>
+          </select>
+        </div>
+        <div class="fg"><label class="fl">Bedrooms *</label>
+          <select name="bedrooms" required>
+            <option value="" disabled selected>Select...</option>
+            <option>Studio</option><option>1 Bedroom</option><option>2 Bedrooms</option>
+            <option>3 Bedrooms</option><option>4 Bedrooms</option><option>5 Bedrooms</option><option>6+ Bedrooms</option>
+          </select>
+        </div>
+        <div class="fg"><label class="fl">Bathrooms *</label>
+          <select name="bathrooms" required>
+            <option value="" disabled selected>Select...</option>
+            <option>1 Bathroom</option><option>2 Bathrooms</option><option>3 Bathrooms</option>
+            <option>4 Bathrooms</option><option>5 Bathrooms</option><option>6+ Bathrooms</option>
+          </select>
+        </div>
+        <div class="fg"><label class="fl">Preferred Date * (MM/DD/YYYY)</label><input type="date" name="date" required lang="en-US"></div>
+        <div class="fg"><label class="fl">Preferred Time *</label>
+          <select name="time" required>
+            <option value="" disabled selected>Select time</option>
+            <option>Morning (8am – 11am)</option>
+            <option>Midday (11am – 2pm)</option>
+            <option>Afternoon (2pm – 5pm)</option>
+          </select>
+        </div>
+        <div class="fg full">
+          <label class="fl">Add-on Services (select all that apply)</label>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-top:4px">
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_oven" style="width:14px;height:14px;accent-color:var(--gold)"> Inside Oven</label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_fridge" style="width:14px;height:14px;accent-color:var(--gold)"> Inside Fridge</label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_baseboards" style="width:14px;height:14px;accent-color:var(--gold)"> Baseboards</label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_laundry" style="width:14px;height:14px;accent-color:var(--gold)"> Laundry ($30/load)</label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_dishes" style="width:14px;height:14px;accent-color:var(--gold)"> Dish Washing</label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_windows" style="width:14px;height:14px;accent-color:var(--gold)"> Interior Windows ($8/window)</label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_organization" style="width:14px;height:14px;accent-color:var(--gold)"> Space Organization ($50/hr)</label>
+          </div>
+        </div>
+        <div class="fg full"><label class="fl">Additional Notes</label><textarea name="notes" placeholder="Special requests, pets, access instructions..."></textarea></div>
+      </div>
+      <div class="tr-row">
+        <input type="checkbox" id="tc" name="terms" onchange="toggleBtn()">
+        <p class="tr-t">I have read and agree to the <a onclick="openModal(event)">Terms of Service &amp; Policies</a>. I confirm I have reviewed the service descriptions on this website and understand what is included in my chosen service.</p>
+      </div>
+      <button type="submit" class="btn-sub" id="sbtn" disabled>Request Appointment →</button>
+    </form>
+    <div class="f-ok" id="fOk"><h3>Thank you!</h3><p>We'll contact you within 24 hours to confirm your appointment.</p></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="tModal">
+  <div class="mc">
+    <button class="mc-cls" onclick="closeModal()">×</button>
+    <h2>Policies &amp; Terms</h2>
+    <p style="font-size:10px;color:var(--gray);letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px">Harmony Cleaning</p>
+
+    <p class="ms">💳 Payment</p>
+    <div class="mh">Payment is due at arrival, BEFORE cleaning begins. Work cannot start without payment.</div>
+    <p>We accept: <strong>Cash · Zelle · Venmo · CashApp</strong></p>
+
+    <p class="ms">⏱ Quality Check</p>
+    <div class="mh">About 30 minutes before the cleaner finishes, we will message you so you can check the space and request any touch-ups while they are still there.</div>
+    <p>Once the cleaner leaves the property, we are unable to accept complaints or redo requests. Please make sure to inspect the space before they leave.</p>
+
+    <p class="ms">🔑 Property Access</p>
+    <p>Please ensure access to the property at the scheduled time. If you won't be home, let us know in advance how the cleaner can get in (lockbox, key, etc.). If access is not provided within 15 minutes of the start time, the appointment may be considered a no-show.</p>
+
+    <p class="ms">❌ Cancellation</p>
+    <p>Cancellations must be made at least 24 hours in advance. Late cancellations may be subject to a cancellation fee.</p>
+
+    <p class="ms">📋 Service Agreement</p>
+    <p>By booking, you confirm that you have reviewed the service descriptions on our website and understand what is and is not included in your chosen service type. Services are performed as described. Tasks not included require prior agreement and may incur additional charges.</p>
+
+    <p class="ms">ℹ️ Platform Notice</p>
+    <p>Harmony Cleaning operates as a platform connecting clients with independent cleaning professionals. Each cleaner operates independently. Harmony Cleaning is not liable for the actions of independent cleaners beyond the agreed scope of service.</p>
+
+    <p class="ms">🔒 Privacy</p>
+    <p>Your personal information is used solely for scheduling and communication and is never shared with third parties.</p>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:12px">
+    <svg width="36" height="42" viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30.5" y="44" width="3" height="20" rx="1.5" fill="#C4A35A"/>
+      <ellipse cx="32" cy="45" rx="5" ry="2.5" fill="#C4A35A" opacity="0.5"/>
+      <path d="M32,44 C28,40 22,30 25,16 C27,22 30,34 32,44Z" fill="#E8D5A3"/>
+      <path d="M32,44 C29,38 27,26 31,12 C32,18 32,32 32,44Z" fill="#D4B866" opacity="0.9"/>
+      <path d="M32,44 C30,36 30,20 32,8 C34,20 34,36 32,44Z" fill="#C4A35A"/>
+      <path d="M32,44 C35,38 37,26 33,12 C32,18 32,32 32,44Z" fill="#D4B866" opacity="0.9"/>
+      <path d="M32,44 C36,40 42,30 39,16 C37,22 34,34 32,44Z" fill="#E8D5A3"/>
+    </svg>
+  </div>
+  <div class="fl-logo">Harmony <span>Cleaning</span></div>
+  <p class="fl-sub">Professional Cleaning Services · Los Angeles, CA</p>
+  <div class="fl-lnks">
+    <a href="tel:+14242357405">📞 (424) 235-7405</a>
+    <a href="#book">Book Now</a>
+    <a href="#services">Services</a>
+    <a href="#calculator">Pricing</a>
+  </div>
+  <p class="fl-copy">© 2026 Harmony Cleaning. All rights reserved.</p>
+</footer>
+
+<script>
+function T(id){
+  const b=document.getElementById('bd-'+id),t=document.getElementById('tg-'+id),o=b.classList.contains('open');
+  document.querySelectorAll('.svc-bd').forEach(x=>x.classList.remove('open'));
+  document.querySelectorAll('.svc-tog').forEach(x=>x.textContent='+');
+  if(!o){b.classList.add('open');t.textContent='−';}
+}
+
+// Load prices from JSON
+let P = null;
+fetch('prices.json')
+  .then(r=>r.json())
+  .then(data=>{ P=data; })
+  .catch(()=>{
+    P={services:{standard:110,deep:135,move:150,airbnb:170},bedrooms:{studio:0,1:20,2:40,3:70,4:100,5:130,"6+":160},bathrooms:{1:0,2:20,3:40,4:60,5:80,"6+":100},sqft:{"0-1000":0,"1001-1400":20,"1401-1800":40,"1801-2200":60,"2201-2600":80,"2601-3000":100,"3001-3500":120,"3501-4000":140,"4001-4500":160,"4501-5000":180,"5001+":200},addons:{oven_standard:30,fridge_standard:30,baseboard_per_room:10,laundry_per_load:30,dishes:30,organization_per_hour:50}};
+  });
+
+// Load promos from JSON
+fetch('promos.json')
+  .then(r=>r.json())
+  .then(data=>{
+    const active = data.promos.filter(p=>p.active);
+    if(active.length > 0) {
+      const p = active[0];
+      document.getElementById('promo-text').innerHTML = p.emoji + ' <strong>' + p.title + '</strong> — ' + p.description + (p.code ? ' · Code: <strong>' + p.code + '</strong>' : '') + (p.expires ? ' · Expires: ' + p.expires : '');
+      document.getElementById('promo-banner').style.display = 'block';
+    }
+  })
+  .catch(()=>{});
+
+function calc(){
+  if(!P) return;
+  const sv=document.getElementById('c-s').value;
+  const bEl=document.getElementById('c-b');
+  const baEl=document.getElementById('c-ba');
+  const sqEl=document.getElementById('c-sq');
+  const bv=bEl.value, bav=baEl.value;
+  const bn=bEl.selectedIndex>0?parseInt(bEl.options[bEl.selectedIndex].dataset.n)||0:null;
+  const ban=baEl.selectedIndex>0?parseInt(baEl.options[baEl.selectedIndex].dataset.n)||1:null;
+  const sqv=parseInt(sqEl.value)||0;
+  const isStd=sv==='standard';
+
+  const lbs=document.getElementById('l-bs');
+  if(isStd){lbs.classList.remove('dis');}
+  else{document.getElementById('a-bs').checked=false;lbs.classList.add('dis');}
+
+  if(sv==='office'){
+    document.getElementById('pr-res').style.display='none';
+    document.getElementById('off-note').style.display='block';
+    document.getElementById('base-note').style.display='none';
+    return;
+  }
+  document.getElementById('off-note').style.display='none';
+  if(!sv||bv===''||bav===''){document.getElementById('pr-res').style.display='none';document.getElementById('base-note').style.display='none';return;}
+
+  let base=P.services[sv]||0;
+  let beds=parseInt(bv)||0;
+  let baths=parseInt(bav)||0;
+  let addons=0;
+
+  if(document.getElementById('a-ov').checked) addons+=P.addons.oven_standard;
+  if(document.getElementById('a-fr').checked) addons+=P.addons.fridge_standard;
+  if(document.getElementById('a-lw').checked) addons+=P.addons.laundry_per_load;
+  if(document.getElementById('a-dw').checked) addons+=P.addons.dishes;
+  if(document.getElementById('a-or').checked) addons+=P.addons.organization_per_hour;
+
+  let baseNote='';
+  if(isStd&&document.getElementById('a-bs').checked&&bn!==null&&ban!==null){
+    const rooms=bn+ban;
+    const bc=rooms*P.addons.baseboard_per_room;
+    addons+=bc;
+    baseNote='Baseboards: '+bn+' bedroom(s) + '+ban+' bathroom(s) = $'+bc;
+  }
+
+  const total=base+beds+baths+sqv+addons;
+  document.getElementById('pr-amt').textContent='$'+total;
+  document.getElementById('pr-res').style.display='flex';
+  const bn2=document.getElementById('base-note');
+  if(baseNote){bn2.textContent=baseNote;bn2.style.display='block';}
+  else{bn2.style.display='none';}
+}
+
+function toggleBtn(){document.getElementById('sbtn').disabled=!document.getElementById('tc').checked;}
+function openModal(e){if(e)e.preventDefault();document.getElementById('tModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('tModal').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('tModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+// Form submission + client confirmation email via EmailJS
+document.getElementById('bForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const name = this.querySelector('[name=name]').value;
+  const phone = this.querySelector('[name=phone]').value;
+
+  // Send client confirmation via EmailJS
+  // To activate: sign up at emailjs.com, create a template, replace the IDs below
+  // emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+  //   to_name: name,
+  //   to_phone: phone,
+  //   reply_to: 'hello@harmonycleaning.com'
+  // }, 'YOUR_PUBLIC_KEY');
+
+  this.style.display='none';
+  document.getElementById('fOk').style.display='block';
+});
+
+const d=document.querySelector('input[type=date]');
+if(d)d.setAttribute('min',new Date().toISOString().split('T')[0]);
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const t=document.querySelector(this.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+</script>
+</body>
+</html>

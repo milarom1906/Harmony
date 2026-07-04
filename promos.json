@@ -1,0 +1,20 @@
+{
+  "promos": [
+    {
+      "active": true,
+      "emoji": "🎉",
+      "title": "New Client Special",
+      "description": "10% off your first cleaning — mention code at booking",
+      "code": "WELCOME10",
+      "expires": "2025-12-31"
+    },
+    {
+      "active": false,
+      "emoji": "🌟",
+      "title": "Refer a Friend",
+      "description": "$20 off your next booking when you refer a friend",
+      "code": "REFER20",
+      "expires": ""
+    }
+  ]
+}

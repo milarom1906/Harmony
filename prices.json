@@ -1,0 +1,37 @@
+{
+  "services": {
+    "standard": 130,
+    "deep": 155,
+    "move": 170
+  },
+  "bedrooms": {
+    "studio": 0,
+    "1": 20,
+    "2": 40,
+    "3": 60,
+    "4": 80,
+    "5": 100,
+    "6+": 120
+  },
+  "bathrooms": {
+    "1": 0,
+    "2": 20,
+    "3": 40,
+    "4": 60,
+    "5": 80,
+    "6+": 100
+  },
+  "addons": {
+    "oven_standard": 30,
+    "oven_deep": 50,
+    "fridge_standard": 30,
+    "fridge_deep": 50,
+    "baseboard_per_room": 10,
+    "laundry_per_load": 30,
+    "dishes": 30,
+    "organization_per_hour": 50,
+    "window_standard": 8,
+    "glass_door_one_side": 15,
+    "glass_door_both_sides": 25
+  }
+}

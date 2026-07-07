@@ -166,37 +166,12 @@ footer{background:#1E1C1A;padding:36px 40px;text-align:center;margin-top:60px}
 
       <div class="policy-item">
         <p class="policy-item-title">❌ Cancellation</p>
-        <p class="policy-item-text">Cancellations must be made at least <strong>24 hours in advance</strong>. Cancellations with less than 24 hours notice are subject to a <strong>$30 cancellation fee</strong>, which will be charged to the card on file.</p>
+        <p class="policy-item-text">Cancellations must be made at least <strong>24 hours in advance</strong>. Cancellations with less than 24 hours notice may be subject to a cancellation fee.</p>
       </div>
 
       <div class="policy-link-row">
         <button class="policy-link" onclick="openModal()">View Full Terms &amp; Conditions →</button>
       </div>
-    </div>
-
-    <!-- CARD ON FILE -->
-    <div class="card-section">
-      <p class="card-title">💳 Card on File — Cancellation Protection</p>
-      <p class="card-note">Your card will <strong>not</strong> be charged today. It is held on file only in case of a late cancellation (less than 24 hours notice), in which case a <strong>$30 fee</strong> applies.</p>
-      <div class="card-fields">
-        <div class="cf full">
-          <label class="clbl">Cardholder Name</label>
-          <input class="cinput" type="text" id="card-name" placeholder="Full name as on card" autocomplete="cc-name">
-        </div>
-        <div class="cf full">
-          <label class="clbl">Card Number</label>
-          <input class="cinput" type="text" id="card-number" placeholder="•••• •••• •••• ••••" maxlength="19" autocomplete="cc-number">
-        </div>
-        <div class="cf">
-          <label class="clbl">Expiry Date</label>
-          <input class="cinput" type="text" id="card-exp" placeholder="MM / YY" maxlength="7" autocomplete="cc-exp">
-        </div>
-        <div class="cf">
-          <label class="clbl">CVV</label>
-          <input class="cinput" type="text" id="card-cvv" placeholder="•••" maxlength="4" autocomplete="cc-csc">
-        </div>
-      </div>
-      <p class="card-secure">🔒 Your card information is stored securely and only used if a cancellation fee applies.</p>
     </div>
 
     <!-- CLIENT INFO -->
@@ -220,7 +195,7 @@ footer{background:#1E1C1A;padding:36px 40px;text-align:center;margin-top:60px}
     <!-- AGREE CHECKBOX -->
     <label class="agree-row">
       <input type="checkbox" id="agreeCheck" onchange="toggleSubmit()">
-      <span class="agree-text">I have read and agree to the booking policies above, including the <strong>payment upon arrival</strong>, <strong>quality check notice</strong>, <strong>access requirements</strong>, and the <strong>$30 late cancellation fee</strong>. I authorize Harmony Cleaning to charge my card on file in case of a cancellation with less than 24 hours notice.</span>
+      <span class="agree-text">I have read and agree to the booking policies above, including the <strong>payment upon arrival</strong>, <strong>quality check notice</strong>, <strong>access requirements</strong>, and the <strong>cancellation policy</strong>.</span>
     </label>
 
     <button class="btn-confirm" id="confirmBtn" disabled onclick="submitConfirmation()">Confirm Booking</button>
@@ -258,10 +233,9 @@ footer{background:#1E1C1A;padding:36px 40px;text-align:center;margin-top:60px}
     <p>Please ensure access to the property at the scheduled time. If you won't be home, let us know in advance how the cleaner can get in (lockbox, key, etc.). If access is not provided within 15 minutes of the start time, the appointment may be considered a no-show.</p>
 
     <p class="ms">❌ Cancellation</p>
-    <p>Cancellations must be made at least 24 hours in advance. Cancellations with less than 24 hours notice are subject to a <strong>$30 cancellation fee</strong>, which will be charged to the card on file.</p>
+    <p>Cancellations must be made at least 24 hours in advance. Cancellations with less than 24 hours notice may be subject to a cancellation fee.</p>
 
-    <p class="ms">💳 Card on File</p>
-    <p>By providing your card details, you authorize Harmony Cleaning to charge a $30 cancellation fee in the event of a late cancellation (less than 24 hours notice). Your card will not be charged for any other purpose without your explicit consent.</p>
+
 
     <p class="ms">📋 Service Agreement</p>
     <p>By confirming, you acknowledge that you have reviewed the service descriptions and understand what is and is not included in your chosen service type. Services are performed as described. Tasks not included require prior agreement and may incur additional charges.</p>
@@ -342,19 +316,6 @@ window.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// Card number formatting
-document.getElementById('card-number').addEventListener('input', function(e) {
-  let v = e.target.value.replace(/\D/g, '').substring(0, 16);
-  e.target.value = v.replace(/(.{4})/g, '$1 ').trim();
-});
-
-// Expiry formatting
-document.getElementById('card-exp').addEventListener('input', function(e) {
-  let v = e.target.value.replace(/\D/g, '').substring(0, 4);
-  if (v.length >= 2) v = v.substring(0,2) + ' / ' + v.substring(2);
-  e.target.value = v;
-});
-
 function toggleSubmit() {
   document.getElementById('confirmBtn').disabled = !document.getElementById('agreeCheck').checked;
 }
@@ -407,7 +368,7 @@ function submitConfirmation() {
   formData.append('addons', decodeURIComponent(p.addons || ''));
   formData.append('agreed_to_terms', 'YES');
   formData.append('confirmed_at', timestamp);
-  formData.append('card_last4', document.getElementById('card-number').value.replace(/\s/g,'').slice(-4));
+
 
   fetch('/', {
     method: 'POST',
@@ -443,7 +404,6 @@ function submitConfirmation() {
   <input name="addons">
   <input name="agreed_to_terms">
   <input name="confirmed_at">
-  <input name="card_last4">
 </form>
 
 </body>

@@ -78,6 +78,9 @@ select.finp option{background:#2A2826;color:var(--cream)}
 .link-btn-open:hover{background:rgba(196,163,90,.1)}
 .link-btn-sms{background:rgba(255,255,255,.08);color:var(--cream);border:1px solid rgba(255,255,255,.15)}
 .link-btn-sms:hover{background:rgba(255,255,255,.12)}
+.link-btn-short{background:rgba(196,163,90,.15);color:var(--gold);border:1px solid rgba(196,163,90,.3)}
+.link-btn-short:hover{background:rgba(196,163,90,.25)}
+.short-toast{font-size:11px;color:#7EC891;margin-left:8px;opacity:0;transition:opacity .3s}
 .copy-toast{font-size:11px;color:#7EC891;margin-left:8px;opacity:0;transition:opacity .3s}
 
 /* HISTORY */
@@ -245,6 +248,7 @@ select.finp option{background:#2A2826;color:var(--cream)}
         <div class="link-display" id="linkDisplay"></div>
         <div class="link-actions">
           <button class="link-btn link-btn-copy" onclick="copyLink()">Copy Link <span class="copy-toast" id="copyToast">✓ Copied!</span></button>
+          <button class="link-btn link-btn-short" onclick="shortenLink()">Shorten Link <span class="short-toast" id="shortToast">✓ Copied!</span></button>
           <button class="link-btn link-btn-open" onclick="openLink()">Preview</button>
           <button class="link-btn link-btn-sms" onclick="smsLink()">Open in Messages</button>
         </div>
@@ -392,6 +396,26 @@ function smsLink() {
 }
 
 // ── HISTORY ───────────────────────────────────────────────
+async function shortenLink() {
+  if (!currentLink) return;
+  const btn = event.target;
+  btn.textContent = 'Shortening...';
+  try {
+    const res = await fetch('https://tinyurl.com/api-create.php?url=' + encodeURIComponent(currentLink));
+    const short = await res.text();
+    currentLink = short;
+    document.getElementById('linkDisplay').textContent = short;
+    await navigator.clipboard.writeText(short);
+    btn.innerHTML = 'Shorten Link <span class="short-toast" id="shortToast" style="opacity:1">✓ Copied!</span>';
+    setTimeout(() => {
+      document.getElementById('shortToast').style.opacity = '0';
+    }, 2000);
+  } catch(e) {
+    btn.textContent = 'Shorten Link';
+    alert('Could not shorten link. Please try again.');
+  }
+}
+
 function saveToHistory(item) {
   const history = JSON.parse(localStorage.getItem('hc_history') || '[]');
   history.unshift(item);

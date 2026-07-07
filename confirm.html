@@ -383,6 +383,11 @@ function submitConfirmation() {
     return;
   }
 
+  if (!phone) {
+    alert('Please enter your phone number.');
+    return;
+  }
+
   const p = getParams();
   const timestamp = new Date().toLocaleString('en-US', {timeZone:'America/Los_Angeles'});
 

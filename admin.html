@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | Harmony Cleaning</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#C4A35A;--gold-l:#E8D5A3;--cream:#FAFAF7;--ivory:#F4F0E8;--char:#2A2826;--gray:#6B6762;--gray-l:#D8D4CC}
+body{font-family:'Inter',sans-serif;background:var(--char);color:var(--cream);font-size:16px;line-height:1.7;min-height:100vh}
+
+/* LOGIN SCREEN */
+#loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.login-box{width:100%;max-width:360px;text-align:center}
+.login-logo{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;letter-spacing:.15em;color:var(--cream);margin-bottom:6px}
+.login-logo span{color:var(--gold)}
+.login-sub{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);margin-bottom:36px}
+.login-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;text-align:left}
+.login-lbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-l)}
+.login-inp{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--cream);padding:11px 14px;font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color .2s;width:100%}
+.login-inp:focus{border-color:var(--gold)}
+.login-inp::placeholder{color:rgba(255,255,255,.25)}
+.login-btn{width:100%;background:var(--gold);color:var(--char);border:none;padding:13px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:background .2s;margin-top:6px}
+.login-btn:hover{background:var(--gold-l)}
+.login-err{font-size:12px;color:#E88A8A;margin-top:10px;display:none}
+
+/* ADMIN PANEL */
+#adminPanel{display:none;min-height:100vh}
+.adm-nav{background:rgba(0,0,0,.3);border-bottom:1px solid rgba(255,255,255,.08);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.adm-nav-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;letter-spacing:.12em;color:var(--cream)}
+.adm-nav-logo span{color:var(--gold)}
+.adm-nav-right{display:flex;align-items:center;gap:16px}
+.adm-tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
+.adm-logout{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif}
+.adm-logout:hover{color:var(--gold-l)}
+
+.adm-body{max-width:760px;margin:0 auto;padding:40px 24px 60px}
+
+.section-title{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+
+/* FORM */
+.adm-form{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:28px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.fg{display:flex;flex-direction:column;gap:6px}
+.fg.full{grid-column:1/-1}
+.flbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.finp{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--cream);padding:10px 12px;font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s;width:100%;-webkit-appearance:none;appearance:none}
+.finp:focus{border-color:var(--gold)}
+.finp::placeholder{color:rgba(255,255,255,.2)}
+select.finp{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C4A35A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-color:rgba(255,255,255,.06)}
+select.finp option{background:#2A2826;color:var(--cream)}
+
+/* ADDONS */
+.addons-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:4px}
+.addon-chk{display:flex;align-items:center;gap:8px;padding:9px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:pointer;font-size:12px;color:rgba(255,255,255,.7);transition:border-color .2s}
+.addon-chk:hover{border-color:var(--gold)}
+.addon-chk input{accent-color:var(--gold);width:14px;height:14px;cursor:pointer;flex-shrink:0}
+
+/* PRICE DISPLAY */
+.price-bar{background:rgba(196,163,90,.12);border:1px solid rgba(196,163,90,.3);padding:18px 22px;margin:20px 0;display:flex;justify-content:space-between;align-items:center}
+.price-bar-lbl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-l)}
+.price-bar-val{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--gold);line-height:1}
+
+/* GENERATE BTN */
+.gen-btn{width:100%;background:var(--gold);color:var(--char);border:none;padding:14px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:background .2s}
+.gen-btn:hover{background:var(--gold-l)}
+
+/* LINK OUTPUT */
+.link-box{margin-top:24px;display:none}
+.link-box-title{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.link-display{background:rgba(255,255,255,.05);border:1px solid rgba(196,163,90,.3);padding:14px 16px;font-size:12px;color:var(--gold-l);word-break:break-all;line-height:1.6;margin-bottom:12px;font-family:'Inter',sans-serif}
+.link-actions{display:flex;gap:10px;flex-wrap:wrap}
+.link-btn{padding:10px 20px;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:none;font-weight:500}
+.link-btn-copy{background:var(--gold);color:var(--char)}
+.link-btn-copy:hover{background:var(--gold-l)}
+.link-btn-open{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.link-btn-open:hover{background:rgba(196,163,90,.1)}
+.link-btn-sms{background:rgba(255,255,255,.08);color:var(--cream);border:1px solid rgba(255,255,255,.15)}
+.link-btn-sms:hover{background:rgba(255,255,255,.12)}
+.copy-toast{font-size:11px;color:#7EC891;margin-left:8px;opacity:0;transition:opacity .3s}
+
+/* HISTORY */
+.history-section{margin-top:40px}
+.history-empty{font-size:12px;color:var(--gray);text-align:center;padding:30px;border:1px solid rgba(255,255,255,.06)}
+.history-item{border:1px solid rgba(255,255,255,.07);padding:16px 18px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.hist-info{flex:1}
+.hist-name{font-size:13px;color:var(--cream);margin-bottom:2px}
+.hist-detail{font-size:11px;color:var(--gray)}
+.hist-price{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);flex-shrink:0}
+.hist-actions{display:flex;gap:8px;flex-shrink:0}
+.hist-btn{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;cursor:pointer;border:none;font-family:'Inter',sans-serif}
+.hist-btn-resend{background:rgba(196,163,90,.15);color:var(--gold)}
+.hist-btn-resend:hover{background:rgba(196,163,90,.25)}
+.hist-btn-del{background:rgba(255,255,255,.06);color:var(--gray)}
+.hist-btn-del:hover{background:rgba(255,80,80,.15);color:#E88A8A}
+
+.divider-line{border:none;border-top:1px solid rgba(255,255,255,.07);margin:32px 0}
+
+@media(max-width:600px){
+  .adm-nav{padding:0 16px}
+  .adm-body{padding:24px 16px 40px}
+  .form-grid{grid-template-columns:1fr}
+  .fg.full{grid-column:1}
+  .link-actions{flex-direction:column}
+  .link-btn{text-align:center}
+  .history-item{flex-direction:column;align-items:flex-start}
+  .hist-actions{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">Harmony <span>Cleaning</span></div>
+    <div class="login-sub">Admin Panel</div>
+    <div class="login-field">
+      <label class="login-lbl">Password</label>
+      <input class="login-inp" type="password" id="loginPass" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="login-btn" onclick="doLogin()">Enter</button>
+    <p class="login-err" id="loginErr">Incorrect password</p>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel">
+  <nav class="adm-nav">
+    <div class="adm-nav-logo">Harmony <span>Cleaning</span></div>
+    <div class="adm-nav-right">
+      <span class="adm-tag">Admin</span>
+      <button class="adm-logout" onclick="logout()">Log out</button>
+    </div>
+  </nav>
+
+  <div class="adm-body">
+
+    <p class="section-title">New Booking Confirmation</p>
+
+    <div class="adm-form">
+      <div class="form-grid">
+
+        <div class="fg">
+          <label class="flbl">Client Name</label>
+          <input class="finp" type="text" id="f-name" placeholder="e.g. Sarah Johnson" oninput="updateLink()">
+        </div>
+
+        <div class="fg">
+          <label class="flbl">Client Phone</label>
+          <input class="finp" type="tel" id="f-phone" placeholder="(xxx) xxx-xxxx" oninput="updateLink()">
+        </div>
+
+        <div class="fg">
+          <label class="flbl">Service Type</label>
+          <select class="finp" id="f-service" onchange="updatePrice();updateLink()">
+            <option value="">— Select —</option>
+            <option value="standard">Standard Cleaning</option>
+            <option value="deep">Deep Cleaning</option>
+            <option value="move">Move-In / Move-Out</option>
+            <option value="airbnb">Airbnb Turnover</option>
+          </select>
+        </div>
+
+        <div class="fg">
+          <label class="flbl">Date</label>
+          <input class="finp" type="date" id="f-date" oninput="updateLink()">
+        </div>
+
+        <div class="fg">
+          <label class="flbl">Time</label>
+          <input class="finp" type="text" id="f-time" placeholder="e.g. 10:00 AM" oninput="updateLink()">
+        </div>
+
+        <div class="fg">
+          <label class="flbl">Bedrooms</label>
+          <select class="finp" id="f-beds" onchange="updatePrice();updateLink()">
+            <option value="">— Select —</option>
+            <option value="studio">Studio</option>
+            <option value="1">1 Bedroom</option>
+            <option value="2">2 Bedrooms</option>
+            <option value="3">3 Bedrooms</option>
+            <option value="4">4 Bedrooms</option>
+            <option value="5">5 Bedrooms</option>
+            <option value="6+">6+ Bedrooms</option>
+          </select>
+        </div>
+
+        <div class="fg">
+          <label class="flbl">Bathrooms</label>
+          <select class="finp" id="f-baths" onchange="updatePrice();updateLink()">
+            <option value="">— Select —</option>
+            <option value="1">1 Bathroom</option>
+            <option value="2">2 Bathrooms</option>
+            <option value="3">3 Bathrooms</option>
+            <option value="4">4 Bathrooms</option>
+            <option value="5">5 Bathrooms</option>
+            <option value="6+">6+ Bathrooms</option>
+          </select>
+        </div>
+
+        <div class="fg full">
+          <label class="flbl">Address</label>
+          <input class="finp" type="text" id="f-address" placeholder="e.g. 123 Sunset Blvd, Los Angeles, CA" oninput="updateLink()">
+        </div>
+
+        <div class="fg full">
+          <label class="flbl">Add-ons</label>
+          <div class="addons-grid">
+            <label class="addon-chk"><input type="checkbox" value="Oven cleaning ($30)" onchange="updatePrice();updateLink()"> Oven cleaning</label>
+            <label class="addon-chk"><input type="checkbox" value="Fridge cleaning ($30)" onchange="updatePrice();updateLink()"> Fridge cleaning</label>
+            <label class="addon-chk"><input type="checkbox" value="Dish washing ($30)" onchange="updatePrice();updateLink()"> Dish washing</label>
+            <label class="addon-chk"><input type="checkbox" value="Laundry ($30/load)" onchange="updatePrice();updateLink()"> Laundry</label>
+            <label class="addon-chk"><input type="checkbox" value="Organization ($50/hr)" onchange="updatePrice();updateLink()"> Organization</label>
+            <label class="addon-chk"><input type="checkbox" value="Baseboards ($10/room)" onchange="updatePrice();updateLink()"> Baseboards</label>
+          </div>
+        </div>
+
+        <div class="fg full">
+          <label class="flbl">Override Price (optional)</label>
+          <input class="finp" type="number" id="f-override" placeholder="Leave blank to use calculated price" oninput="updateLink()">
+        </div>
+
+      </div>
+
+      <!-- PRICE -->
+      <div class="price-bar">
+        <div>
+          <div class="price-bar-lbl">Total Due at Arrival</div>
+          <div style="font-size:10px;color:var(--gray);margin-top:3px">Zelle: harmonycleaningla@gmail.com</div>
+        </div>
+        <div class="price-bar-val" id="calcPrice">$—</div>
+      </div>
+
+      <button class="gen-btn" onclick="generateLink()">Generate Confirmation Link →</button>
+
+      <!-- LINK OUTPUT -->
+      <div class="link-box" id="linkBox">
+        <p class="link-box-title">Client Confirmation Link</p>
+        <div class="link-display" id="linkDisplay"></div>
+        <div class="link-actions">
+          <button class="link-btn link-btn-copy" onclick="copyLink()">Copy Link <span class="copy-toast" id="copyToast">✓ Copied!</span></button>
+          <button class="link-btn link-btn-open" onclick="openLink()">Preview</button>
+          <button class="link-btn link-btn-sms" onclick="smsLink()">Open in Messages</button>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider-line">
+
+    <!-- HISTORY -->
+    <div class="history-section">
+      <p class="section-title">Recent Bookings</p>
+      <div id="historyList"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── PASSWORD ──────────────────────────────────────────────
+// Change this to your own password!
+const ADMIN_PASSWORD = 'harmony2026';
+
+function doLogin() {
+  const val = document.getElementById('loginPass').value;
+  if (val === ADMIN_PASSWORD) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    loadHistory();
+    // Set min date
+    const d = document.getElementById('f-date');
+    if (d) d.setAttribute('min', new Date().toISOString().split('T')[0]);
+  } else {
+    document.getElementById('loginErr').style.display = 'block';
+    document.getElementById('loginPass').value = '';
+  }
+}
+
+function logout() {
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('adminPanel').style.display = 'none';
+  document.getElementById('loginPass').value = '';
+  document.getElementById('loginErr').style.display = 'none';
+}
+
+// ── PRICES ────────────────────────────────────────────────
+const PRICES = {
+  services: {standard:110, deep:135, move:150, airbnb:170},
+  bedrooms: {studio:0, '1':20, '2':40, '3':70, '4':100, '5':130, '6+':160},
+  bathrooms: {'1':0, '2':20, '3':40, '4':60, '5':80, '6+':100},
+  addons: {
+    'Oven cleaning ($30)': 30,
+    'Fridge cleaning ($30)': 30,
+    'Dish washing ($30)': 30,
+    'Laundry ($30/load)': 30,
+    'Organization ($50/hr)': 50,
+    'Baseboards ($10/room)': 10
+  }
+};
+
+function getCheckedAddons() {
+  return [...document.querySelectorAll('.addon-chk input:checked')].map(i => i.value);
+}
+
+function updatePrice() {
+  const override = document.getElementById('f-override').value;
+  if (override) {
+    document.getElementById('calcPrice').textContent = '$' + override;
+    return;
+  }
+  const sv = document.getElementById('f-service').value;
+  const bv = document.getElementById('f-beds').value;
+  const bav = document.getElementById('f-baths').value;
+  if (!sv || !bv || !bav) { document.getElementById('calcPrice').textContent = '$—'; return; }
+
+  let total = (PRICES.services[sv] || 0) + (PRICES.bedrooms[bv] || 0) + (PRICES.bathrooms[bav] || 0);
+  getCheckedAddons().forEach(a => { total += PRICES.addons[a] || 0; });
+  document.getElementById('calcPrice').textContent = '$' + total;
+}
+
+function getFinalPrice() {
+  const override = document.getElementById('f-override').value;
+  if (override) return override;
+  const txt = document.getElementById('calcPrice').textContent;
+  return txt.replace('$', '').replace('—', '');
+}
+
+// ── LINK GENERATION ───────────────────────────────────────
+let currentLink = '';
+
+function updateLink() { updatePrice(); }
+
+function generateLink() {
+  const service = document.getElementById('f-service').value;
+  const date = document.getElementById('f-date').value;
+  const time = document.getElementById('f-time').value;
+  const address = document.getElementById('f-address').value;
+  const beds = document.getElementById('f-beds').value;
+  const baths = document.getElementById('f-baths').value;
+  const name = document.getElementById('f-name').value;
+  const phone = document.getElementById('f-phone').value;
+  const price = getFinalPrice();
+  const addons = getCheckedAddons().join(', ');
+
+  if (!service || !date || !beds || !baths || !price || price === '—') {
+    alert('Please fill in at least: service, date, bedrooms, bathrooms.');
+    return;
+  }
+
+  const base = window.location.origin + '/confirm';
+  const params = new URLSearchParams({
+    service, date,
+    ...(time && {time}),
+    ...(address && {address}),
+    beds, baths,
+    price,
+    ...(addons && {addons}),
+    ...(name && {client: name})
+  });
+
+  currentLink = base + '?' + params.toString();
+  document.getElementById('linkDisplay').textContent = currentLink;
+  document.getElementById('linkBox').style.display = 'block';
+
+  // Save to history
+  saveToHistory({name, phone, service, date, time, address, beds, baths, price, addons, link: currentLink, created: new Date().toLocaleString('en-US')});
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(currentLink).then(() => {
+    const t = document.getElementById('copyToast');
+    t.style.opacity = '1';
+    setTimeout(() => t.style.opacity = '0', 2000);
+  });
+}
+
+function openLink() { window.open(currentLink, '_blank'); }
+
+function smsLink() {
+  const name = document.getElementById('f-name').value;
+  const msg = `Hi${name ? ' ' + name.split(' ')[0] : ''}! Please review and confirm your Harmony Cleaning booking: ${currentLink}`;
+  window.open('sms:?body=' + encodeURIComponent(msg));
+}
+
+// ── HISTORY ───────────────────────────────────────────────
+function saveToHistory(item) {
+  const history = JSON.parse(localStorage.getItem('hc_history') || '[]');
+  history.unshift(item);
+  if (history.length > 30) history.pop();
+  localStorage.setItem('hc_history', JSON.stringify(history));
+  loadHistory();
+}
+
+function loadHistory() {
+  const history = JSON.parse(localStorage.getItem('hc_history') || '[]');
+  const el = document.getElementById('historyList');
+  if (!history.length) {
+    el.innerHTML = '<div class="history-empty">No bookings yet</div>';
+    return;
+  }
+
+  const serviceNames = {standard:'Standard', deep:'Deep Clean', move:'Move-In/Out', airbnb:'Airbnb'};
+
+  el.innerHTML = history.map((h, i) => `
+    <div class="history-item">
+      <div class="hist-info">
+        <div class="hist-name">${h.name || 'Client'} ${h.phone ? '· ' + h.phone : ''}</div>
+        <div class="hist-detail">${serviceNames[h.service] || h.service} · ${h.date} ${h.time ? '@ ' + h.time : ''} · ${h.beds} bed / ${h.baths} bath${h.addons ? ' · ' + h.addons : ''}</div>
+        <div class="hist-detail" style="color:var(--gray);margin-top:3px;font-size:10px">Generated: ${h.created}</div>
+      </div>
+      <div class="hist-price">$${h.price}</div>
+      <div class="hist-actions">
+        <button class="hist-btn hist-btn-resend" onclick="resendLink(${i})">Copy Link</button>
+        <button class="hist-btn hist-btn-del" onclick="deleteHistory(${i})">Delete</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function resendLink(i) {
+  const history = JSON.parse(localStorage.getItem('hc_history') || '[]');
+  const h = history[i];
+  if (!h) return;
+  navigator.clipboard.writeText(h.link).then(() => alert('Link copied!'));
+}
+
+function deleteHistory(i) {
+  const history = JSON.parse(localStorage.getItem('hc_history') || '[]');
+  history.splice(i, 1);
+  localStorage.setItem('hc_history', JSON.stringify(history));
+  loadHistory();
+}
+</script>
+</body>
+</html>

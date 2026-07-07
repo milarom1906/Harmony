@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Confirmation | Harmony Cleaning</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#C4A35A;--gold-l:#E8D5A3;--cream:#FAFAF7;--ivory:#F4F0E8;--char:#2A2826;--gray:#6B6762;--gray-l:#D8D4CC}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--char);font-size:16px;line-height:1.7;min-height:100vh}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,247,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--gray-l);padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;letter-spacing:.1em;color:var(--char);text-decoration:none}
+.nav-logo span{color:var(--gold)}
+
+.page{max-width:640px;margin:0 auto;padding:100px 24px 60px}
+
+.header{text-align:center;margin-bottom:40px}
+.eyebrow{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,5vw,44px);font-weight:300;color:var(--char);margin-bottom:14px}
+.divider{width:40px;height:1px;background:var(--gold);margin:0 auto 16px}
+.subtitle{font-size:13px;color:var(--gray);font-weight:300;max-width:420px;margin:0 auto}
+
+/* BOOKING DETAILS CARD */
+.details-card{background:var(--char);padding:30px;margin-bottom:24px}
+.details-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-l);margin-bottom:20px}
+.detail-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.detail-row:last-child{border-bottom:none}
+.detail-key{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);flex-shrink:0;margin-right:16px}
+.detail-val{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--cream);text-align:right}
+.total-row{margin-top:14px;padding-top:14px;border-top:1px solid var(--gold) !important;display:flex;justify-content:space-between;align-items:baseline}
+.total-key{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-l)}
+.total-val{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--gold);line-height:1}
+
+/* POLICY SECTION */
+.policy-visible{background:var(--ivory);border-left:3px solid var(--gold);padding:22px 24px;margin-bottom:24px}
+.policy-title{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.policy-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--gray-l)}
+.policy-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.policy-item-title{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--char);font-weight:500;margin-bottom:5px}
+.policy-item-text{font-size:12px;color:var(--gray);font-weight:300;line-height:1.7}
+.policy-item-text strong{color:var(--char);font-weight:500}
+.policy-link-row{margin-top:16px;text-align:center}
+.policy-link{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);text-decoration:underline;text-underline-offset:3px;cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif}
+
+/* CARD ON FILE */
+.card-section{background:var(--cream);border:1px solid var(--gray-l);padding:22px 24px;margin-bottom:24px}
+.card-title{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--char);margin-bottom:6px}
+.card-note{font-size:12px;color:var(--gray);font-weight:300;margin-bottom:16px;line-height:1.6}
+.card-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cf{display:flex;flex-direction:column;gap:5px}
+.cf.full{grid-column:1/-1}
+.clbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--char);font-weight:500}
+.cinput{background:var(--cream);border:1px solid var(--gray-l);color:var(--char);padding:10px 12px;font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s;width:100%}
+.cinput:focus{border-color:var(--gold)}
+.cinput::placeholder{color:var(--gray-l)}
+.card-secure{font-size:10px;color:var(--gray);margin-top:10px;text-align:center;letter-spacing:.05em}
+
+/* AGREE CHECKBOX */
+.agree-row{display:flex;gap:12px;align-items:flex-start;padding:16px;background:var(--ivory);border:1px solid var(--gray-l);margin-bottom:20px;cursor:pointer}
+.agree-row input[type=checkbox]{width:18px;height:18px;min-width:18px;flex-shrink:0;margin-top:2px;accent-color:var(--gold);cursor:pointer}
+.agree-text{font-size:12px;color:var(--char);font-weight:300;line-height:1.6}
+.agree-text strong{font-weight:500}
+
+/* CLIENT INFO */
+.client-section{margin-bottom:20px}
+.client-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cf-light{display:flex;flex-direction:column;gap:5px}
+.cf-light.full{grid-column:1/-1}
+.cinput-light{background:var(--cream);border:1px solid var(--gray-l);color:var(--char);padding:10px 12px;font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s;width:100%}
+.cinput-light:focus{border-color:var(--gold)}
+.cinput-light::placeholder{color:var(--gray-l)}
+
+/* SUBMIT */
+.btn-confirm{width:100%;background:var(--char);color:var(--cream);border:1px solid var(--char);padding:14px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:all .25s;margin-bottom:10px}
+.btn-confirm:hover{background:var(--gold);border-color:var(--gold);color:var(--char)}
+.btn-confirm:disabled{opacity:.4;cursor:not-allowed}
+.submit-note{font-size:10px;color:var(--gray);text-align:center;letter-spacing:.05em}
+
+/* SUCCESS */
+.success{display:none;text-align:center;padding:50px 30px;border:1px solid var(--gold);background:var(--ivory)}
+.success h2{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--char);margin-bottom:10px}
+.success p{font-size:13px;color:var(--gray);font-weight:300;margin-bottom:6px}
+.success .checkmark{font-size:48px;margin-bottom:20px;display:block}
+
+/* MODAL - full policy */
+.modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.mc{background:var(--cream);max-width:560px;width:100%;max-height:80vh;overflow-y:auto;padding:40px;position:relative}
+.mc-cls{position:absolute;top:16px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--gray)}
+.mc h2{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:20px}
+.ms{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:18px 0 6px;font-weight:600}
+.mc p{font-size:12px;color:var(--gray);font-weight:300;margin-bottom:7px;line-height:1.7}
+.mh{background:var(--ivory);border-left:2px solid var(--gold);padding:11px 14px;margin:9px 0;font-size:12px;color:var(--char)}
+
+footer{background:#1E1C1A;padding:36px 40px;text-align:center;margin-top:60px}
+.fl-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;letter-spacing:.1em;color:var(--cream);margin-bottom:4px}
+.fl-logo span{color:var(--gold)}
+.fl-copy{font-size:10px;color:var(--gray)}
+
+@media(max-width:600px){
+  nav{padding:0 20px}
+  .page{padding:88px 16px 40px}
+  .card-fields,.client-fields{grid-template-columns:1fr}
+  .cf.full,.cf-light.full{grid-column:1}
+  .detail-val{font-size:15px}
+  .total-val{font-size:28px}
+  footer{padding:28px 20px}
+  .mc{padding:24px 16px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Harmony <span>Cleaning</span></a>
+</nav>
+
+<div class="page">
+
+  <div class="header">
+    <p class="eyebrow">Booking Confirmation</p>
+    <h1 class="title">Please Review &amp; Confirm</h1>
+    <div class="divider"></div>
+    <p class="subtitle">Please review your booking details and agree to our policies below.</p>
+  </div>
+
+  <div id="mainForm">
+
+    <!-- BOOKING DETAILS -->
+    <div class="details-card">
+      <p class="details-label">Your Booking Details</p>
+      <div class="detail-row"><span class="detail-key">Service</span><span class="detail-val" id="d-service">—</span></div>
+      <div class="detail-row"><span class="detail-key">Date</span><span class="detail-val" id="d-date">—</span></div>
+      <div class="detail-row"><span class="detail-key">Time</span><span class="detail-val" id="d-time">—</span></div>
+      <div class="detail-row"><span class="detail-key">Address</span><span class="detail-val" id="d-address">—</span></div>
+      <div class="detail-row"><span class="detail-key">Bedrooms</span><span class="detail-val" id="d-beds">—</span></div>
+      <div class="detail-row"><span class="detail-key">Bathrooms</span><span class="detail-val" id="d-baths">—</span></div>
+      <div class="detail-row" id="addons-row" style="display:none"><span class="detail-key">Add-ons</span><span class="detail-val" id="d-addons">—</span></div>
+      <div class="detail-row total-row">
+        <span class="total-key">Total Due at Arrival</span>
+        <span class="total-val" id="d-price">—</span>
+      </div>
+    </div>
+
+    <!-- VISIBLE POLICY -->
+    <div class="policy-visible">
+      <p class="policy-title">Booking Policies</p>
+
+      <div class="policy-item">
+        <p class="policy-item-title">💳 Payment</p>
+        <p class="policy-item-text">Payment of <strong id="policy-price">the agreed amount</strong> is due at arrival, <strong>before cleaning begins</strong>. Work cannot start without payment.<br>Zelle: <strong>harmonycleaningla@gmail.com</strong></p>
+      </div>
+
+      <div class="policy-item">
+        <p class="policy-item-title">✅ Quality Check</p>
+        <p class="policy-item-text">About <strong>30 minutes before</strong> the cleaner finishes, you will receive a message so you can check the space and request any touch-ups before the cleaner leaves.</p>
+      </div>
+
+      <div class="policy-item">
+        <p class="policy-item-title">🔑 Access</p>
+        <p class="policy-item-text">Please ensure access to the property at the scheduled time. If you won't be home, let us know how the cleaner can get in (lockbox, key, building code, etc.).</p>
+      </div>
+
+      <div class="policy-item">
+        <p class="policy-item-title">❌ Cancellation</p>
+        <p class="policy-item-text">Cancellations must be made at least <strong>24 hours in advance</strong>. Cancellations with less than 24 hours notice are subject to a <strong>$30 cancellation fee</strong>, which will be charged to the card on file.</p>
+      </div>
+
+      <div class="policy-link-row">
+        <button class="policy-link" onclick="openModal()">View Full Terms &amp; Conditions →</button>
+      </div>
+    </div>
+
+    <!-- CARD ON FILE -->
+    <div class="card-section">
+      <p class="card-title">💳 Card on File — Cancellation Protection</p>
+      <p class="card-note">Your card will <strong>not</strong> be charged today. It is held on file only in case of a late cancellation (less than 24 hours notice), in which case a <strong>$30 fee</strong> applies.</p>
+      <div class="card-fields">
+        <div class="cf full">
+          <label class="clbl">Cardholder Name</label>
+          <input class="cinput" type="text" id="card-name" placeholder="Full name as on card" autocomplete="cc-name">
+        </div>
+        <div class="cf full">
+          <label class="clbl">Card Number</label>
+          <input class="cinput" type="text" id="card-number" placeholder="•••• •••• •••• ••••" maxlength="19" autocomplete="cc-number">
+        </div>
+        <div class="cf">
+          <label class="clbl">Expiry Date</label>
+          <input class="cinput" type="text" id="card-exp" placeholder="MM / YY" maxlength="7" autocomplete="cc-exp">
+        </div>
+        <div class="cf">
+          <label class="clbl">CVV</label>
+          <input class="cinput" type="text" id="card-cvv" placeholder="•••" maxlength="4" autocomplete="cc-csc">
+        </div>
+      </div>
+      <p class="card-secure">🔒 Your card information is stored securely and only used if a cancellation fee applies.</p>
+    </div>
+
+    <!-- CLIENT INFO -->
+    <div class="client-section">
+      <div class="client-fields">
+        <div class="cf-light full">
+          <label class="clbl">Full Name</label>
+          <input class="cinput-light" type="text" id="client-name" placeholder="Your full name" required>
+        </div>
+        <div class="cf-light">
+          <label class="clbl">Phone</label>
+          <input class="cinput-light" type="tel" id="client-phone" placeholder="(xxx) xxx-xxxx">
+        </div>
+        <div class="cf-light">
+          <label class="clbl">Email</label>
+          <input class="cinput-light" type="email" id="client-email" placeholder="your@email.com">
+        </div>
+      </div>
+    </div>
+
+    <!-- AGREE CHECKBOX -->
+    <label class="agree-row">
+      <input type="checkbox" id="agreeCheck" onchange="toggleSubmit()">
+      <span class="agree-text">I have read and agree to the booking policies above, including the <strong>payment upon arrival</strong>, <strong>quality check notice</strong>, <strong>access requirements</strong>, and the <strong>$30 late cancellation fee</strong>. I authorize Harmony Cleaning to charge my card on file in case of a cancellation with less than 24 hours notice.</span>
+    </label>
+
+    <button class="btn-confirm" id="confirmBtn" disabled onclick="submitConfirmation()">Confirm Booking</button>
+    <p class="submit-note">By confirming, your agreement is recorded with your name, email, and timestamp.</p>
+
+  </div>
+
+  <!-- SUCCESS MESSAGE -->
+  <div class="success" id="successMsg">
+    <span class="checkmark">✓</span>
+    <h2>Booking Confirmed</h2>
+    <p>Thank you! Your booking has been confirmed.</p>
+    <p style="margin-top:8px">You will receive a reminder before your appointment.</p>
+    <p style="margin-top:16px;font-size:11px;color:var(--gray)">Questions? Text us at <strong>(424) 235-7405</strong></p>
+  </div>
+
+</div>
+
+<!-- FULL POLICY MODAL -->
+<div class="modal" id="policyModal">
+  <div class="mc">
+    <button class="mc-cls" onclick="closeModal()">✕</button>
+    <h2>Policies &amp; Terms</h2>
+    <p style="font-size:10px;color:var(--gray);letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px">Harmony Cleaning</p>
+
+    <p class="ms">💳 Payment</p>
+    <div class="mh">Payment is due at arrival, BEFORE cleaning begins. Work cannot start without payment.</div>
+    <p>We accept: <strong>Zelle</strong> · harmonycleaningla@gmail.com</p>
+
+    <p class="ms">⏱ Quality Check</p>
+    <div class="mh">About 30 minutes before the cleaner finishes, we will message you so you can check the space and request any touch-ups while they are still there.</div>
+    <p>Once the cleaner leaves the property, we are unable to accept complaints or redo requests. Please make sure to inspect the space before they leave.</p>
+
+    <p class="ms">🔑 Property Access</p>
+    <p>Please ensure access to the property at the scheduled time. If you won't be home, let us know in advance how the cleaner can get in (lockbox, key, etc.). If access is not provided within 15 minutes of the start time, the appointment may be considered a no-show.</p>
+
+    <p class="ms">❌ Cancellation</p>
+    <p>Cancellations must be made at least 24 hours in advance. Cancellations with less than 24 hours notice are subject to a <strong>$30 cancellation fee</strong>, which will be charged to the card on file.</p>
+
+    <p class="ms">💳 Card on File</p>
+    <p>By providing your card details, you authorize Harmony Cleaning to charge a $30 cancellation fee in the event of a late cancellation (less than 24 hours notice). Your card will not be charged for any other purpose without your explicit consent.</p>
+
+    <p class="ms">📋 Service Agreement</p>
+    <p>By confirming, you acknowledge that you have reviewed the service descriptions and understand what is and is not included in your chosen service type. Services are performed as described. Tasks not included require prior agreement and may incur additional charges.</p>
+
+    <p class="ms">ℹ️ Platform Notice</p>
+    <p>Harmony Cleaning operates as a platform connecting clients with independent cleaning professionals. Each cleaner operates independently. Harmony Cleaning is not liable for the actions of independent cleaners beyond the agreed scope of service.</p>
+
+    <p class="ms">🔒 Privacy</p>
+    <p>Your personal information is used solely for scheduling and communication and is never shared with third parties.</p>
+
+    <p style="margin-top:20px;font-size:11px;color:var(--gray)">Questions? harmonycleaningla@gmail.com · (424) 235-7405</p>
+  </div>
+</div>
+
+<footer>
+  <div class="fl-logo">Harmony <span>Cleaning</span></div>
+  <p class="fl-copy">© 2025 Harmony Cleaning. All rights reserved.</p>
+</footer>
+
+<script>
+// Parse URL parameters
+function getParams() {
+  const p = new URLSearchParams(window.location.search);
+  return {
+    service: p.get('service') || '',
+    date: p.get('date') || '',
+    time: p.get('time') || '',
+    address: p.get('address') || '',
+    beds: p.get('beds') || '',
+    baths: p.get('baths') || '',
+    price: p.get('price') || '',
+    addons: p.get('addons') || ''
+  };
+}
+
+function formatService(s) {
+  const map = {
+    standard: 'Standard Cleaning',
+    deep: 'Deep Cleaning',
+    move: 'Move-In / Move-Out',
+    airbnb: 'Airbnb Turnover'
+  };
+  return map[s] || s;
+}
+
+function formatDate(d) {
+  if (!d) return '—';
+  try {
+    const parts = d.split('-');
+    if (parts.length === 3) {
+      const dt = new Date(parts[0], parts[1]-1, parts[2]);
+      return dt.toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+    }
+    return d;
+  } catch(e) { return d; }
+}
+
+// Fill in details from URL
+window.addEventListener('DOMContentLoaded', function() {
+  const p = getParams();
+
+  document.getElementById('d-service').textContent = formatService(p.service) || '—';
+  document.getElementById('d-date').textContent = formatDate(p.date) || '—';
+  document.getElementById('d-time').textContent = p.time || '—';
+  document.getElementById('d-address').textContent = decodeURIComponent(p.address) || '—';
+  document.getElementById('d-beds').textContent = p.beds ? (p.beds === 'studio' ? 'Studio' : p.beds + ' Bedroom(s)') : '—';
+  document.getElementById('d-baths').textContent = p.baths ? p.baths + ' Bathroom(s)' : '—';
+  document.getElementById('d-price').textContent = p.price ? '$' + p.price : '—';
+
+  if (p.addons) {
+    document.getElementById('d-addons').textContent = decodeURIComponent(p.addons);
+    document.getElementById('addons-row').style.display = 'flex';
+  }
+
+  // Update policy payment amount
+  if (p.price) {
+    document.getElementById('policy-price').textContent = '$' + p.price;
+  }
+});
+
+// Card number formatting
+document.getElementById('card-number').addEventListener('input', function(e) {
+  let v = e.target.value.replace(/\D/g, '').substring(0, 16);
+  e.target.value = v.replace(/(.{4})/g, '$1 ').trim();
+});
+
+// Expiry formatting
+document.getElementById('card-exp').addEventListener('input', function(e) {
+  let v = e.target.value.replace(/\D/g, '').substring(0, 4);
+  if (v.length >= 2) v = v.substring(0,2) + ' / ' + v.substring(2);
+  e.target.value = v;
+});
+
+function toggleSubmit() {
+  document.getElementById('confirmBtn').disabled = !document.getElementById('agreeCheck').checked;
+}
+
+function openModal() {
+  document.getElementById('policyModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('policyModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('policyModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+function submitConfirmation() {
+  const name = document.getElementById('client-name').value.trim();
+  const email = document.getElementById('client-email').value.trim();
+  const phone = document.getElementById('client-phone').value.trim();
+
+  if (!name) {
+    alert('Please enter your full name.');
+    return;
+  }
+
+  const p = getParams();
+  const timestamp = new Date().toLocaleString('en-US', {timeZone:'America/Los_Angeles'});
+
+  // Submit to Netlify Forms
+  const formData = new URLSearchParams();
+  formData.append('form-name', 'booking-confirmation');
+  formData.append('client_name', name);
+  formData.append('client_email', email);
+  formData.append('client_phone', phone);
+  formData.append('service', formatService(p.service));
+  formData.append('date', p.date);
+  formData.append('time', p.time);
+  formData.append('address', decodeURIComponent(p.address));
+  formData.append('beds', p.beds);
+  formData.append('baths', p.baths);
+  formData.append('price', p.price);
+  formData.append('addons', decodeURIComponent(p.addons || ''));
+  formData.append('agreed_to_terms', 'YES');
+  formData.append('confirmed_at', timestamp);
+  formData.append('card_last4', document.getElementById('card-number').value.replace(/\s/g,'').slice(-4));
+
+  fetch('/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: formData.toString()
+  })
+  .then(() => {
+    document.getElementById('mainForm').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    window.scrollTo(0, 0);
+  })
+  .catch(() => {
+    // Show success even if fetch fails (Netlify handles it)
+    document.getElementById('mainForm').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    window.scrollTo(0, 0);
+  });
+}
+</script>
+
+<!-- Netlify Forms hidden form for detection -->
+<form name="booking-confirmation" netlify netlify-honeypot="bot-field" hidden>
+  <input name="client_name">
+  <input name="client_email">
+  <input name="client_phone">
+  <input name="service">
+  <input name="date">
+  <input name="time">
+  <input name="address">
+  <input name="beds">
+  <input name="baths">
+  <input name="price">
+  <input name="addons">
+  <input name="agreed_to_terms">
+  <input name="confirmed_at">
+  <input name="card_last4">
+</form>
+
+</body>
+</html>

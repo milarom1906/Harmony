@@ -215,6 +215,10 @@ select.finp option{background:#2A2826;color:var(--cream)}
             <label class="addon-chk"><input type="checkbox" value="Organization ($50/hr)" onchange="updatePrice();updateLink()"> Organization</label>
             <label class="addon-chk"><input type="checkbox" value="Baseboards ($10/room)" onchange="updatePrice();updateLink()"> Baseboards</label>
           </div>
+          <div style="margin-top:10px">
+            <label class="flbl" style="display:block;margin-bottom:6px">Custom Add-on (write your own)</label>
+            <input class="finp" type="text" id="f-custom-addon" placeholder="e.g. Window cleaning x3, Extra bathroom, Pet hair removal..." oninput="updateLink()">
+          </div>
         </div>
 
         <div class="fg full">
@@ -301,7 +305,10 @@ const PRICES = {
 };
 
 function getCheckedAddons() {
-  return [...document.querySelectorAll('.addon-chk input:checked')].map(i => i.value);
+  const checked = [...document.querySelectorAll('.addon-chk input:checked')].map(i => i.value);
+  const custom = document.getElementById('f-custom-addon').value.trim();
+  if (custom) checked.push(custom);
+  return checked;
 }
 
 function updatePrice() {

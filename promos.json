@@ -1,7 +1,7 @@
 {
   "promos": [
     {
-      "active": true,
+      "active": false,
       "emoji": "🎉",
       "title": "New Client Special",
       "description": "10% off your first cleaning — mention code at booking",

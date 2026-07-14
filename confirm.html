@@ -67,7 +67,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,247,
 .included-list{list-style:none;display:flex;flex-direction:column;gap:4px}
 .included-list li{font-size:12px;color:var(--gray);display:flex;gap:7px;line-height:1.5}
 .included-list li::before{content:'✓';color:var(--gold);flex-shrink:0;font-weight:600}
-.not-included-list li::before{content:'✗';color:var(--gray-l);flex-shrink:0}
+.not-included-list li::before{content:'+';color:var(--gold);flex-shrink:0;font-weight:600}
 
 /* AGREE CHECKBOX */
 .agree-row{display:flex;gap:12px;align-items:flex-start;padding:16px;background:var(--ivory);border:1px solid var(--gray-l);margin-bottom:20px;cursor:pointer}
@@ -340,7 +340,7 @@ window.addEventListener('DOMContentLoaded', function() {
         { title: '🛀 Bathroom', items: ['Clean mirrors and glass surfaces','Clean sink and faucets','Clean bathtub or shower','Clean toilet inside and outside','Vacuum and mop floor','Wipe exterior of washing machine','Empty trash and replace bag'] },
         { title: '🛌 Bedrooms & Living Room', items: ['Dust all furniture surfaces','Make bed; fold items if left on bed','Vacuum and mop all floors','Clean glass surfaces and mirrors','Wipe window sills','Empty trash'] }
       ],
-      notIncluded: ['Inside oven','Inside refrigerator','Baseboards (available as add-on)','Laundry / dishes']
+      notIncluded: ['Inside oven — $30 standard / $50 deep clean','Inside refrigerator — $30 standard / $50 deep clean','Baseboards — $10 per bedroom / $10 per bathroom','Interior windows — $8 per window','Glass doors — $15 one side / $25 both sides','Dish washing — from $30','Laundry — $30 per load (wash & dry)','Organization — $50/hr']
     },
     deep: {
       sections: [
@@ -348,7 +348,7 @@ window.addEventListener('DOMContentLoaded', function() {
         { title: '🛁 Bathroom', items: ['Deep clean tiles','Deep clean bathtub or shower — remove stains and limescale','Clean toilet — under rim, base and tank','Clean and polish faucets — remove limescale','Clean all cabinet surfaces and shelves (if empty)','Deep floor cleaning','Clean mirrors — streak-free','Baseboards ✓ included'] },
         { title: '🛌 Bedrooms & Living Room', items: ['Dust all furniture surfaces','Vacuum and mop floors','Clean glass surfaces and mirrors','Wipe window sills','Dust lamps and light fixtures','Wipe light switches','Empty trash','Make bed; fold items if left on bed','Baseboards ✓ included'] }
       ],
-      notIncluded: ['Inside oven (available as add-on)','Inside refrigerator (available as add-on)','Laundry / dishes']
+      notIncluded: ['Inside oven — $30 standard / $50 deep clean','Inside refrigerator — $30 standard / $50 deep clean','Interior windows — $8 per window','Glass doors — $15 one side / $25 both sides','Dish washing — from $30','Laundry — $30 per load (wash & dry)','Organization — $50/hr']
     },
     move: {
       sections: [
@@ -356,13 +356,13 @@ window.addEventListener('DOMContentLoaded', function() {
         { title: '🛁 Bathroom', items: ['Deep clean tiles','Deep clean bathtub or shower','Clean toilet — under rim, base and tank','Clean and polish faucets','Clean all cabinets and shelves inside and out','Deep floor cleaning','Clean mirrors — streak-free','Baseboards ✓ included'] },
         { title: '✅ Throughout the Home', items: ['Baseboards in every room ✓ included','Vacuum and mop all floors','Dust all accessible surfaces','Remove cobwebs from ceilings and corners','Wipe all doors, door frames and handles','Wipe all light fixtures','Spot clean walls'] }
       ],
-      notIncluded: ['Laundry / dishes','Carpet steam cleaning']
+      notIncluded: ['Inside oven — $30 standard / $50 deep clean','Inside refrigerator — $30 standard / $50 deep clean','Interior windows — $8 per window','Glass doors — $15 one side / $25 both sides','Laundry — $30 per load (wash & dry)','Dish washing — from $30']
     },
     airbnb: {
       sections: [
         { title: '✅ Included', items: ['Full bathroom clean','Kitchen wipe-down — counters, sink, stovetop, appliances exterior','Vacuum and mop all floors','Change and make beds with fresh linen','Dust all surfaces and furniture','Empty all trash and replace bags','Wipe mirrors and glass surfaces','Reset property for next guest'] }
       ],
-      notIncluded: ['Inside oven (available as add-on)','Inside refrigerator (available as add-on)','Laundry (available as add-on)']
+      notIncluded: ['Inside oven — $30 standard / $50 deep clean','Inside refrigerator — $30 standard / $50 deep clean','Interior windows — $8 per window','Laundry — $30 per load (wash & dry)','Dish washing — from $30']
     }
   };
 
@@ -374,7 +374,11 @@ window.addEventListener('DOMContentLoaded', function() {
       html += `<div class="included-section"><p class="included-section-title">${sec.title}</p><ul class="included-list">${sec.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`;
     });
     if (data.notIncluded) {
-      html += `<div class="included-section"><p class="included-section-title" style="color:var(--gray)">✗ Not Included</p><ul class="included-list not-included-list">${data.notIncluded.map(i=>`<li>${i}</li>`).join('')}</ul></div>`;
+      html += `<div class="included-section">
+        <p class="included-section-title" style="color:var(--char)">➕ Available as Add-on</p>
+        <ul class="included-list not-included-list">${data.notIncluded.map(i=>`<li>${i}</li>`).join('')}</ul>
+        <p style="font-size:11px;color:var(--gold);margin-top:12px;line-height:1.6">Interested in any add-ons? Text us at <strong>(424) 235-7405</strong> before your appointment and we'll add it to your booking.</p>
+      </div>`;
     }
     document.getElementById('included-content').innerHTML = html;
   } else {

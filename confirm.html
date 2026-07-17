@@ -122,6 +122,8 @@ footer{background:#1E1C1A;padding:36px 40px;text-align:center;margin-top:60px}
   .mc{padding:24px 16px}
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('f7_q1NxQNTyXMgMVr');</script>
 </head>
 <body>
 
@@ -422,59 +424,56 @@ function submitConfirmation() {
   const p = getParams();
   const timestamp = new Date().toLocaleString('en-US', {timeZone:'America/Los_Angeles'});
 
-  // Submit to Netlify Forms
-  const formData = new URLSearchParams();
-  formData.append('form-name', 'booking-confirmation');
-  formData.append('client_name', name);
-  formData.append('client_email', email);
-  formData.append('client_phone', phone);
-  formData.append('service', formatService(p.service));
-  formData.append('date', p.date);
-  formData.append('time', p.time);
-  formData.append('address', decodeURIComponent(p.address));
-  formData.append('beds', p.beds);
-  formData.append('baths', p.baths);
-  formData.append('price', p.price);
-  formData.append('addons', decodeURIComponent(p.addons || ''));
-  formData.append('agreed_to_terms', 'YES');
-  formData.append('confirmed_at', timestamp);
+  const POLICY_TEXT = `PAYMENT: Payment is due at arrival, BEFORE cleaning begins. Zelle: harmonycleaningla@gmail.com
 
+QUALITY CHECK: About 30 minutes before the cleaner finishes, we will message you to inspect the space and request touch-ups. Once the cleaner leaves, we cannot accept complaints.
 
-  fetch('/', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: formData.toString()
-  })
-  .then(() => {
-    document.getElementById('mainForm').style.display = 'none';
-    document.getElementById('successMsg').style.display = 'block';
-    window.scrollTo(0, 0);
-  })
-  .catch(() => {
-    // Show success even if fetch fails (Netlify handles it)
-    document.getElementById('mainForm').style.display = 'none';
-    document.getElementById('successMsg').style.display = 'block';
-    window.scrollTo(0, 0);
-  });
+ACCESS: Please ensure access at the scheduled time. If not home, arrange entry in advance (lockbox, key, etc.). No access within 15 min = no-show.
+
+CANCELLATION: Cancellations must be made at least 24 hours in advance. Late cancellations may be subject to a cancellation fee.
+
+SERVICE AGREEMENT: Client acknowledges they have reviewed the service description and understands what is included.
+
+PLATFORM NOTICE: Harmony Cleaning connects clients with independent cleaning professionals and is not liable for actions beyond the agreed scope.`;
+
+  const templateParams = {
+    to_email: 'harmonycleaningla@gmail.com',
+    client_name: name,
+    client_email: email || 'Not provided',
+    client_phone: phone,
+    service: formatService(p.service),
+    date: formatDate(p.date),
+    time: p.time || 'Not specified',
+    address: decodeURIComponent(p.address || 'Not specified'),
+    beds: p.beds ? (p.beds === 'studio' ? 'Studio' : p.beds + ' Bedroom(s)') : 'Not specified',
+    baths: p.baths ? p.baths + ' Bathroom(s)' : 'Not specified',
+    price: p.price ? '$' + p.price : 'Not specified',
+    addons: decodeURIComponent(p.addons || 'None'),
+    agreed_to_terms: 'YES — Client checked the agreement box and clicked Confirm',
+    confirmed_at: timestamp,
+    policy_snapshot: POLICY_TEXT
+  };
+
+  const btn = document.getElementById('confirmBtn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  emailjs.send('service_gdwmgzp', 'template_zhiux7n', templateParams)
+    .then(() => {
+      document.getElementById('mainForm').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+      window.scrollTo(0, 0);
+    })
+    .catch((err) => {
+      console.error('EmailJS error:', err);
+      document.getElementById('mainForm').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+      window.scrollTo(0, 0);
+    });
 }
 </script>
 
-<!-- Netlify Forms hidden form for detection -->
-<form name="booking-confirmation" netlify netlify-honeypot="bot-field" hidden>
-  <input name="client_name">
-  <input name="client_email">
-  <input name="client_phone">
-  <input name="service">
-  <input name="date">
-  <input name="time">
-  <input name="address">
-  <input name="beds">
-  <input name="baths">
-  <input name="price">
-  <input name="addons">
-  <input name="agreed_to_terms">
-  <input name="confirmed_at">
-</form>
+
 
 </body>
 </html>

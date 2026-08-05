@@ -295,7 +295,9 @@ function formatService(s) {
     standard: 'Standard Cleaning',
     deep: 'Deep Cleaning',
     move: 'Move-In / Move-Out',
-    airbnb: 'Airbnb Turnover'
+    airbnb: 'Airbnb Turnover',
+    organization: 'Space Organization',
+    office: 'Office Cleaning'
   };
   return map[s] || s;
 }
@@ -365,6 +367,17 @@ window.addEventListener('DOMContentLoaded', function() {
         { title: '✅ Included', items: ['Full bathroom clean','Kitchen wipe-down — counters, sink, stovetop, appliances exterior','Vacuum and mop all floors','Change and make beds with fresh linen','Dust all surfaces and furniture','Empty all trash and replace bags','Wipe mirrors and glass surfaces','Reset property for next guest'] }
       ],
       notIncluded: ['Inside oven — $30 standard / $50 deep clean','Inside refrigerator — $30 standard / $50 deep clean','Interior windows — $8 per window','Laundry — $30 per load (wash & dry)','Dish washing — from $30']
+    },
+    organization: {
+      sections: [
+        { title: '🗂 What We Do', items: ['Go through everything with you — fully sorting and organizing a space','Arrange items by category, color, or your preference','Organize closets, drawers, cabinets, shelves beautifully','Create systems that are easy to maintain','Kitchen pantry, wardrobe, home office, kids rooms and more','Everything gets a home — nothing left out of place'] }
+      ]
+    },
+    office: {
+      sections: [
+        { title: '🏢 Office Cleaning', items: ['Vacuum and mop all floors','Dust all surfaces, desks and shelves','Clean and sanitize bathrooms','Empty all trash and replace bags','Wipe down common areas and kitchen','Clean glass surfaces and mirrors','Wipe light switches and door handles'] }
+      ],
+      notIncluded: ['Deep carpet cleaning','Window washing — exterior','Dishes — from $30']
     }
   };
 

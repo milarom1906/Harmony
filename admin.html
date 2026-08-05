@@ -163,6 +163,8 @@ select.finp option{background:#2A2826;color:var(--cream)}
             <option value="deep">Deep Cleaning</option>
             <option value="move">Move-In / Move-Out</option>
             <option value="airbnb">Airbnb Turnover</option>
+            <option value="organization">Space Organization ($50/hr)</option>
+            <option value="office">Office Cleaning (custom quote)</option>
           </select>
         </div>
 
@@ -295,7 +297,7 @@ function logout() {
 
 // ── PRICES ────────────────────────────────────────────────
 const PRICES = {
-  services: {standard:110, deep:135, move:150, airbnb:170},
+  services: {standard:110, deep:135, move:150, airbnb:170, organization:50, office:0},
   bedrooms: {studio:0, '1':20, '2':40, '3':70, '4':100, '5':130, '6+':160},
   bathrooms: {'1':0, '2':20, '3':40, '4':60, '5':80, '6+':100},
   addons: {
@@ -432,7 +434,7 @@ function loadHistory() {
     return;
   }
 
-  const serviceNames = {standard:'Standard', deep:'Deep Clean', move:'Move-In/Out', airbnb:'Airbnb'};
+  const serviceNames = {standard:'Standard', deep:'Deep Clean', move:'Move-In/Out', airbnb:'Airbnb', organization:'Space Org', office:'Office'};
 
   el.innerHTML = history.map((h, i) => `
     <div class="history-item">

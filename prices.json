@@ -1,28 +1,123 @@
 {
-  "services": {
-    "standard": 110,
-    "deep": 135,
-    "move": 150,
-    "airbnb": 170
+  "pricing_model": "fixed_matrix",
+  "pricing_matrix": {
+    "standard": {
+      "studio": {
+        "1": 110
+      },
+      "1": {
+        "1": 130,
+        "2": 160
+      },
+      "2": {
+        "1": 160,
+        "1.5": 170,
+        "2": 190,
+        "3": 220
+      },
+      "3": {
+        "1": 210,
+        "2": 220,
+        "3": 250,
+        "3.5": 270
+      },
+      "4": {
+        "2": 260,
+        "3": 290,
+        "4": 320
+      },
+      "5": {
+        "3": 340,
+        "4": 370,
+        "5": 400
+      },
+      "6": {
+        "4": 420,
+        "5": 450,
+        "6": 480,
+        "7": 510
+      }
+    },
+    "deep": {
+      "studio": {
+        "1": 150
+      },
+      "1": {
+        "1": 180,
+        "2": 210
+      },
+      "2": {
+        "1": 220,
+        "1.5": 230,
+        "2": 250,
+        "3": 280
+      },
+      "3": {
+        "1": 270,
+        "2": 280,
+        "3": 310,
+        "3.5": 330
+      },
+      "4": {
+        "2": 330,
+        "3": 360,
+        "4": 400
+      },
+      "5": {
+        "3": 420,
+        "4": 460,
+        "5": 500
+      },
+      "6": {
+        "4": 520,
+        "5": 560,
+        "6": 600,
+        "7": 640
+      }
+    },
+    "move": {
+      "studio": {
+        "1": 180
+      },
+      "1": {
+        "1": 210,
+        "2": 240
+      },
+      "2": {
+        "1": 250,
+        "1.5": 260,
+        "2": 280,
+        "3": 310
+      },
+      "3": {
+        "1": 300,
+        "2": 310,
+        "3": 340,
+        "3.5": 360
+      },
+      "4": {
+        "2": 360,
+        "3": 390,
+        "4": 430
+      },
+      "5": {
+        "3": 450,
+        "4": 490,
+        "5": 530
+      },
+      "6": {
+        "4": 550,
+        "5": 590,
+        "6": 630,
+        "7": 670
+      }
+    }
   },
-  "bedrooms": {
-    "studio": 0,
-    "1": 20,
-    "2": 40,
-    "3": 70,
-    "4": 100,
-    "5": 130,
-    "6+": 160
+  "airbnb": {
+    "pricing": "custom_quote",
+    "note": "Price depends on property size, beds, laundry and turnover requirements."
   },
-  "bathrooms": {
-    "1": 0,
-    "2": 20,
-    "3": 40,
-    "4": 60,
-    "5": 80,
-    "6+": 100
-  },
-  "sqft": {
+  "sqft_adjustments": {
     "0-1000": 0,
     "1001-1400": 20,
     "1401-1800": 40,
@@ -35,17 +130,29 @@
     "4501-5000": 180,
     "5001+": 200
   },
+  "sqft_adjustments_enabled": false,
   "addons": {
-    "oven_standard": 30,
-    "oven_deep": 50,
-    "fridge_standard": 30,
-    "fridge_deep": 50,
-    "baseboard_per_room": 10,
-    "laundry_per_load": 30,
+    "oven_standard": 40,
+    "oven_deep": 40,
+    "oven_move": 40,
+    "fridge_standard": 40,
+    "fridge_deep": 40,
+    "fridge_move": 40,
+    "baseboard_per_room": 0,
+    "laundry_per_load": 20,
     "dishes": 30,
     "organization_per_hour": 50,
-    "window_standard": 8,
-    "glass_door_one_side": 15,
-    "glass_door_both_sides": 25
+    "window_inside": 10,
+    "window_both_sides": 25,
+    "glass_door_one_side": 20,
+    "glass_door_both_sides": 35,
+    "blinds_standard": 20,
+    "blinds_heavily_dirty_from": 30
+  },
+  "policies": {
+    "move": "Includes deep cleaning plus inside empty cabinets, drawers and closets. Oven, fridge and windows are extra.",
+    "wall_spot_cleaning": "Included in deep and move, only if paint allows; full wall washing excluded.",
+    "exterior_windows": "Ground-accessible first-floor windows of private houses only; no ladders.",
+    "heavy_soiling": "Quote revised only with customer approval before extra work."
   }
 }

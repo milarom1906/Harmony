@@ -37,6 +37,7 @@
     "round": "up"
   },
   "airbnb_default": 170,
+  "extra_bathroom_step": 30,
   "addons": {
     "oven": 40,
     "fridge": 40,

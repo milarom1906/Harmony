@@ -123,6 +123,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,247,
 .add-chk:hover{border-color:var(--gold)}
 .add-chk input{accent-color:var(--gold);width:14px;height:14px;cursor:pointer}
 .add-chk.dis{opacity:.4;cursor:not-allowed;pointer-events:none}
+.qty-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:7px;margin-top:4px}
+.qty-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 11px;background:var(--cream);border:1px solid var(--gray-l);font-size:12px;color:var(--char)}
+.qty-row small{display:block;color:var(--gray);font-size:11px;margin-top:1px}
+.qty-row input{width:64px;flex-shrink:0;padding:6px 8px;border:1px solid var(--gray-l);background:#fff;font-family:'Inter',sans-serif;font-size:13px;text-align:center;outline:none}
+.qty-row input:focus{border-color:var(--gold)}
 .pr-res{margin-top:22px;padding:22px 26px;background:var(--char);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
 .pr-lbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-l)}
 .pr-amt{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--cream);line-height:1}
@@ -225,46 +230,7 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
 <section id="home" style="padding-top:80px">
   <div>
     <div style="margin-bottom:20px">
-      <svg width="64" height="72" viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Handle -->
-        <rect x="30.5" y="44" width="3" height="20" rx="1.5" fill="url(#hg)"/>
-        <!-- Collar -->
-        <ellipse cx="32" cy="45" rx="5" ry="2.5" fill="#C4A35A" opacity="0.6"/>
-        <!-- Leaves - leftmost -->
-        <path d="M32,44 C28,40 22,30 25,16 C27,22 30,34 32,44Z" fill="url(#lg1)"/>
-        <!-- Left leaf -->
-        <path d="M32,44 C29,38 27,26 31,12 C32,18 32,32 32,44Z" fill="url(#lg2)"/>
-        <!-- Center leaf -->
-        <path d="M32,44 C30,36 30,20 32,8 C34,20 34,36 32,44Z" fill="url(#lg3)"/>
-        <!-- Right leaf -->
-        <path d="M32,44 C35,38 37,26 33,12 C32,18 32,32 32,44Z" fill="url(#lg2)"/>
-        <!-- Rightmost leaf -->
-        <path d="M32,44 C36,40 42,30 39,16 C37,22 34,34 32,44Z" fill="url(#lg1)"/>
-        <!-- Sparkle left (4-point star) -->
-        <path d="M14,22 L15.2,18.5 L16.4,22 L20,21 L16.4,23.5 L15.2,27 L14,23.5 L10.5,21 Z" fill="#C4A35A" opacity="0.85" transform="scale(0.85) translate(2,2)"/>
-        <!-- Sparkle right small -->
-        <path d="M48,14 L48.8,11.5 L49.6,14 L52,13.4 L49.6,15.3 L48.8,17.8 L48,15.3 L45.5,13.4 Z" fill="#C4A35A" opacity="0.65"/>
-        <!-- Tiny dot -->
-        <circle cx="51" cy="20" r="1.2" fill="#C4A35A" opacity="0.45"/>
-        <defs>
-          <linearGradient id="hg" x1="32" y1="44" x2="32" y2="64" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#C4A35A"/>
-            <stop offset="100%" stop-color="#A0833A"/>
-          </linearGradient>
-          <linearGradient id="lg1" x1="28" y1="14" x2="32" y2="44" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#F0E4BC"/>
-            <stop offset="100%" stop-color="#C4A35A" stop-opacity="0.7"/>
-          </linearGradient>
-          <linearGradient id="lg2" x1="31" y1="10" x2="32" y2="44" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#E8D5A3"/>
-            <stop offset="100%" stop-color="#C4A35A" stop-opacity="0.8"/>
-          </linearGradient>
-          <linearGradient id="lg3" x1="32" y1="8" x2="32" y2="44" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#D4B866"/>
-            <stop offset="100%" stop-color="#C4A35A" stop-opacity="0.9"/>
-          </linearGradient>
-        </defs>
-      </svg>
+      <img src="logo.png" alt="Harmony Cleaning" width="190" style="width:190px;max-width:60vw;height:auto;display:block;margin:0 auto">
     </div>
     <div class="hero-co">Harmony <span>Cleaning</span></div>
     <div class="hero-div"></div>
@@ -652,17 +618,20 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
           <label class="add-chk" id="l-ov"><input type="checkbox" id="a-ov" onchange="calc()"> Inside Oven (+$40)</label>
           <label class="add-chk" id="l-fr"><input type="checkbox" id="a-fr" onchange="calc()"> Inside Fridge (+$40)</label>
           <label class="add-chk" id="l-bs"><input type="checkbox" id="a-bs" onchange="calc()"> Baseboards (+$10/room)</label>
-          <label class="add-chk" id="l-lw"><input type="checkbox" id="a-lw" onchange="calc()"> Laundry (+$20/load)</label>
           <label class="add-chk" id="l-dw"><input type="checkbox" id="a-dw" onchange="calc()"> Dish Washing (+$30)</label>
-          <label class="add-chk" id="l-or"><input type="checkbox" id="a-or" onchange="calc()"> Organization (+$50/hr)</label>
         </div>
         <div id="incl-note" class="base-note" style="display:none"></div>
-        <div class="base-note" id="win-note" style="line-height:1.7"><strong>Windows are not included in any service</strong> and are not part of the estimate above. Priced per item:<br>
-          Window, inside only — $10 per standard-size window<br>
-          Window, both sides — $25 per window (private houses only, with easy and safe access from outside; we do not use ladders)<br>
-          Balcony glass door — $20 inside only / $35 both sides (both sides: easy and safe access from outside)<br>
-          Blinds — from $20 per window, depending on how dirty<br>
-          Tell us how many when you book.</div>
+        <label class="clbl" style="margin-top:16px">Windows &amp; Extras <span style="text-transform:none;letter-spacing:0;font-weight:300">— enter how many</span></label>
+        <div class="qty-grid">
+          <label class="qty-row" id="l-wi"><span>Windows, inside only<small>$10 per standard-size window</small></span><input type="number" id="q-wi" min="0" max="99" step="1" value="0" inputmode="decimal" oninput="calc()"></label>
+          <label class="qty-row" id="l-wb"><span>Windows, both sides<small>$25 per window · private houses only</small></span><input type="number" id="q-wb" min="0" max="99" step="1" value="0" inputmode="decimal" oninput="calc()"></label>
+          <label class="qty-row" id="l-di"><span>Balcony glass doors, inside only<small>$20 per door</small></span><input type="number" id="q-di" min="0" max="20" step="1" value="0" inputmode="decimal" oninput="calc()"></label>
+          <label class="qty-row" id="l-db"><span>Balcony glass doors, both sides<small>$35 per door · private houses only</small></span><input type="number" id="q-db" min="0" max="20" step="1" value="0" inputmode="decimal" oninput="calc()"></label>
+          <label class="qty-row" id="l-bl"><span>Blinds<small>from $20 per window, depending on how dirty</small></span><input type="number" id="q-bl" min="0" max="99" step="1" value="0" inputmode="decimal" oninput="calc()"></label>
+          <label class="qty-row" id="l-lw"><span>Laundry (wash, dry &amp; put away)<small>$20 per load</small></span><input type="number" id="q-lw" min="0" max="20" step="1" value="0" inputmode="decimal" oninput="calc()"></label>
+          <label class="qty-row" id="l-or"><span>Space Organization — hours<small>$50 per hour</small></span><input type="number" id="q-or" min="0" max="24" step="0.5" value="0" inputmode="decimal" oninput="calc()"></label>
+        </div>
+        <div class="base-note" id="win-note" style="line-height:1.7"><strong>Windows are not included in any service.</strong> Cleaning both sides is only available for private houses with easy and safe access to the window from outside — we do not use ladders. Blinds start at $20 per window; the final price depends on how dirty they are.</div>
       </div>
     </div>
     <div class="pr-res" id="pr-res" style="display:none">
@@ -674,6 +643,7 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
       <a href="#book" class="pr-btn" onclick="prefillBooking()">Book This Service</a>
     </div>
     <div id="base-note" class="base-note" style="display:none"></div>
+    <div id="est-note" class="base-note" style="display:none;line-height:1.7"></div>
     <div id="off-note" style="display:none;margin-top:18px;padding:16px 20px;border-left:2px solid var(--gold);background:var(--cream);font-size:13px;color:var(--gray)">
       Office cleaning is priced individually. Fill out the booking form and we'll contact you with a custom quote. <a href="#book" onclick="prefillBooking()" style="color:var(--gold);white-space:nowrap">Go to the booking form →</a>
     </div>
@@ -781,7 +751,7 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
           </select>
         </div>
         <input type="hidden" name="estimate" value="">
-        <div class="fg full" id="bk-est" style="display:none"><div style="padding:10px 14px;border-left:2px solid var(--gold);background:rgba(255,255,255,0.06);font-size:12px;color:var(--cream)">Estimated price from the calculator: <strong id="bk-est-amt" style="color:var(--gold)"></strong> <span style="color:var(--gray-l)">— final price is confirmed after booking.</span></div></div>
+        <input type="hidden" name="addon_details" value="">
         <div class="fg"><label class="fl">Preferred Date * (MM/DD/YYYY)</label><input type="date" name="date" required lang="en-US"></div>
         <div class="fg"><label class="fl">Preferred Time *</label>
           <select name="time" required>
@@ -797,17 +767,17 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
             <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_oven" style="width:14px;height:14px;accent-color:var(--gold)"> Inside Oven</label>
             <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_fridge" style="width:14px;height:14px;accent-color:var(--gold)"> Inside Fridge</label>
             <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_baseboards" style="width:14px;height:14px;accent-color:var(--gold)"> Baseboards</label>
-            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_laundry" style="width:14px;height:14px;accent-color:var(--gold)"> Laundry ($20/load)</label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_laundry" style="width:14px;height:14px;accent-color:var(--gold)"> Laundry</label>
             <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_dishes" style="width:14px;height:14px;accent-color:var(--gold)"> Dish Washing</label>
-            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_windows" style="width:14px;height:14px;accent-color:var(--gold)"> Windows, inside only ($10/window)</label>
-            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_windows_both" style="width:14px;height:14px;accent-color:var(--gold)"> Windows, both sides ($25/window)</label>
-            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_door_inside" style="width:14px;height:14px;accent-color:var(--gold)"> Balcony glass door, inside ($20)</label>
-            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_door_both" style="width:14px;height:14px;accent-color:var(--gold)"> Balcony glass door, both sides ($35)</label>
-            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_blinds" style="width:14px;height:14px;accent-color:var(--gold)"> Blinds (from $20/window)</label>
-            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_organization" style="width:14px;height:14px;accent-color:var(--gold)"> Space Organization ($50/hr)</label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_windows" style="width:14px;height:14px;accent-color:var(--gold)"> Windows, inside only</label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_windows_both" style="width:14px;height:14px;accent-color:var(--gold)"> Windows, both sides</label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_door_inside" style="width:14px;height:14px;accent-color:var(--gold)"> Balcony glass door, inside only</label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_door_both" style="width:14px;height:14px;accent-color:var(--gold)"> Balcony glass door, both sides</label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_blinds" style="width:14px;height:14px;accent-color:var(--gold)"> Blinds</label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_organization" style="width:14px;height:14px;accent-color:var(--gold)"> Space Organization</label>
           </div>
           <p id="bk-incl-note" style="display:none;font-size:11px;color:var(--gold-l);margin-top:8px;line-height:1.6"></p>
-          <p style="font-size:11px;color:var(--gray-l);margin-top:8px;line-height:1.6;font-weight:300">Windows are not included in any service. Window cleaning on both sides is for private houses with easy and safe access from outside (we do not use ladders). Please tell us how many windows, doors or blinds in the notes.</p>
+          <p style="font-size:11px;color:var(--gray-l);margin-top:8px;line-height:1.6;font-weight:300">Windows are not included in any service. Window cleaning on both sides is for private houses with easy and safe access from outside (we do not use ladders). If you did not use the price calculator above, please tell us in the notes how many windows, doors and blinds, how many loads of laundry, or how many hours of organization you need.</p>
         </div>
         <div class="fg full"><label class="fl">Additional Notes</label><textarea name="notes" placeholder="Special requests, pets, access instructions..."></textarea></div>
       </div>
@@ -937,6 +907,19 @@ function sqftSurcharge(sv,bedKey,sqft){
   return steps*(cfg.per_step[sv]||0);
 }
 
+// Quantity inputs in the calculator. Invalid, negative or empty values count as 0.
+const QTY_MAX={wi:99,wb:99,di:20,db:20,bl:99,lw:20,or:24};
+function readQty(){
+  const out={};
+  for(const k in QTY_MAX){
+    let v=parseFloat(document.getElementById('q-'+k).value);
+    if(!(v>0)) v=0;
+    if(k==='or') v=Math.round(v*2)/2; else v=Math.floor(v);
+    out[k]=Math.min(v,QTY_MAX[k]);
+  }
+  return out;
+}
+
 // Shown under the add-ons when the chosen service already includes some of them.
 const INCLUDED_MSG={
   move:'Move In / Move Out already includes 1 inside oven, 1 inside fridge and baseboards — no need to add them.',
@@ -946,6 +929,7 @@ const INCLUDED_MSG={
 function calc(){
   if(!P) return;
   document.getElementById('cq-note').style.display='none';
+  document.getElementById('est-note').style.display='none';
   const sv=document.getElementById('c-s').value;
   const bEl=document.getElementById('c-b');
   const baEl=document.getElementById('c-ba');
@@ -991,9 +975,16 @@ function calc(){
 
   if(document.getElementById('a-ov').checked) addons+=P.addons.oven;
   if(document.getElementById('a-fr').checked) addons+=P.addons.fridge;
-  if(document.getElementById('a-lw').checked) addons+=P.addons.laundry_per_load;
   if(document.getElementById('a-dw').checked) addons+=P.addons.dishes;
-  if(document.getElementById('a-or').checked) addons+=P.addons.organization_per_hour;
+  // quantity add-ons: how many x price each
+  const q=readQty();
+  addons+=q.lw*P.addons.laundry_per_load
+        +q.or*P.addons.organization_per_hour
+        +q.wi*P.addons.window_inside
+        +q.wb*P.addons.window_both_sides
+        +q.di*P.addons.glass_door_one_side
+        +q.db*P.addons.glass_door_both_sides
+        +q.bl*P.addons.blinds_standard;
 
   let baseNote='';
   if(isStd&&document.getElementById('a-bs').checked&&bn!==null&&ban!==null){
@@ -1009,12 +1000,30 @@ function calc(){
   const bn2=document.getElementById('base-note');
   if(baseNote){bn2.textContent=baseNote;bn2.style.display='block';}
   else{bn2.style.display='none';}
+
+  const notes=[];
+  if(q.bl>0) notes.push('Blinds are counted at $'+P.addons.blinds_standard+' each, the starting price — the final price depends on how dirty they are.');
+  if(q.wb>0||q.db>0) notes.push('Cleaning both sides is only possible for private houses with easy and safe access from outside — we will confirm this when we contact you.');
+  const en=document.getElementById('est-note');
+  if(notes.length){en.innerHTML=notes.join('<br>');en.style.display='block';}
+  else{en.style.display='none';}
 }
 
 
 // ---- "Book This Service": copy the calculator choices into the booking form ----
 const SERVICE_NAMES={standard:'Standard Cleaning',deep:'Deep Cleaning',move:'Move In / Move Out',airbnb:'Airbnb Turnover',office:'Office / Commercial'};
-const ADDON_MAP={'a-ov':'addon_oven','a-fr':'addon_fridge','a-bs':'addon_baseboards','a-lw':'addon_laundry','a-dw':'addon_dishes','a-or':'addon_organization'};
+const ADDON_MAP={'a-ov':'addon_oven','a-fr':'addon_fridge','a-bs':'addon_baseboards','a-dw':'addon_dishes'};
+// calculator quantity -> [booking-form checkbox, label used in the details sent to us]
+const QTY_MAP={
+  wi:['addon_windows','Windows, inside only'],
+  wb:['addon_windows_both','Windows, both sides'],
+  di:['addon_door_inside','Balcony glass doors, inside only'],
+  db:['addon_door_both','Balcony glass doors, both sides'],
+  bl:['addon_blinds','Blinds'],
+  lw:['addon_laundry','Laundry loads'],
+  or:['addon_organization','Organization hours']
+};
+let BOOK_QTY={};
 // What each service in the booking form already includes (those add-ons get locked)
 const FORM_LOCKS={
   'Move In / Move Out':{ids:['addon_oven','addon_fridge','addon_baseboards'],msg:'Move In / Move Out already includes 1 inside oven, 1 inside fridge and baseboards — no need to add them.'},
@@ -1044,11 +1053,20 @@ function lockFormAddons(){
   else{note.style.display='none';}
 }
 
+// Estimate is sent to us in a hidden field only; the client does not see prices in the booking form.
 function setEstimate(txt){
+  document.getElementById('bForm').elements['estimate'].value=txt;
+}
+
+// Hidden "addon_details": the quantities from the calculator, for the add-ons that are still ticked.
+function updateAddonDetails(){
   const f=document.getElementById('bForm');
-  f.elements['estimate'].value=txt;
-  document.getElementById('bk-est-amt').textContent=txt;
-  document.getElementById('bk-est').style.display=txt?'block':'none';
+  const parts=[];
+  for(const k in QTY_MAP){
+    const n=BOOK_QTY[k];
+    if(n>0&&f.elements[QTY_MAP[k][0]].checked) parts.push(QTY_MAP[k][1]+': '+n);
+  }
+  f.elements['addon_details'].value=parts.join('; ');
 }
 
 function prefillBooking(){
@@ -1061,6 +1079,9 @@ function prefillBooking(){
   if(ba.selectedIndex>0) setSelectText(f.elements['bathrooms'],ba.options[ba.selectedIndex].text);
   setSelectText(f.elements['sqft'],sq.options[sq.selectedIndex].text);
   for(const id in ADDON_MAP) f.elements[ADDON_MAP[id]].checked=el(id).checked;
+  BOOK_QTY=readQty();
+  for(const k in QTY_MAP) f.elements[QTY_MAP[k][0]].checked=BOOK_QTY[k]>0;
+  updateAddonDetails();
   lockFormAddons();
   setEstimate(el('pr-res').style.display==='flex'?el('pr-amt').textContent:'');
 }
@@ -1069,7 +1090,8 @@ function prefillBooking(){
 document.getElementById('bForm').addEventListener('change',function(e){
   const n=e.target.name||'';
   if(n==='service') lockFormAddons();
-  if(['service','bedrooms','bathrooms','sqft','addon_oven','addon_fridge','addon_baseboards','addon_laundry','addon_dishes','addon_organization'].indexOf(n)>-1) setEstimate('');
+  if(n.indexOf('addon_')===0&&n!=='addon_details') updateAddonDetails();
+  if(['service','bedrooms','bathrooms','sqft'].indexOf(n)>-1||(n.indexOf('addon_')===0&&n!=='addon_details')) setEstimate('');
 });
 
 function toggleBtn(){document.getElementById('sbtn').disabled=!document.getElementById('tc').checked;}

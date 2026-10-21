@@ -111,29 +111,80 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,247,
 .anim-papers .folder::before{content:'';position:absolute;top:-6px;left:4px;width:16px;height:7px;background:var(--gold-l);border:1px solid var(--gold);border-bottom:none;border-radius:3px 3px 0 0}
 
 /* CALC */
-.calc-wrap{max-width:680px}
-.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:14px}
+.calc-wrap{max-width:1000px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;margin-bottom:12px}
 .cg{display:flex;flex-direction:column;gap:6px}
 .cg.full{grid-column:1/-1}
 .clbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--char);font-weight:500}
 .csel{background:var(--cream);border:1px solid var(--gray-l);color:var(--char);padding:10px 12px;font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s;width:100%;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C4A35A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
 .csel:focus{border-color:var(--gold)}
-.add-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:7px;margin-top:4px}
-.add-chk{display:flex;align-items:center;gap:8px;padding:8px 11px;background:var(--cream);border:1px solid var(--gray-l);cursor:pointer;font-size:12px;color:var(--char);transition:border-color .2s}
+.add-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px;margin-top:4px}
+.add-chk{display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--cream);border:1px solid var(--gray-l);cursor:pointer;font-size:12px;color:var(--char);transition:border-color .2s}
 .add-chk:hover{border-color:var(--gold)}
 .add-chk input{accent-color:var(--gold);width:14px;height:14px;cursor:pointer}
 .add-chk.dis{opacity:.4;cursor:not-allowed;pointer-events:none}
-.qty-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:7px;margin-top:4px}
-.qty-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 11px;background:var(--cream);border:1px solid var(--gray-l);font-size:12px;color:var(--char)}
-.qty-row small{display:block;color:var(--gray);font-size:11px;margin-top:1px}
-.qty-row input{width:64px;flex-shrink:0;padding:6px 8px;border:1px solid var(--gray-l);background:#fff;font-family:'Inter',sans-serif;font-size:13px;text-align:center;outline:none}
-.qty-row input:focus{border-color:var(--gold)}
-.pr-res{margin-top:22px;padding:22px 26px;background:var(--char);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.add-chk.dis.inc{opacity:1;border-color:var(--gold);background:rgba(196,163,90,.10)}
+.add-chk.dis.inc input{opacity:.35}
+.add-chk.inc .al{color:var(--gray)}
+.calc-layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:30px;align-items:start}
+.calc-main{min-width:0}
+.calc-side{position:sticky;top:84px;align-self:start}
+.extras{margin-top:12px;border:1px solid var(--gray-l);background:var(--cream)}
+.extras>summary{display:flex;align-items:center;gap:8px;padding:11px 14px;font-size:12px;font-weight:500;color:var(--char);cursor:pointer;list-style:none}
+.extras>summary::-webkit-details-marker{display:none}
+.extras>summary::after{content:'+';margin-left:auto;color:var(--gold);font-size:20px;line-height:1}
+.extras[open]>summary::after{content:'\2212'}
+.x-cnt{display:none;min-width:20px;padding:1px 6px;border-radius:10px;background:var(--gold);color:var(--char);font-size:11px;text-align:center}
+.x-list{padding:0 14px 8px}
+.xr{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 6px;border-top:1px solid var(--gray-l)}
+.xr.on{background:rgba(196,163,90,.10)}
+.xn{min-width:0;font-size:12px;color:var(--char)}
+.xn small{display:block;margin-top:1px;font-size:11px;color:var(--gray)}
+.xs{display:flex;align-items:center;flex-shrink:0}
+.xs button{width:36px;height:36px;padding:0;border:1px solid var(--gray-l);background:#fff;color:var(--char);font-size:18px;line-height:1;font-family:inherit;cursor:pointer}
+.xs button:hover{border-color:var(--gold)}
+.xs input{width:46px;height:36px;border:1px solid var(--gray-l);border-left:none;border-right:none;border-radius:0;background:#fff;text-align:center;font-size:14px;font-family:'Inter',sans-serif;outline:none;-moz-appearance:textfield;appearance:textfield}
+.xs input::-webkit-outer-spin-button,.xs input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.extras .base-note{margin:6px 0 4px}
+.xr.inc{background:rgba(196,163,90,.10)}
+.xr.inc .xn,.xr.inc .xn small{color:var(--gray)}
+.xs button:disabled{opacity:.35;cursor:not-allowed}
+.xs input:disabled{background:var(--ivory);color:var(--gray)}
+.pr-res{padding:20px 22px;background:var(--char);box-shadow:0 10px 30px rgba(42,40,38,.18)}
+.pr-top{display:block}
 .pr-lbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-l)}
-.pr-amt{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--cream);line-height:1}
-.pr-note{font-size:10px;color:var(--gray-l);margin-top:3px}
-.pr-btn{display:inline-block;background:var(--gold);color:var(--char);padding:10px 22px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;border:none;font-family:'Inter',sans-serif;cursor:pointer;transition:background .2s}
+.pr-amt{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:var(--cream);line-height:1.05}
+.pr-amt.sm{font-size:26px}
+.pr-hint{font-size:11px;line-height:1.5;color:var(--gray-l);margin-top:6px}
+.pr-btn{display:block;text-align:center;margin-top:16px;background:var(--gold);color:var(--char);padding:14px 22px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;border:none;font-family:'Inter',sans-serif;cursor:pointer;transition:background .2s}
 .pr-btn:hover{background:var(--gold-l)}
+.pr-btn.dis{opacity:.4;pointer-events:none}
+.pr-det{margin-top:14px;padding-top:10px;border-top:1px solid rgba(255,255,255,.15)}
+.pr-det>summary{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-l);cursor:pointer;list-style:none}
+.pr-det>summary::-webkit-details-marker{display:none}
+.pr-det>summary::after{content:'\25BE';font-size:12px}
+.pr-det[open]>summary::after{content:'\25B4'}
+.pr-det-body{margin-top:8px;max-height:46vh;overflow:auto}
+#breakdown{margin:0;padding:0;background:none;border:none}
+.bd-r{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:12px;color:var(--cream)}
+.bd-r span:last-child{white-space:nowrap}
+.bd-tot{font-weight:500;border-bottom:none}
+.pr-warn{margin-top:8px;padding:8px 10px;background:rgba(255,255,255,.07);border-left:2px solid var(--gold);font-size:11px;line-height:1.6;color:var(--gray-l)}
+.pr-msg{margin-top:12px;font-size:12px;line-height:1.6;color:var(--gray-l)}
+.pr-msg a{color:var(--gold);white-space:nowrap}
+@media(max-width:859px){
+  #calculator{padding:60px 16px !important}
+  .calc-layout{display:block}
+  .calc-side{position:sticky;top:auto;bottom:10px;z-index:60;margin-top:16px}
+  .pr-res{padding:12px 14px}
+  .pr-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .pr-amt{font-size:32px}
+  .pr-amt.sm{font-size:20px}
+  .pr-btn{margin-top:0;padding:12px 18px;white-space:nowrap}
+  .pr-res[data-ready="1"] .pr-hint{display:none}
+  .pr-det{margin-top:8px;padding-top:8px}
+  .pr-det-body{max-height:40vh}
+}
 .base-note{margin-top:10px;padding:9px 12px;background:var(--ivory);border-left:2px solid var(--gold);font-size:11px;color:var(--gray)}
 
 /* ABOUT */
@@ -197,11 +248,9 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
 @media(max-width:768px){
   nav{padding:0 20px}.nav-links{display:none}
   .wrap{padding:60px 20px}
-  .calc-grid{grid-template-columns:1fr}
   .form-g{grid-template-columns:1fr}
   .about-g{grid-template-columns:1fr;gap:30px}
   #home{padding:100px 20px 60px}
-  .pr-res{flex-direction:column}
   footer{padding:36px 20px}
   .mc{padding:26px 18px}
   .org-examples{grid-template-columns:1fr}
@@ -230,7 +279,7 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
 <section id="home" style="padding-top:80px">
   <div>
     <div style="margin-bottom:20px">
-      <img src="icon.png" alt="Harmony Cleaning" width="190" style="width:190px;max-width:60vw;height:auto;display:block;margin:0 auto">
+      <img src="logo.PNG" alt="Harmony Cleaning" width="190" style="width:190px;max-width:60vw;height:auto;display:block;margin:0 auto">
     </div>
     <div class="hero-co">Harmony <span>Cleaning</span></div>
     <div class="hero-div"></div>
@@ -497,6 +546,7 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
               <li>Kitchen wipe-down — counters, sink, stovetop, appliances exterior</li>
               <li>Vacuum and mop all floors</li>
               <li>Change and make beds with fresh linen</li>
+              <li class="inc">Laundry — sheets &amp; towels ✓ included</li>
               <li>Dust all surfaces and furniture</li>
               <li>Empty all trash and replace bags</li>
               <li>Wipe mirrors and glass surfaces</li>
@@ -506,14 +556,14 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
           <div class="svc-sec">
             <p class="svc-st" style="color:var(--gray)">➕ Add-on Services</p>
             <ul class="el">
+              <li>Baseboards — $10 per bedroom / $10 per bathroom</li>
               <li>Inside oven — $40</li>
               <li>Inside refrigerator — $40</li>
               <li>Window, inside only — $10 per standard-size window</li>
               <li>Window, both sides — $25 per window (private houses only, with easy and safe access from outside; no ladders)</li>
               <li>Balcony glass door — $20 inside only / $35 both sides</li>
               <li>Blinds — from $20 per window, depending on how dirty</li>
-              <li>Laundry — $20 per load (wash &amp; dry)</li>
-              <li>Restocking supplies (if provided by host)</li>
+                            <li>Restocking supplies (if provided by host)</li>
             </ul>
             <p style="font-size:11px;color:var(--gray);margin-top:10px">Windows are not included in any service.</p>
           </div>
@@ -558,9 +608,10 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
     <h2 class="ti">Price <em>Calculator</em></h2>
     <div class="li"></div>
     <p style="font-size:13px;color:var(--gray);font-weight:300;margin-bottom:26px">Get an approximate price instantly. Final price confirmed after booking.</p>
-    <div class="calc-grid">
-      <div class="cg">
-        <label class="clbl">Service Type</label>
+    <div class="calc-layout">
+      <div class="calc-main">
+        <div class="calc-grid">
+          <div class="cg full"><label class="clbl">Service Type</label>
         <select class="csel" id="c-s" onchange="calc()">
           <option value="">Select service...</option>
           <option value="standard">Standard Cleaning (from $110)</option>
@@ -569,9 +620,8 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
           <option value="airbnb">Airbnb Turnover (from $150)</option>
           <option value="office">Office (custom quote)</option>
         </select>
-      </div>
-      <div class="cg">
-        <label class="clbl">Bedrooms</label>
+          </div>
+          <div class="cg"><label class="clbl">Bedrooms</label>
         <select class="csel" id="c-b" onchange="calc()">
           <option value="">Select...</option>
           <option value="studio" data-n="0">Studio</option>
@@ -582,9 +632,8 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
           <option value="5" data-n="5">5 Bedrooms</option>
           <option value="6" data-n="6">6+ Bedrooms</option>
         </select>
-      </div>
-      <div class="cg">
-        <label class="clbl">Bathrooms</label>
+          </div>
+          <div class="cg"><label class="clbl">Bathrooms</label>
         <select class="csel" id="c-ba" onchange="calc()">
           <option value="">Select...</option>
           <option value="1" data-n="1">1 Bathroom</option>
@@ -594,9 +643,8 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
           <option value="5" data-n="5">5 Bathrooms</option>
           <option value="6" data-n="6">6+ Bathrooms</option>
         </select>
-      </div>
-      <div class="cg">
-        <label class="clbl">Square Footage (approx.)</label>
+          </div>
+          <div class="cg full"><label class="clbl">Square Footage (approx.)</label>
         <select class="csel" id="c-sq" onchange="calc()">
           <option value="0">Not sure / Skip</option>
           <option value="500">Under 1,000 sq ft</option>
@@ -611,44 +659,54 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
           <option value="4750">4,501 – 5,000 sq ft</option>
           <option value="5250">5,001+ sq ft</option>
         </select>
-      </div>
-      <div class="cg full">
-        <label class="clbl">Add-on Services</label>
-        <div class="add-grid">
-          <label class="add-chk" id="l-ov"><input type="checkbox" id="a-ov" onchange="calc()"> Inside Oven (+$40)</label>
-          <label class="add-chk" id="l-fr"><input type="checkbox" id="a-fr" onchange="calc()"> Inside Fridge (+$40)</label>
-          <label class="add-chk" id="l-bs"><input type="checkbox" id="a-bs" onchange="calc()"> Baseboards (+$10/room)</label>
-          <label class="add-chk" id="l-dw"><input type="checkbox" id="a-dw" onchange="calc()"> Dish Washing (+$30)</label>
+          </div>
         </div>
-        <div id="incl-note" class="base-note" style="display:none"></div>
-        <label class="clbl" style="margin-top:16px">Windows &amp; Extras <span style="text-transform:none;letter-spacing:0;font-weight:300">— enter how many</span></label>
-        <div class="qty-grid">
-          <label class="qty-row" id="l-wi"><span>Windows, inside only<small>$10 per standard-size window</small></span><input type="number" id="q-wi" min="0" max="99" step="1" value="0" inputmode="decimal" oninput="calc()"></label>
-          <label class="qty-row" id="l-wb"><span>Windows, both sides<small>$25 per window · private houses only</small></span><input type="number" id="q-wb" min="0" max="99" step="1" value="0" inputmode="decimal" oninput="calc()"></label>
-          <label class="qty-row" id="l-di"><span>Balcony glass doors, inside only<small>$20 per door</small></span><input type="number" id="q-di" min="0" max="20" step="1" value="0" inputmode="decimal" oninput="calc()"></label>
-          <label class="qty-row" id="l-db"><span>Balcony glass doors, both sides<small>$35 per door · private houses only</small></span><input type="number" id="q-db" min="0" max="20" step="1" value="0" inputmode="decimal" oninput="calc()"></label>
-          <label class="qty-row" id="l-bl"><span>Blinds<small>from $20 per window, depending on how dirty</small></span><input type="number" id="q-bl" min="0" max="99" step="1" value="0" inputmode="decimal" oninput="calc()"></label>
-          <label class="qty-row" id="l-lw"><span>Laundry (wash, dry &amp; put away)<small>$20 per load</small></span><input type="number" id="q-lw" min="0" max="20" step="1" value="0" inputmode="decimal" oninput="calc()"></label>
-          <label class="qty-row" id="l-or"><span>Space Organization — hours<small>$50 per hour</small></span><input type="number" id="q-or" min="0" max="24" step="0.5" value="0" inputmode="decimal" oninput="calc()"></label>
+        <div class="cg full">
+          <label class="clbl">Add-on Services</label>
+          <div class="add-grid">
+            <label class="add-chk" id="l-ov"><input type="checkbox" id="a-ov" onchange="calc()"> <span class="al" data-t="Inside Oven (+$40)">Inside Oven (+$40)</span></label>
+            <label class="add-chk" id="l-fr"><input type="checkbox" id="a-fr" onchange="calc()"> <span class="al" data-t="Inside Fridge (+$40)">Inside Fridge (+$40)</span></label>
+            <label class="add-chk" id="l-bs"><input type="checkbox" id="a-bs" onchange="calc()"> <span class="al" data-t="Baseboards (+$10/room)">Baseboards (+$10/room)</span></label>
+            <label class="add-chk" id="l-dw"><input type="checkbox" id="a-dw" onchange="calc()"> <span class="al" data-t="Dish Washing (+$30)">Dish Washing (+$30)</span></label>
+          </div>
+          <div id="incl-note" class="base-note" style="display:none"></div>
+          <div id="tip-note" class="base-note" style="display:none;line-height:1.6"></div>
         </div>
+        <details class="extras" id="extras">
+          <summary><span>Windows, blinds, laundry &amp; organization</span><span class="x-cnt" id="x-cnt"></span></summary>
+          <div class="x-list">
+        <div class="xr" id="l-wi"><span class="xn">Windows, inside only<small>$10 per standard-size window</small></span><span class="xs"><button type="button" aria-label="Fewer: Windows, inside only" onclick="stepQty('wi',-1)">&minus;</button><input type="number" id="q-wi" min="0" max="99" step="1" value="0" inputmode="decimal" aria-label="Windows, inside only" oninput="calc()"><button type="button" aria-label="More: Windows, inside only" onclick="stepQty('wi',1)">+</button></span></div>
+        <div class="xr" id="l-wb"><span class="xn">Windows, both sides<small>$25 per window · private houses only</small></span><span class="xs"><button type="button" aria-label="Fewer: Windows, both sides" onclick="stepQty('wb',-1)">&minus;</button><input type="number" id="q-wb" min="0" max="99" step="1" value="0" inputmode="decimal" aria-label="Windows, both sides" oninput="calc()"><button type="button" aria-label="More: Windows, both sides" onclick="stepQty('wb',1)">+</button></span></div>
+        <div class="xr" id="l-di"><span class="xn">Balcony glass doors, inside only<small>$20 per door</small></span><span class="xs"><button type="button" aria-label="Fewer: Balcony glass doors, inside only" onclick="stepQty('di',-1)">&minus;</button><input type="number" id="q-di" min="0" max="20" step="1" value="0" inputmode="decimal" aria-label="Balcony glass doors, inside only" oninput="calc()"><button type="button" aria-label="More: Balcony glass doors, inside only" onclick="stepQty('di',1)">+</button></span></div>
+        <div class="xr" id="l-db"><span class="xn">Balcony glass doors, both sides<small>$35 per door · private houses only</small></span><span class="xs"><button type="button" aria-label="Fewer: Balcony glass doors, both sides" onclick="stepQty('db',-1)">&minus;</button><input type="number" id="q-db" min="0" max="20" step="1" value="0" inputmode="decimal" aria-label="Balcony glass doors, both sides" oninput="calc()"><button type="button" aria-label="More: Balcony glass doors, both sides" onclick="stepQty('db',1)">+</button></span></div>
+        <div class="xr" id="l-bl"><span class="xn">Blinds<small>from $20 per window, depending on how dirty</small></span><span class="xs"><button type="button" aria-label="Fewer: Blinds" onclick="stepQty('bl',-1)">&minus;</button><input type="number" id="q-bl" min="0" max="99" step="1" value="0" inputmode="decimal" aria-label="Blinds" oninput="calc()"><button type="button" aria-label="More: Blinds" onclick="stepQty('bl',1)">+</button></span></div>
+        <div class="xr" id="l-lw"><span class="xn">Laundry (wash, dry &amp; put away)<small data-t="$20 per load">$20 per load</small></span><span class="xs"><button type="button" aria-label="Fewer: Laundry (wash, dry &amp; put away)" onclick="stepQty('lw',-1)">&minus;</button><input type="number" id="q-lw" min="0" max="20" step="1" value="0" inputmode="decimal" aria-label="Laundry (wash, dry &amp; put away)" oninput="calc()"><button type="button" aria-label="More: Laundry (wash, dry &amp; put away)" onclick="stepQty('lw',1)">+</button></span></div>
+        <div class="xr" id="l-or"><span class="xn">Space Organization — hours<small>$50 per hour</small></span><span class="xs"><button type="button" aria-label="Fewer: Space Organization — hours" onclick="stepQty('or',-1)">&minus;</button><input type="number" id="q-or" min="0" max="24" step="0.5" value="0" inputmode="decimal" aria-label="Space Organization — hours" oninput="calc()"><button type="button" aria-label="More: Space Organization — hours" onclick="stepQty('or',1)">+</button></span></div>
         <div class="base-note" id="win-note" style="line-height:1.7"><strong>Windows are not included in any service.</strong> Cleaning both sides is only available for private houses with easy and safe access to the window from outside — we do not use ladders. Blinds start at $20 per window; the final price depends on how dirty they are.</div>
+          </div>
+        </details>
       </div>
-    </div>
-    <div class="pr-res" id="pr-res" style="display:none">
-      <div>
-        <div class="pr-lbl">Estimated Price</div>
-        <div class="pr-amt" id="pr-amt">$0</div>
-        <div class="pr-note">Approximate estimate — final price confirmed after booking</div>
+      <div class="calc-side">
+        <div class="pr-res" id="pr-res" data-ready="0" data-state="pending">
+          <div class="pr-top">
+            <div class="pr-main">
+              <div class="pr-lbl">Estimated Price</div>
+              <div class="pr-amt" id="pr-amt">—</div>
+              <div class="pr-hint" id="pr-hint">Choose a service, bedrooms and bathrooms to see your price</div>
+            </div>
+            <a href="#book" class="pr-btn dis" id="pr-btn" aria-disabled="true" tabindex="-1" onclick="prefillBooking()">Book This Service</a>
+          </div>
+          <div id="off-note" class="pr-msg" style="display:none">Office cleaning is priced individually. Fill out the booking form and we'll contact you with a custom quote. <a href="#book" onclick="prefillBooking()" style="color:var(--gold);white-space:nowrap">Go to the booking form →</a></div>
+          <div id="cq-note" class="pr-msg" style="display:none">This property size is priced individually. Fill out the booking form and we'll contact you with a custom quote. <a href="#book" onclick="prefillBooking()" style="color:var(--gold);white-space:nowrap">Go to the booking form →</a></div>
+          <details class="pr-det" id="pr-det" style="display:none">
+            <summary>What's included</summary>
+            <div class="pr-det-body">
+              <div id="breakdown" style="display:none"></div>
+              <div id="est-note" class="pr-warn" style="display:none"></div>
+            </div>
+          </details>
+        </div>
       </div>
-      <a href="#book" class="pr-btn" onclick="prefillBooking()">Book This Service</a>
-    </div>
-    <div id="base-note" class="base-note" style="display:none"></div>
-    <div id="est-note" class="base-note" style="display:none;line-height:1.7"></div>
-    <div id="off-note" style="display:none;margin-top:18px;padding:16px 20px;border-left:2px solid var(--gold);background:var(--cream);font-size:13px;color:var(--gray)">
-      Office cleaning is priced individually. Fill out the booking form and we'll contact you with a custom quote. <a href="#book" onclick="prefillBooking()" style="color:var(--gold);white-space:nowrap">Go to the booking form →</a>
-    </div>
-    <div id="cq-note" style="display:none;margin-top:18px;padding:16px 20px;border-left:2px solid var(--gold);background:var(--cream);font-size:13px;color:var(--gray)">
-      This property size is priced individually. Fill out the booking form and we'll contact you with a custom quote. <a href="#book" onclick="prefillBooking()" style="color:var(--gold);white-space:nowrap">Go to the booking form →</a>
     </div>
   </div>
 </div>
@@ -752,6 +810,7 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
         </div>
         <input type="hidden" name="estimate" value="">
         <input type="hidden" name="addon_details" value="">
+        <input type="hidden" name="estimate_breakdown" value="">
         <div class="fg"><label class="fl">Preferred Date * (MM/DD/YYYY)</label><input type="date" name="date" required lang="en-US"></div>
         <div class="fg"><label class="fl">Preferred Time *</label>
           <select name="time" required>
@@ -767,17 +826,18 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
             <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_oven" style="width:14px;height:14px;accent-color:var(--gold)"> Inside Oven</label>
             <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_fridge" style="width:14px;height:14px;accent-color:var(--gold)"> Inside Fridge</label>
             <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_baseboards" style="width:14px;height:14px;accent-color:var(--gold)"> Baseboards</label>
-            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_laundry" style="width:14px;height:14px;accent-color:var(--gold)"> Laundry</label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_laundry" style="width:14px;height:14px;accent-color:var(--gold)"> Laundry<input type="number" name="qty_laundry" min="0" max="99" step="1" placeholder="loads" inputmode="decimal" style="margin-left:auto;width:62px;padding:4px 6px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:var(--cream);font-size:12px;text-align:center;font-family:inherit;outline:none"></label>
             <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_dishes" style="width:14px;height:14px;accent-color:var(--gold)"> Dish Washing</label>
-            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_windows" style="width:14px;height:14px;accent-color:var(--gold)"> Windows, inside only</label>
-            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_windows_both" style="width:14px;height:14px;accent-color:var(--gold)"> Windows, both sides</label>
-            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_door_inside" style="width:14px;height:14px;accent-color:var(--gold)"> Balcony glass door, inside only</label>
-            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_door_both" style="width:14px;height:14px;accent-color:var(--gold)"> Balcony glass door, both sides</label>
-            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_blinds" style="width:14px;height:14px;accent-color:var(--gold)"> Blinds</label>
-            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_organization" style="width:14px;height:14px;accent-color:var(--gold)"> Space Organization</label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_windows" style="width:14px;height:14px;accent-color:var(--gold)"> Windows, inside only<input type="number" name="qty_windows" min="0" max="99" step="1" placeholder="qty" inputmode="decimal" style="margin-left:auto;width:62px;padding:4px 6px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:var(--cream);font-size:12px;text-align:center;font-family:inherit;outline:none"></label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_windows_both" style="width:14px;height:14px;accent-color:var(--gold)"> Windows, both sides<input type="number" name="qty_windows_both" min="0" max="99" step="1" placeholder="qty" inputmode="decimal" style="margin-left:auto;width:62px;padding:4px 6px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:var(--cream);font-size:12px;text-align:center;font-family:inherit;outline:none"></label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_door_inside" style="width:14px;height:14px;accent-color:var(--gold)"> Balcony glass door, inside only<input type="number" name="qty_door_inside" min="0" max="99" step="1" placeholder="qty" inputmode="decimal" style="margin-left:auto;width:62px;padding:4px 6px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:var(--cream);font-size:12px;text-align:center;font-family:inherit;outline:none"></label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_door_both" style="width:14px;height:14px;accent-color:var(--gold)"> Balcony glass door, both sides<input type="number" name="qty_door_both" min="0" max="99" step="1" placeholder="qty" inputmode="decimal" style="margin-left:auto;width:62px;padding:4px 6px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:var(--cream);font-size:12px;text-align:center;font-family:inherit;outline:none"></label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_blinds" style="width:14px;height:14px;accent-color:var(--gold)"> Blinds<input type="number" name="qty_blinds" min="0" max="99" step="1" placeholder="qty" inputmode="decimal" style="margin-left:auto;width:62px;padding:4px 6px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:var(--cream);font-size:12px;text-align:center;font-family:inherit;outline:none"></label>
+            <label style="display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);cursor:pointer;font-size:12px;color:var(--cream)"><input type="checkbox" name="addon_organization" style="width:14px;height:14px;accent-color:var(--gold)"> Space Organization<input type="number" name="qty_organization" min="0" max="99" step="0.5" placeholder="hours" inputmode="decimal" style="margin-left:auto;width:62px;padding:4px 6px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:var(--cream);font-size:12px;text-align:center;font-family:inherit;outline:none"></label>
           </div>
           <p id="bk-incl-note" style="display:none;font-size:11px;color:var(--gold-l);margin-top:8px;line-height:1.6"></p>
-          <p style="font-size:11px;color:var(--gray-l);margin-top:8px;line-height:1.6;font-weight:300">Windows are not included in any service. Window cleaning on both sides is for private houses with easy and safe access from outside (we do not use ladders). If you did not use the price calculator above, please tell us in the notes how many windows, doors and blinds, how many loads of laundry, or how many hours of organization you need.</p>
+          <p id="bk-tip-note" style="display:none;font-size:11px;color:var(--gold-l);margin-top:8px;line-height:1.6"></p>
+          <p style="font-size:11px;color:var(--gray-l);margin-top:8px;line-height:1.6;font-weight:300">Windows are not included in any service. Window cleaning on both sides is for private houses with easy and safe access from outside (we do not use ladders). Enter how many windows, doors, blinds, loads of laundry or hours of organization you need in the boxes next to the options.</p>
         </div>
         <div class="fg full"><label class="fl">Additional Notes</label><textarea name="notes" placeholder="Special requests, pets, access instructions..."></textarea></div>
       </div>
@@ -920,16 +980,88 @@ function readQty(){
   return out;
 }
 
+// "Windows, blinds ..." panel: highlight rows that have a number and show how many are chosen
+function updateExtrasCount(){
+  const q=readQty();
+  let n=0;
+  for(const k in q){
+    const on=q[k]>0;
+    if(on) n++;
+    document.getElementById('l-'+k).classList.toggle('on',on);
+  }
+  const c=document.getElementById('x-cnt');
+  c.textContent=n;
+  c.style.display=n?'inline-block':'none';
+}
+
+// Extras that a service already includes: locked at 0 and marked "included"
+const INCLUDED_EXTRA={airbnb:{lw:'Included in Airbnb Turnover ✓'}};
+function applyIncludedExtras(sv){
+  for(const k in QTY_MAX){
+    const msg=(INCLUDED_EXTRA[sv]||{})[k];
+    const row=document.getElementById('l-'+k), inp=document.getElementById('q-'+k), sm=row.querySelector('small');
+    if(msg) inp.value='0';
+    inp.disabled=!!msg;
+    row.querySelectorAll('button').forEach(b=>{b.disabled=!!msg;});
+    row.classList.toggle('inc',!!msg);
+    if(sm&&sm.dataset.t) sm.textContent=msg||sm.dataset.t;
+  }
+}
+
+// The + / - buttons next to each quantity
+function stepQty(k,d){
+  const step=k==='or'?0.5:1;
+  const next=Math.min(QTY_MAX[k],Math.max(0,readQty()[k]+d*step));
+  document.getElementById('q-'+k).value=String(next);
+  calc();
+}
+
+// The price card. state: 'pending' (nothing to price yet), 'ready' (arg = total), 'custom' (arg = note id)
+function setCard(state,arg){
+  const el=id=>document.getElementById(id);
+  const ready=state==='ready', custom=state==='custom';
+  const card=el('pr-res');
+  card.dataset.ready=ready?'1':'0';
+  card.dataset.state=state;
+  el('pr-amt').textContent=ready?'$'+arg:(custom?'Custom quote':'—');
+  el('pr-amt').classList.toggle('sm',custom);
+  el('pr-hint').textContent=ready?'Approximate estimate — final price confirmed after booking':'Choose a service, bedrooms and bathrooms to see your price';
+  el('pr-hint').style.display=custom?'none':'';
+  const btn=el('pr-btn');
+  btn.style.display=custom?'none':'';
+  btn.classList.toggle('dis',!ready);
+  btn.setAttribute('aria-disabled',ready?'false':'true');
+  btn.tabIndex=ready?0:-1;
+  el('pr-det').style.display=ready?'block':'none';
+  el('off-note').style.display=custom&&arg==='off-note'?'block':'none';
+  el('cq-note').style.display=custom&&arg==='cq-note'?'block':'none';
+}
+
+// Friendly tips when someone ticks an add-on that another service already includes.
+// sv = standard | deep | move | airbnb (or '' when nothing is chosen)
+function addonTips(sv,baseboards,oven,fridge){
+  const t=[];
+  if(baseboards&&(sv==='standard'||sv==='airbnb')) t.push('Tip: baseboards are already included in Deep Cleaning and in Move In / Move Out.');
+  if((oven||fridge)&&(sv==='standard'||sv==='deep'||sv==='airbnb')) t.push('Tip: Move In / Move Out already includes 1 inside oven and 1 inside fridge.');
+  return t;
+}
+const INC_LABEL={'a-ov':'Inside Oven — included ✓','a-fr':'Inside Fridge — included ✓','a-bs':'Baseboards — included ✓'};
+
 // Shown under the add-ons when the chosen service already includes some of them.
 const INCLUDED_MSG={
   move:'Move In / Move Out already includes 1 inside oven, 1 inside fridge and baseboards — no need to add them.',
   deep:'Baseboards are already included in Deep Cleaning.'
 };
 
+let LAST_BREAKDOWN=null;  // [[label, amount], ...] of the estimate currently shown
+
 function calc(){
   if(!P) return;
-  document.getElementById('cq-note').style.display='none';
   document.getElementById('est-note').style.display='none';
+  document.getElementById('breakdown').style.display='none';
+  LAST_BREAKDOWN=null;
+  applyIncludedExtras(document.getElementById('c-s').value);
+  updateExtrasCount();
   const sv=document.getElementById('c-s').value;
   const bEl=document.getElementById('c-b');
   const baEl=document.getElementById('c-ba');
@@ -942,64 +1074,55 @@ function calc(){
 
   // Add-ons that are already part of the chosen service (or not sold with it) are locked.
   const locked={
-    'a-bs':!isStd,       // baseboards: sold as an add-on to Standard only
+    'a-bs':sv==='deep'||sv==='move',  // baseboards are already included in Deep and Move In/Out
     'a-ov':sv==='move',  // Move In / Move Out already includes 1 inside oven
     'a-fr':sv==='move'   // ...and 1 inside fridge
   };
   for(const id in locked){
-    const cb=document.getElementById(id), lb=cb.closest('label');
-    if(locked[id]){cb.checked=false;cb.disabled=true;lb.classList.add('dis');}
-    else{cb.disabled=false;lb.classList.remove('dis');}
+    const cb=document.getElementById(id), lb=cb.closest('label'), sp=lb.querySelector('.al');
+    if(locked[id]){cb.checked=false;cb.disabled=true;lb.classList.add('dis','inc');sp.textContent=INC_LABEL[id];}
+    else{cb.disabled=false;lb.classList.remove('dis','inc');sp.textContent=sp.dataset.t;}
   }
   const inclNote=document.getElementById('incl-note');
   if(INCLUDED_MSG[sv]){inclNote.textContent=INCLUDED_MSG[sv];inclNote.style.display='block';}
   else{inclNote.style.display='none';}
+  const tips=addonTips(sv,document.getElementById('a-bs').checked,document.getElementById('a-ov').checked,document.getElementById('a-fr').checked);
+  const tipNote=document.getElementById('tip-note');
+  if(tips.length){tipNote.innerHTML=tips.join('<br>');tipNote.style.display='block';}
+  else{tipNote.style.display='none';}
 
-  if(sv==='office'){
-    document.getElementById('pr-res').style.display='none';
-    document.getElementById('off-note').style.display='block';
-    document.getElementById('base-note').style.display='none';
-    return;
-  }
-  document.getElementById('off-note').style.display='none';
-  if(!sv||bv===''||bav===''){document.getElementById('pr-res').style.display='none';document.getElementById('base-note').style.display='none';return;}
+  if(sv==='office'){ setCard('custom','off-note'); return; }
+  if(!sv||bv===''||bav===''){ setCard('pending'); return; }
 
   const base=basePrice(sv,bv,parseInt(bav));
-  if(base===null){
-    document.getElementById('pr-res').style.display='none';
-    document.getElementById('base-note').style.display='none';
-    document.getElementById('cq-note').style.display='block';
-    return;
+  if(base===null){ setCard('custom','cq-note'); return; }
+  // Every line of the price: [label, amount]
+  const A=P.addons, q=readQty(), el=id=>document.getElementById(id);
+  const lines=[[SERVICE_NAMES[sv]+' — '+bEl.options[bEl.selectedIndex].text+', '+baEl.options[baEl.selectedIndex].text, base]];
+  const sqs=sqftSurcharge(sv,bv,sqv);
+  if(sqs>0) lines.push(['Extra square footage ('+sqEl.options[sqEl.selectedIndex].text+')', sqs]);
+  if(el('a-ov').checked) lines.push(['Inside oven', A.oven]);
+  if(el('a-fr').checked) lines.push(['Inside fridge', A.fridge]);
+  if(el('a-dw').checked) lines.push(['Dish washing', A.dishes]);
+  if((isStd||sv==='airbnb')&&el('a-bs').checked&&bn!==null&&ban!==null){
+    lines.push(['Baseboards: '+bn+' bedroom(s) + '+ban+' bathroom(s) × $'+A.baseboard_per_room, (bn+ban)*A.baseboard_per_room]);
   }
-  let addons=0;
-
-  if(document.getElementById('a-ov').checked) addons+=P.addons.oven;
-  if(document.getElementById('a-fr').checked) addons+=P.addons.fridge;
-  if(document.getElementById('a-dw').checked) addons+=P.addons.dishes;
-  // quantity add-ons: how many x price each
-  const q=readQty();
-  addons+=q.lw*P.addons.laundry_per_load
-        +q.or*P.addons.organization_per_hour
-        +q.wi*P.addons.window_inside
-        +q.wb*P.addons.window_both_sides
-        +q.di*P.addons.glass_door_one_side
-        +q.db*P.addons.glass_door_both_sides
-        +q.bl*P.addons.blinds_standard;
-
-  let baseNote='';
-  if(isStd&&document.getElementById('a-bs').checked&&bn!==null&&ban!==null){
-    const rooms=bn+ban;
-    const bc=rooms*P.addons.baseboard_per_room;
-    addons+=bc;
-    baseNote='Baseboards: '+bn+' bedroom(s) + '+ban+' bathroom(s) = $'+bc;
-  }
-
-  const total=base+sqftSurcharge(sv,bv,sqv)+addons;
-  document.getElementById('pr-amt').textContent='$'+total;
-  document.getElementById('pr-res').style.display='flex';
-  const bn2=document.getElementById('base-note');
-  if(baseNote){bn2.textContent=baseNote;bn2.style.display='block';}
-  else{bn2.style.display='none';}
+  const qtyLines=[
+    ['wi','Windows, inside only',A.window_inside,' × $'],
+    ['wb','Windows, both sides',A.window_both_sides,' × $'],
+    ['di','Balcony glass doors, inside only',A.glass_door_one_side,' × $'],
+    ['db','Balcony glass doors, both sides',A.glass_door_both_sides,' × $'],
+    ['bl','Blinds (from)',A.blinds_standard,' × $'],
+    ['lw','Laundry loads',A.laundry_per_load,' × $'],
+    ['or','Space organization, hours',A.organization_per_hour,' × $']
+  ];
+  qtyLines.forEach(r=>{ if(q[r[0]]>0) lines.push([r[1]+': '+q[r[0]]+r[3]+r[2], q[r[0]]*r[2]]); });
+  const total=lines.reduce((t,l)=>t+l[1],0);
+  LAST_BREAKDOWN=lines;
+  el('breakdown').innerHTML=lines.map(l=>'<div class="bd-r"><span>'+l[0]+'</span><span>$'+l[1]+'</span></div>').join('')
+    +'<div class="bd-r bd-tot"><span>Estimated total</span><span>$'+total+'</span></div>';
+  el('breakdown').style.display='block';
+  setCard('ready',total);
 
   const notes=[];
   if(q.bl>0) notes.push('Blinds are counted at $'+P.addons.blinds_standard+' each, the starting price — the final price depends on how dirty they are.');
@@ -1023,11 +1146,23 @@ const QTY_MAP={
   lw:['addon_laundry','Laundry loads'],
   or:['addon_organization','Organization hours']
 };
-let BOOK_QTY={};
+const SERVICE_KEY={};
+for(const k in SERVICE_NAMES) SERVICE_KEY[SERVICE_NAMES[k]]=k;
+
+function updateFormTips(){
+  const f=document.getElementById('bForm');
+  const tips=addonTips(SERVICE_KEY[f.elements['service'].value]||'',f.elements['addon_baseboards'].checked,f.elements['addon_oven'].checked,f.elements['addon_fridge'].checked);
+  const note=document.getElementById('bk-tip-note');
+  if(tips.length){note.innerHTML=tips.join('<br>');note.style.display='block';}
+  else{note.style.display='none';}
+}
+
+let BOOK_QTY={};  // quantities copied from the calculator when Book is pressed
 // What each service in the booking form already includes (those add-ons get locked)
 const FORM_LOCKS={
   'Move In / Move Out':{ids:['addon_oven','addon_fridge','addon_baseboards'],msg:'Move In / Move Out already includes 1 inside oven, 1 inside fridge and baseboards — no need to add them.'},
-  'Deep Cleaning':{ids:['addon_baseboards'],msg:'Baseboards are already included in Deep Cleaning.'}
+  'Deep Cleaning':{ids:['addon_baseboards'],msg:'Baseboards are already included in Deep Cleaning.'},
+  'Airbnb Turnover':{ids:['addon_laundry'],msg:'Airbnb Turnover already includes laundry (sheets and towels).'}
 };
 
 function setSelectText(sel,text){
@@ -1040,22 +1175,28 @@ function setSelectText(sel,text){
 function lockFormAddons(){
   const f=document.getElementById('bForm');
   const lock=FORM_LOCKS[f.elements['service'].value];
-  ['addon_oven','addon_fridge','addon_baseboards'].forEach(name=>{
+  ['addon_oven','addon_fridge','addon_baseboards','addon_laundry'].forEach(name=>{
     const cb=f.elements[name], lb=cb.closest('label');
     const isLocked=!!lock&&lock.ids.indexOf(name)>-1;
     if(isLocked) cb.checked=false;
     cb.disabled=isLocked;
+    const qi=f.elements['qty_'+name.slice(6)];
+    if(qi){ if(isLocked) qi.value=''; qi.disabled=isLocked; }
     lb.style.opacity=isLocked?'.4':'';
     lb.style.cursor=isLocked?'not-allowed':'pointer';
   });
   const note=document.getElementById('bk-incl-note');
   if(lock){note.textContent=lock.msg;note.style.display='block';}
   else{note.style.display='none';}
+  updateFormTips();
+  updateAddonDetails();
 }
 
 // Estimate is sent to us in a hidden field only; the client does not see prices in the booking form.
-function setEstimate(txt){
-  document.getElementById('bForm').elements['estimate'].value=txt;
+function setEstimate(txt,breakdown){
+  const f=document.getElementById('bForm');
+  f.elements['estimate'].value=txt;
+  f.elements['estimate_breakdown'].value=txt&&breakdown?breakdown:'';
 }
 
 // Hidden "addon_details": the quantities from the calculator, for the add-ons that are still ticked.
@@ -1063,8 +1204,9 @@ function updateAddonDetails(){
   const f=document.getElementById('bForm');
   const parts=[];
   for(const k in QTY_MAP){
-    const n=BOOK_QTY[k];
-    if(n>0&&f.elements[QTY_MAP[k][0]].checked) parts.push(QTY_MAP[k][1]+': '+n);
+    const name=QTY_MAP[k][0];
+    const n=parseFloat(f.elements['qty_'+name.slice(6)].value);
+    if(n>0&&f.elements[name].checked) parts.push(QTY_MAP[k][1]+': '+n);
   }
   f.elements['addon_details'].value=parts.join('; ');
 }
@@ -1080,19 +1222,40 @@ function prefillBooking(){
   setSelectText(f.elements['sqft'],sq.options[sq.selectedIndex].text);
   for(const id in ADDON_MAP) f.elements[ADDON_MAP[id]].checked=el(id).checked;
   BOOK_QTY=readQty();
-  for(const k in QTY_MAP) f.elements[QTY_MAP[k][0]].checked=BOOK_QTY[k]>0;
+  for(const k in QTY_MAP){
+    f.elements[QTY_MAP[k][0]].checked=BOOK_QTY[k]>0;
+    f.elements['qty_'+QTY_MAP[k][0].slice(6)].value=BOOK_QTY[k]>0?BOOK_QTY[k]:'';
+  }
   updateAddonDetails();
   lockFormAddons();
-  setEstimate(el('pr-res').style.display==='flex'?el('pr-amt').textContent:'');
+  const shown=el('pr-res').dataset.ready==='1'&&LAST_BREAKDOWN;
+  setEstimate(shown?el('pr-amt').textContent:'',
+    shown?LAST_BREAKDOWN.map(l=>l[0]+': $'+l[1]).join('; ')+'; Total: '+el('pr-amt').textContent:'');
 }
 
 // Changing anything the estimate depends on in the form makes the calculator estimate out of date
-document.getElementById('bForm').addEventListener('change',function(e){
-  const n=e.target.name||'';
+function onFormEdit(e){
+  const f=this, n=e.target.name||'';
+  if(n.indexOf('qty_')===0){                       // typing a number ticks / unticks the box
+    f.elements['addon_'+n.slice(4)].checked=parseFloat(e.target.value)>0;
+    updateAddonDetails(); setEstimate('');
+    return;
+  }
+  if(e.type==='change'&&n.indexOf('addon_')===0&&f.elements['qty_'+n.slice(6)]){
+    const inp=f.elements['qty_'+n.slice(6)];       // ticking a box with no number -> 1; unticking clears it
+    if(e.target.checked){ if(!(parseFloat(inp.value)>0)) inp.value=1; }
+    else inp.value='';
+  }
+  if(e.type!=='change') return;
   if(n==='service') lockFormAddons();
+  if(n==='addon_oven'||n==='addon_fridge'||n==='addon_baseboards') updateFormTips();
   if(n.indexOf('addon_')===0&&n!=='addon_details') updateAddonDetails();
   if(['service','bedrooms','bathrooms','sqft'].indexOf(n)>-1||(n.indexOf('addon_')===0&&n!=='addon_details')) setEstimate('');
-});
+}
+document.getElementById('bForm').addEventListener('change',onFormEdit);
+document.getElementById('bForm').addEventListener('input',onFormEdit);
+
+if(window.matchMedia&&window.matchMedia('(min-width:860px)').matches) document.getElementById('pr-det').open=true;
 
 function toggleBtn(){document.getElementById('sbtn').disabled=!document.getElementById('tc').checked;}
 function openModal(e){if(e)e.preventDefault();document.getElementById('tModal').classList.add('open');document.body.style.overflow='hidden';}

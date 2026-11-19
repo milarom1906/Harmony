@@ -258,14 +258,23 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
 
 /* BEFORE & AFTER */
 #gallery{background:var(--cream);padding:80px 40px}
-.ba-grid{columns:2 320px;column-gap:20px}
-.ba-card{break-inside:avoid;margin:0 0 20px;background:#fff;border:1px solid var(--gray-l);cursor:zoom-in;overflow:hidden}
-.ba-card img{display:block;width:100%;height:auto;transition:transform .3s}
-.ba-card:hover img{transform:scale(1.02)}
-.ba-cap{padding:12px 16px;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--char)}
-.ba-lb{position:fixed;inset:0;background:rgba(20,18,16,.92);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+.ba-wrap{position:relative}
+.ba-strip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;padding:4px 2px 14px;scrollbar-width:thin;scrollbar-color:var(--gold) var(--gray-l);-webkit-overflow-scrolling:touch}
+.ba-card{flex:0 0 auto;width:240px;aspect-ratio:4/3;scroll-snap-align:start;border:1px solid var(--gray-l);background:var(--ivory);cursor:zoom-in;overflow:hidden}
+.ba-card img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.ba-card:hover img{transform:scale(1.06)}
+.ba-arr{display:none;position:absolute;top:calc(50% - 20px);width:40px;height:40px;border-radius:50%;border:none;background:rgba(42,40,38,.8);color:#fff;font-size:20px;cursor:pointer;z-index:2;align-items:center;justify-content:center}
+.ba-arr.on{display:flex}
+.ba-arr:hover{background:var(--gold);color:var(--char)}
+.ba-arr.l{left:-14px}.ba-arr.r{right:-14px}
+.ba-count{font-size:12px;color:var(--gray);font-weight:300;margin-top:2px}
+.ba-lb{position:fixed;inset:0;background:rgba(20,18,16,.94);z-index:300;display:flex;align-items:center;justify-content:center;padding:56px 64px;touch-action:pan-y}
 .ba-lb img{max-width:100%;max-height:100%;object-fit:contain}
-@media(max-width:768px){#gallery{padding:60px 20px}.ba-grid{columns:1}}
+.ba-lb button{position:absolute;border:none;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;border-radius:50%;width:44px;height:44px;font-size:22px;display:flex;align-items:center;justify-content:center}
+.ba-lb button:hover{background:var(--gold);color:var(--char)}
+.ba-lb .x{top:12px;right:12px}.ba-lb .p{left:10px;top:calc(50% - 22px)}.ba-lb .n{right:10px;top:calc(50% - 22px)}
+.ba-lb .c{position:absolute;top:22px;left:0;right:0;text-align:center;color:#ddd;font-size:12px;letter-spacing:.15em;pointer-events:none}
+@media(max-width:768px){#gallery{padding:60px 20px}.ba-card{width:170px}.ba-arr.on{display:none}.ba-lb{padding:56px 8px}.ba-lb .p,.ba-lb .n{display:none}}
 </style>
 </head>
 <body>
@@ -759,7 +768,8 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
     <p class="ey">Our Work</p>
     <h2 class="ti">Before &amp; <em>After</em></h2>
     <div class="li"></div>
-    <div class="ba-grid" id="ba-grid"></div>
+    <div class="ba-wrap"><button class="ba-arr l" id="ba-l" aria-label="Previous">&#8249;</button><div class="ba-strip" id="ba-grid"></div><button class="ba-arr r" id="ba-r" aria-label="Next">&#8250;</button></div>
+    <p class="ba-count" id="ba-count">Tap a photo to view full size</p>
   </div>
 </div>
 
@@ -1318,22 +1328,43 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 (function(){
   const IMG=/\.(jpe?g|png|webp|gif|avif)$/i;
   function hide(){document.getElementById('gallery').style.display='none';document.getElementById('nav-gallery').style.display='none'}
-  function open(src){const o=document.createElement('div');o.className='ba-lb';const i=new Image();i.src=src;o.appendChild(i);
-    const close=()=>{o.remove();document.removeEventListener('keydown',k)};const k=e=>{if(e.key==='Escape')close()};
-    o.onclick=close;document.addEventListener('keydown',k);document.body.appendChild(o)}
+  let SRC=[];
+  function lightbox(i){
+    const o=document.createElement('div');o.className='ba-lb';
+    o.innerHTML='<div class="c"></div><img alt=""><button class="x" aria-label="Close">&times;</button><button class="p" aria-label="Previous">&#8249;</button><button class="n" aria-label="Next">&#8250;</button>';
+    const im=o.querySelector('img'),c=o.querySelector('.c');
+    function go(d){i=(i+d+SRC.length)%SRC.length;im.src=SRC[i];c.textContent=(i+1)+' / '+SRC.length}
+    function close(){o.remove();document.removeEventListener('keydown',k);document.body.style.overflow=''}
+    function k(e){if(e.key==='Escape')close();else if(e.key==='ArrowLeft')go(-1);else if(e.key==='ArrowRight')go(1)}
+    o.querySelector('.x').onclick=close;o.querySelector('.p').onclick=e=>{e.stopPropagation();go(-1)};o.querySelector('.n').onclick=e=>{e.stopPropagation();go(1)};
+    o.onclick=e=>{if(e.target!==im&&!e.target.closest('button'))close()};
+    let x0=null;o.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});
+    o.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>50)go(dx<0?1:-1)});
+    document.addEventListener('keydown',k);document.body.style.overflow='hidden';document.body.appendChild(o);go(0);
+  }
   function mk(name,cap){
     const src='gallery/'+encodeURIComponent(name);
-    const c=document.createElement('div');c.className='ba-card';
+    const c=document.createElement('div');c.className='ba-card';c.dataset.src=src;
     const i=new Image();i.src=src;i.alt=cap||'Before and after cleaning';i.loading='lazy';
-    i.onerror=()=>{c.remove();if(!document.querySelector('#ba-grid .ba-card'))hide()};
+    i.onerror=()=>{c.remove();refresh()};
     c.appendChild(i);
-    if(cap){const d=document.createElement('div');d.className='ba-cap';d.textContent=cap;c.appendChild(d)}
-    c.onclick=()=>open(src);return c;
+    c.onclick=()=>{const all=[...document.querySelectorAll('#ba-grid .ba-card')].map(e=>e.dataset.src);SRC=all;lightbox(all.indexOf(src))};
+    return c;
+  }
+  function refresh(){
+    const g=document.getElementById('ba-grid'),n=g.querySelectorAll('.ba-card').length;
+    if(!n){hide();return}
+    document.getElementById('ba-count').textContent=n+' photos · tap to view full size';
+    const more=g.scrollWidth>g.clientWidth+4;
+    ['ba-l','ba-r'].forEach(id=>document.getElementById(id).classList.toggle('on',more));
   }
   function show(list){
     const g=document.getElementById('ba-grid');
     list.forEach(x=>g.appendChild(mk(x.n,x.c)));
-    if(list.length){document.getElementById('gallery').style.display='block';document.getElementById('nav-gallery').style.display='';}
+    if(list.length){document.getElementById('gallery').style.display='block';document.getElementById('nav-gallery').style.display='';refresh();setTimeout(refresh,600);
+      document.getElementById('ba-l').onclick=()=>g.scrollBy({left:-g.clientWidth*.8,behavior:'smooth'});
+      document.getElementById('ba-r').onclick=()=>g.scrollBy({left:g.clientWidth*.8,behavior:'smooth'});
+      window.addEventListener('resize',refresh)}
   }
   function fromTxt(){
     return fetch('gallery/photos.txt',{cache:'no-cache'}).then(r=>r.ok?r.text():'').then(t=>{

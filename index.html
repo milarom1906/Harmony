@@ -255,6 +255,17 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
   .mc{padding:26px 18px}
   .org-examples{grid-template-columns:1fr}
 }
+
+/* BEFORE & AFTER */
+#gallery{background:var(--cream);padding:80px 40px}
+.ba-grid{columns:2 320px;column-gap:20px}
+.ba-card{break-inside:avoid;margin:0 0 20px;background:#fff;border:1px solid var(--gray-l);cursor:zoom-in;overflow:hidden}
+.ba-card img{display:block;width:100%;height:auto;transition:transform .3s}
+.ba-card:hover img{transform:scale(1.02)}
+.ba-cap{padding:12px 16px;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--char)}
+.ba-lb{position:fixed;inset:0;background:rgba(20,18,16,.92);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+.ba-lb img{max-width:100%;max-height:100%;object-fit:contain}
+@media(max-width:768px){#gallery{padding:60px 20px}.ba-grid{columns:1}}
 </style>
 </head>
 <body>
@@ -265,6 +276,7 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
     <li><a href="#services">Services</a></li>
     <li><a href="#calculator">Pricing</a></li>
     <li><a href="#about">About</a></li>
+    <li id="nav-gallery" style="display:none"><a href="#gallery">Our Work</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="tel:+14242357405">📞 (424) 235-7405</a></li>
     <li><a href="#book">Book Now</a></li>
@@ -741,6 +753,16 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
 </div>
 
 <!-- REVIEWS -->
+<!-- BEFORE & AFTER -->
+<div id="gallery" style="display:none">
+  <div class="wrap" style="padding:0">
+    <p class="ey">Our Work</p>
+    <h2 class="ti">Before &amp; <em>After</em></h2>
+    <div class="li"></div>
+    <div class="ba-grid" id="ba-grid"></div>
+  </div>
+</div>
+
 <div id="reviews" style="background:var(--cream);padding:80px 40px">
   <div style="max-width:1100px;margin:0 auto">
     <p class="ey">Client Reviews</p>
@@ -1290,6 +1312,43 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
   });
 });
+
+/* BEFORE & AFTER gallery: picks up every image in the gallery/ folder automatically
+   (falls back to gallery/photos.txt if the GitHub folder listing is unavailable) */
+(function(){
+  const IMG=/\.(jpe?g|png|webp|gif|avif)$/i;
+  function hide(){document.getElementById('gallery').style.display='none';document.getElementById('nav-gallery').style.display='none'}
+  function open(src){const o=document.createElement('div');o.className='ba-lb';const i=new Image();i.src=src;o.appendChild(i);
+    const close=()=>{o.remove();document.removeEventListener('keydown',k)};const k=e=>{if(e.key==='Escape')close()};
+    o.onclick=close;document.addEventListener('keydown',k);document.body.appendChild(o)}
+  function mk(name,cap){
+    const src='gallery/'+encodeURIComponent(name);
+    const c=document.createElement('div');c.className='ba-card';
+    const i=new Image();i.src=src;i.alt=cap||'Before and after cleaning';i.loading='lazy';
+    i.onerror=()=>{c.remove();if(!document.querySelector('#ba-grid .ba-card'))hide()};
+    c.appendChild(i);
+    if(cap){const d=document.createElement('div');d.className='ba-cap';d.textContent=cap;c.appendChild(d)}
+    c.onclick=()=>open(src);return c;
+  }
+  function show(list){
+    const g=document.getElementById('ba-grid');
+    list.forEach(x=>g.appendChild(mk(x.n,x.c)));
+    if(list.length){document.getElementById('gallery').style.display='block';document.getElementById('nav-gallery').style.display='';}
+  }
+  function fromTxt(){
+    return fetch('gallery/photos.txt',{cache:'no-cache'}).then(r=>r.ok?r.text():'').then(t=>{
+      const out=[];t.split(/\r?\n/).forEach(l=>{l=l.trim();if(!l||l[0]==='#')return;
+        const p=l.split('|').map(x=>x.trim());if(p[0])out.push({n:p[0],c:p[1]||''})});return out});
+  }
+  function fromGitHub(){
+    return fetch('https://api.github.com/repos/milarom1906/Harmony/contents/gallery').then(r=>{if(!r.ok)throw 0;return r.json()}).then(a=>{
+      const l=a.filter(f=>f.type==='file'&&IMG.test(f.name)).map(f=>f.name);
+      l.sort((x,y)=>y.localeCompare(x,undefined,{numeric:true}));   /* newest-named first */
+      return l.map(n=>({n:n,c:''}));
+    });
+  }
+  fromGitHub().catch(()=>[]).then(l=>l.length?l:fromTxt()).then(show).catch(()=>{});
+})();
 </script>
 </body>
 </html>

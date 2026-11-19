@@ -275,6 +275,73 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
 .ba-lb .x{top:12px;right:12px}.ba-lb .p{left:10px;top:calc(50% - 22px)}.ba-lb .n{right:10px;top:calc(50% - 22px)}
 .ba-lb .c{position:absolute;top:22px;left:0;right:0;text-align:center;color:#ddd;font-size:12px;letter-spacing:.15em;pointer-events:none}
 @media(max-width:768px){#gallery{padding:60px 20px}.ba-card{width:170px}.ba-arr.on{display:none}.ba-lb{padding:56px 8px}.ba-lb .p,.ba-lb .n{display:none}}
+/* QUOTE QUESTIONNAIRE */
+#home{min-height:0;align-items:flex-start;padding-top:100px;padding-bottom:60px}
+@media(min-width:769px){#home img{width:118px !important}.hero-co{font-size:clamp(32px,4.4vw,50px);margin-bottom:12px}.hero-div{margin-bottom:12px}.hero-tag{margin-bottom:6px}.hero-sub{margin-bottom:0}#home>div>div:first-child{margin-bottom:10px !important}#quote{margin-top:18px}}
+.nav-logo{white-space:nowrap}
+.nav-links a.nav-cta,.nav-m .nav-cta{background:var(--char);color:var(--cream);padding:10px 18px;letter-spacing:.12em;border:1px solid var(--char);transition:all .2s}
+.nav-links a.nav-cta:hover,.nav-m .nav-cta:hover{background:var(--gold);border-color:var(--gold);color:var(--char)}
+.nav-m{display:none;align-items:center;gap:10px}
+.nav-m .nav-tel{font-size:20px;text-decoration:none;line-height:1;padding:6px}
+.nav-m .nav-cta{font-size:11px;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+#quote{scroll-margin-top:84px;max-width:720px;margin:26px auto 0;text-align:left}
+.qs{background:#fff;border:1px solid var(--gray-l);padding:26px 28px 24px;box-shadow:0 8px 30px rgba(42,40,38,.06)}
+.qs-top{display:flex;align-items:center;justify-content:space-between;min-height:28px;margin-bottom:8px}
+.qs-back{background:none;border:none;color:var(--gray);font:inherit;font-size:12px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;padding:6px 0}
+.qs-back:hover{color:var(--gold)}
+.qs-step{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+.qs-bar{height:3px;background:var(--gray-l);margin-bottom:22px}
+.qs-bar i{display:block;height:100%;background:var(--gold);transition:width .3s}
+.qs h2{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,4vw,32px);font-weight:400;color:var(--char);line-height:1.2;margin-bottom:6px}
+.qs-sub{font-size:13px;color:var(--gray);font-weight:300;margin-bottom:18px;font-style:italic}
+.qs h2+.qs-opts{margin-top:16px}
+.qs-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.qs-opts.one{grid-template-columns:1fr}
+.qs-opt{position:relative;display:block;width:100%;text-align:left;font:inherit;background:var(--cream);border:1.5px solid var(--gray-l);padding:16px 44px 16px 18px;min-height:58px;cursor:pointer;color:var(--char);transition:border-color .15s,background .15s}
+.qs-opt:hover{border-color:var(--gold)}
+.qs-opt b{display:block;font-weight:500;font-size:15px;line-height:1.3}
+.qs-opt small{display:block;font-size:12px;color:var(--gray);font-weight:300;margin-top:3px;line-height:1.35}
+.qs-opt::after{content:"";position:absolute;right:16px;top:50%;width:20px;height:20px;margin-top:-10px;border:1.5px solid var(--gray-l);background:#fff;border-radius:50%;transition:all .15s}
+.qs-opts.multi .qs-opt::after{border-radius:3px}
+.qs-opt[aria-pressed="true"]{border-color:var(--gold);background:#FBF6E8}
+.qs-opt[aria-pressed="true"]::after{background:var(--gold);border-color:var(--gold);box-shadow:inset 0 0 0 4px #FBF6E8}
+.qs-opts.multi .qs-opt[aria-pressed="true"]::after{box-shadow:none;background:var(--gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3.2L15 7' fill='none' stroke='%232A2826' stroke-width='2'/%3E%3C/svg%3E") center/16px no-repeat}
+.qs-note{margin-top:14px;padding:10px 14px;background:var(--ivory);border-left:2px solid var(--gold);font-size:12px;color:var(--gray);line-height:1.5}
+.qs-info{padding:18px;background:var(--ivory);border:1px solid var(--gold-l)}
+.qs-info b{display:block;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;margin-bottom:6px}
+.qs-info p{font-size:13px;color:var(--gray);line-height:1.5}
+.qs-f{display:block;margin-top:14px}
+.qs-f>span{display:block;font-size:12px;letter-spacing:.05em;color:var(--char);margin-bottom:6px}
+.qs-f>span em{font-style:normal;color:var(--gray);font-weight:300}
+.qs input[type=text],.qs input[type=tel],.qs input[type=email],.qs input[type=date],.qs textarea{width:100%;font:inherit;font-size:16px;padding:13px 14px;border:1.5px solid var(--gray-l);background:var(--cream);color:var(--char);border-radius:0}
+.qs textarea{min-height:92px;resize:vertical}
+.qs input:focus,.qs textarea:focus{outline:none;border-color:var(--gold)}
+.qs-chk{display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-size:12px;color:var(--gray);line-height:1.5;font-weight:300}
+.qs-chk input{margin-top:3px;width:18px;height:18px;flex:none;accent-color:var(--gold)}
+.qs-act{margin-top:20px}
+.qs-btn{display:block;width:100%;padding:16px 20px;border:1px solid var(--char);background:var(--char);color:var(--cream);font:inherit;font-size:12px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.qs-btn:hover:not(:disabled){background:var(--gold);border-color:var(--gold);color:var(--char)}
+.qs-btn:disabled{opacity:.4;cursor:not-allowed}
+.qs-err{display:none;margin-top:12px;padding:10px 14px;background:#FCEDEA;border-left:2px solid #C0504D;font-size:13px;color:#7A2B27;line-height:1.45}
+.qs-err.on{display:block}
+.qs-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.qs-done{text-align:center;padding:26px 6px}
+.qs-done .ck{width:54px;height:54px;border-radius:50%;background:var(--gold);color:var(--char);font-size:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.qs-done p{font-size:14px;color:var(--gray);line-height:1.6;max-width:460px;margin:8px auto 0;font-weight:300}
+@media(max-width:768px){
+  nav .nav-links{display:none}.nav-m{display:flex}.nav-logo{font-size:17px}
+  #home{padding:78px 14px 36px}
+  #home img{width:84px !important;max-width:84px !important}
+  #home>div>div:first-child{margin-bottom:6px !important}
+  .hero-co,.hero-div,.hero-sub{display:none}
+  .hero-tag{font-size:20px;margin-bottom:0}
+  #quote{margin-top:14px}
+  .qs{padding:16px 14px 16px}
+  .qs-opts{grid-template-columns:1fr}
+  .qs-opt{padding:14px 44px 14px 14px;min-height:54px}
+  .qs h2{font-size:23px}
+  .hero-bdg{margin-top:30px;gap:24px}
+}
 </style>
 </head>
 <body>
@@ -288,8 +355,9 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
     <li id="nav-gallery" style="display:none"><a href="#gallery">Our Work</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="tel:+14242357405">📞 (424) 235-7405</a></li>
-    <li><a href="#book">Book Now</a></li>
+    <li><a href="#quote" class="nav-cta">Get a Quote</a></li>
   </ul>
+  <div class="nav-m"><a class="nav-tel" href="tel:+14242357405" aria-label="Call (424) 235-7405">&#128222;</a><a class="nav-cta" href="#quote">Get a Quote</a></div>
 </nav>
 
 <!-- HERO -->
@@ -306,11 +374,7 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
     <div class="hero-div"></div>
     <div class="hero-tag">A cleaner home, a clearer mind</div>
     <p class="hero-sub">Professional cleaning services across Los Angeles</p>
-    <div class="hero-btns">
-      <a href="#book" class="hbtn hbtn-dark">Book a Cleaning</a>
-      <a href="#services" class="hbtn hbtn-outline">Our Services</a>
-      <a href="#calculator" class="hbtn hbtn-gold">Get a Price</a>
-    </div>
+    <div id="quote"></div>
     <div class="hero-bdg">
       <div class="bdg"><div class="bdg-n">5★</div><div class="bdg-l">Rated</div></div>
       <div class="bdg"><div class="bdg-n">Euro–Asian</div><div class="bdg-l">Cleaning Style</div></div>
@@ -938,6 +1002,8 @@ footer{background:#1E1C1A;padding:48px 40px;text-align:center}
   <p class="fl-copy">© 2025 Harmony Cleaning. All rights reserved.</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>try{emailjs.init("f7_q1NxQNTyXMgMVr")}catch(e){}</script>
 <script>
 function T(id){
   const b=document.getElementById('bd-'+id),t=document.getElementById('tg-'+id),o=b.classList.contains('open');
@@ -1379,6 +1445,304 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     });
   }
   fromGitHub().catch(()=>[]).then(l=>l.length?l:fromTxt()).then(show).catch(()=>{});
+})();
+/* ===== QUOTE QUESTIONNAIRE (hero) ===== */
+(function(){
+  var root=document.getElementById('quote'); if(!root) return;
+  /* Email delivery: same EmailJS account/service/recipient already used by confirm.html.
+     If a dedicated template is created in EmailJS (To: {{to_email}}, Subject: {{subject}}, Body: {{message}}),
+     put its ID in QUOTE_TEMPLATE. */
+  var EJ_SERVICE='service_gdwmgzp', QUOTE_TEMPLATE='template_fgbzjs9', TO_EMAIL='harmonycleaningla@gmail.com';
+  var PHONE='(424) 235-7405';
+
+  var A={svc:[],other:'',homeType:'',beds:'',baths:'',last:'',cond:'',freq:'',extras:[],winSides:'',winCount:'',winBig:'',
+    orgAreas:[],orgAmt:'',spaceType:'',spaceSize:'',bizFreq:'',dateOpt:'',date:'',date2:'',time:'',zip:'',
+    name:'',phone:'',email:'',contact:'',consent:false,sms:false};
+  var cur='svc', sending=false, done=false;
+
+  var NOEX='No extras needed';
+  var O={
+    beds:['Studio','1 bedroom','2 bedrooms','3 bedrooms','4 bedrooms','5 bedrooms','6+ bedrooms'],
+    baths:['1 bathroom','1.5 bathrooms','2 bathrooms','2.5 bathrooms','3 bathrooms','3.5 bathrooms','4 bathrooms','5+ bathrooms'],
+    last:['Within the last 2 weeks','2–4 weeks ago','Over a month ago','Never / Not sure'],
+    cond:[['Light','Mostly tidy, just needs a refresh'],['Moderate','Some buildup in the kitchen or bathrooms'],['Heavy','Significant buildup or areas needing extra attention'],['Not sure','Help me choose']],
+    freq:['Just once','Every week','Every 2 weeks','Once a month','Not sure yet'],
+    extras:['Inside oven cleaning','Inside refrigerator cleaning','Window cleaning','Laundry','Dishes','Home organizing',NOEX],
+    winSides:['Inside only','Outside only','Both inside and outside'],
+    winCount:['1–5 windows','6–10 windows','11–20 windows','More than 20','Not sure'],
+    winBig:['No, standard windows','Yes','Not sure'],
+    orgHome:['Closets / Bedrooms','Kitchen / Pantry','Living Areas','Garage / Storage','Home Office','Other'],
+    orgAll:['Bedroom / Closet','Kitchen / Pantry','Living Room','Garage / Storage','Home Office','Multiple Areas','Other'],
+    orgAmt:['A small area','One full room','Multiple rooms','Not sure'],
+    spaceType:['Office','Retail Store','Restaurant / Café','Airbnb / Short-term Rental','Other Commercial Space'],
+    spaceSize:['Under 1,000 sq ft','1,000–3,000 sq ft','Over 3,000 sq ft','Not sure'],
+    bizFreq:['One-time','Daily','Several times a week','Weekly','Not sure'],
+    time:['Morning (8 AM–12 PM)','Afternoon (12 PM–5 PM)','Evening (after 5 PM)','Any time']
+  };
+  var SVC=[['home','Home Cleaning','Houses, apartments & move-in/move-out'],['business','Business Cleaning','Airbnb, offices & commercial spaces'],['org','Home Organizing','Closets, kitchens & more'],['other','Something Else','Tell us what you need']];
+  var HT=[['regular','Home Cleaning','Regular cleaning or a fresh start'],['movein','Move-In Cleaning','Moving into a new place'],['moveout','Move-Out Cleaning','Moving out of your current place']];
+  var DATE=[['specific','I have a specific date in mind'],['nextweek','Any day next week'],['first','First available appointment']];
+  var CONTACT=[['Text message'],['Phone call'],['Email']];
+
+  function has(a,v){return a.indexOf(v)>-1}
+  function flow(){
+    var h=has(A.svc,'home'),b=has(A.svc,'business'),o=has(A.svc,'org'),s=['svc'];
+    if(h){
+      s.push('homeType','beds','baths');
+      if(A.homeType==='regular') s.push('last','cond','freq');
+      s.push('extras');
+      if(has(A.extras,'Window cleaning')) s.push('winSides','winCount','winBig');
+      if(has(A.extras,'Laundry')) s.push('laundry');
+    }
+    if(o) s.push('orgAreas','orgAmt');
+    else if(h&&has(A.extras,'Home organizing')) s.push('orgAreasHome');
+    if(b) s.push('spaceType','spaceSize','bizFreq');
+    s.push('date','time','zip','contact');
+    return s;
+  }
+  function extrasList(){return (has(A.svc,'home')&&has(A.svc,'org'))?O.extras.filter(function(x){return x!=='Home organizing'}):O.extras}
+  function orgList(id){return id==='orgAreasHome'?O.orgHome:O.orgAll}
+
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function norm(o){return typeof o==='string'?{v:o,l:o}:(o.length?{v:o[0],l:o[0],d:o[1]}:o)}
+
+  /* single/multi step definitions */
+  function def(id){
+    switch(id){
+      case 'svc': return {t:'multi',k:'svc',title:'What can we help you with?',sub:'Select all that apply.',opts:SVC.map(function(x){return{v:x[0],l:x[1],d:x[2]}}),one:true};
+      case 'homeType': return {t:'single',k:'homeType',title:'Which service do you need?',opts:HT.map(function(x){return{v:x[0],l:x[1],d:x[2]}}),one:true};
+      case 'beds': return {t:'single',k:'beds',title:'How many bedrooms need cleaning?',opts:O.beds};
+      case 'baths': return {t:'single',k:'baths',title:'How many bathrooms need cleaning?',opts:O.baths};
+      case 'last': return {t:'single',k:'last',title:'When was your home last professionally cleaned?',opts:O.last,one:true};
+      case 'cond': return {t:'single',k:'cond',title:"How would you describe your home's current condition?",sub:'No judgment! This helps us recommend the right cleaning.',opts:O.cond.map(function(x){return{v:x[0],l:x[0],d:x[1]}}),one:true};
+      case 'freq': return {t:'single',k:'freq',title:'How often would you like your home cleaned?',opts:O.freq,one:true};
+      case 'extras': return {t:'multi',k:'extras',title:'Would you like to add any extra services?',sub:'Select all that apply.',opts:extrasList()};
+      case 'winSides': return {t:'single',k:'winSides',title:'Which sides of your windows need cleaning?',opts:O.winSides,one:true};
+      case 'winCount': return {t:'single',k:'winCount',title:'Approximately how many windows need cleaning?',opts:O.winCount};
+      case 'winBig': return {t:'single',k:'winBig',title:'Do you have any oversized or floor-to-ceiling windows?',opts:O.winBig,one:true,
+        note:'Large windows, glass doors, exterior windows and hard-to-reach areas may require a custom quote.'};
+      case 'laundry': return {t:'info',title:'Laundry',html:'<div class="qs-info"><b>Laundry — $30 per load</b><p>Includes washing and drying. The total depends on the number of loads agreed upon and completed.</p></div>'};
+      case 'orgAreas': return {t:'multi',k:'orgAreas',title:'Which areas need organizing?',sub:'Select all that apply.',opts:O.orgAll};
+      case 'orgAreasHome': return {t:'multi',k:'orgAreas',title:'Which areas need organizing?',sub:'Select all that apply.',opts:O.orgHome};
+      case 'orgAmt': return {t:'single',k:'orgAmt',title:'How much organizing help do you need?',opts:O.orgAmt,one:true};
+      case 'spaceType': return {t:'single',k:'spaceType',title:'What type of space needs cleaning?',opts:O.spaceType,one:true};
+      case 'spaceSize': return {t:'single',k:'spaceSize',title:'Approximately how large is the space?',opts:O.spaceSize,one:true};
+      case 'bizFreq': return {t:'single',k:'bizFreq',title:'How often do you need cleaning?',opts:O.bizFreq,one:true};
+      case 'date': return {t:'date'};
+      case 'time': return {t:'single',k:'time',title:'What time works best for you?',opts:O.time,one:true,
+        note:'Your preferred date and time will be confirmed after we check availability with our cleaning team.'};
+      case 'zip': return {t:'zip'};
+      case 'contact': return {t:'contact'};
+    }
+  }
+
+  function moveTo(id){cur=id;render();}
+  function next(){var f=flow(),i=f.indexOf(cur);if(i<f.length-1)moveTo(f[i+1]);}
+  function back(){var f=flow(),i=f.indexOf(cur);if(i>0)moveTo(f[i-1]);}
+
+  function head(f,i){
+    var pct=Math.round((i+1)/f.length*100);
+    return '<div class="qs-top">'+(i>0?'<button type="button" class="qs-back" data-a="back">← Back</button>':'<span></span>')+
+      (i>0?'<span class="qs-step">Step '+(i+1)+' of '+f.length+'</span>':'<span class="qs-step">Get your free quote</span>')+'</div>'+
+      '<div class="qs-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+pct+'"><i style="width:'+pct+'%"></i></div>';
+  }
+  function err(){return '<div class="qs-err" id="qs-err" role="alert"></div>'}
+  function showErr(m){var e=document.getElementById('qs-err');if(e){e.textContent=m;e.className='qs-err on'}}
+
+  function render(){
+    if(done) return;
+    var f=flow(); if(f.indexOf(cur)<0) cur=f[0];
+    var i=f.indexOf(cur), d=def(cur), h=head(f,i), b='';
+    if(d.t==='single'||d.t==='multi'){
+      var multi=d.t==='multi', sel=A[d.k];
+      b+='<h2>'+esc(d.title)+'</h2>'+(d.sub?'<p class="qs-sub">'+esc(d.sub)+'</p>':'');
+      b+='<div class="qs-opts'+(multi?' multi':'')+(d.one||d.opts.length<=4?' one':'')+'" role="'+(multi?'group':'radiogroup')+'">';
+      d.opts.forEach(function(o){
+        o=norm(o);var on=multi?has(sel,o.v):sel===o.v;
+        b+='<button type="button" class="qs-opt" data-v="'+esc(o.v)+'" aria-pressed="'+on+'"><b>'+esc(o.l)+'</b>'+(o.d?'<small>'+esc(o.d)+'</small>':'')+'</button>';
+      });
+      b+='</div>';
+      if(d.k==='svc'){
+        b+='<div id="qs-other" style="display:'+(has(A.svc,'other')?'block':'none')+'"><label class="qs-f"><span>Please tell us what you need help with.</span><textarea id="qs-otext" placeholder="Describe the service you\'re looking for...">'+esc(A.other)+'</textarea></label></div>';
+      }
+      if(d.note) b+='<div class="qs-note">'+esc(d.note)+'</div>';
+      b+=err();
+      if(multi) b+='<div class="qs-act"><button type="button" class="qs-btn" data-a="cont" id="qs-cont">Continue</button></div>';
+    } else if(d.t==='info'){
+      b+='<h2>'+esc(d.title)+'</h2>'+d.html+err()+'<div class="qs-act"><button type="button" class="qs-btn" data-a="cont">Continue</button></div>';
+    } else if(d.t==='date'){
+      var sp=A.dateOpt==='specific';
+      b+='<h2>When would you like your cleaning?</h2><div class="qs-opts one" role="radiogroup" style="margin-top:16px">';
+      DATE.forEach(function(o){b+='<button type="button" class="qs-opt" data-v="'+o[0]+'" aria-pressed="'+(A.dateOpt===o[0])+'"><b>'+esc(o[1])+'</b></button>'});
+      b+='</div>';
+      b+='<div id="qs-dates" style="display:'+(sp?'block':'none')+'"><label class="qs-f"><span>Preferred date</span><input type="date" id="qs-d1" min="'+tomorrow()+'" value="'+esc(A.date)+'"></label>'+
+         '<label class="qs-f"><span>Second preferred date <em>(optional)</em></span><input type="date" id="qs-d2" min="'+tomorrow()+'" value="'+esc(A.date2)+'"></label></div>';
+      b+=err()+'<div class="qs-act" id="qs-dact" style="display:'+(sp?'block':'none')+'"><button type="button" class="qs-btn" data-a="cont">Continue</button></div>';
+    } else if(d.t==='zip'){
+      b+='<h2>Where do you need cleaning?</h2><label class="qs-f"><span>ZIP code</span><input type="text" id="qs-zip" inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="90210" value="'+esc(A.zip)+'"></label>'+err()+
+         '<div class="qs-act"><button type="button" class="qs-btn" data-a="cont">Continue</button></div>';
+    } else if(d.t==='contact'){
+      b+="<h2>You're Almost Done!</h2><p class=\"qs-sub\">Where should we send your personalized cleaning quote?</p>"+
+        '<label class="qs-f"><span>First name</span><input type="text" id="qs-name" autocomplete="given-name" value="'+esc(A.name)+'"></label>'+
+        '<label class="qs-f"><span>Phone number</span><input type="tel" id="qs-phone" autocomplete="tel" inputmode="tel" value="'+esc(A.phone)+'"></label>'+
+        '<label class="qs-f"><span>Email address <em id="qs-eopt">'+(A.contact==='Email'?'':'(optional)')+'</em></span><input type="email" id="qs-email" autocomplete="email" value="'+esc(A.email)+'"></label>'+
+        '<p class="qs-f" style="margin-bottom:8px"><span style="margin:0">How would you prefer us to contact you?</span></p><div class="qs-opts one" role="radiogroup">';
+      CONTACT.forEach(function(o){b+='<button type="button" class="qs-opt" data-v="'+o[0]+'" aria-pressed="'+(A.contact===o[0])+'"><b>'+o[0]+'</b></button>'});
+      b+='</div><label class="qs-chk"><input type="checkbox" id="qs-consent"'+(A.consent?' checked':'')+'><span>I agree that Harmony Cleaning may contact me about this quote request using the details above.</span></label>'+
+        '<label class="qs-chk" id="qs-smsw" style="display:'+(A.contact==='Text message'?'flex':'none')+'"><input type="checkbox" id="qs-sms"'+(A.sms?' checked':'')+'><span>I consent to receive text messages from Harmony Cleaning about my quote. Message and data rates may apply. Reply STOP to opt out.</span></label>'+
+        '<div class="qs-hp" aria-hidden="true"><input type="text" id="qs-hp" tabindex="-1" autocomplete="off"></div>'+err()+
+        '<div class="qs-act"><button type="button" class="qs-btn" data-a="submit" id="qs-submit">Get My Free Quote</button></div>';
+    }
+    root.innerHTML='<div class="qs">'+h+b+'</div>';
+    syncCont();
+  }
+
+  function tomorrow(){var t=new Date();t.setDate(t.getDate()+1);return t.getFullYear()+'-'+('0'+(t.getMonth()+1)).slice(-2)+'-'+('0'+t.getDate()).slice(-2)}
+  function syncCont(){
+    var c=document.getElementById('qs-cont'); if(!c) return; var d=def(cur);
+    var ok=A[d.k].length>0; if(d.k==='svc'&&has(A.svc,'other')&&!A.other.trim()) ok=false; c.disabled=!ok;
+  }
+
+  /* events */
+  root.addEventListener('click',function(e){
+    var el=e.target.closest('[data-a],.qs-opt'); if(!el||done) return;
+    var a=el.getAttribute('data-a'); if(a==='back'){back();return}
+    if(a==='cont'){cont();return}
+    if(a==='submit'){submit();return}
+    var v=el.getAttribute('data-v'), d=def(cur);
+    if(d.t==='multi'){
+      var arr=A[d.k],i=arr.indexOf(v);
+      if(i>-1) arr.splice(i,1); else {
+        if(d.k==='extras'){ if(v===NOEX) arr.length=0; else {var n=arr.indexOf(NOEX); if(n>-1)arr.splice(n,1)} }
+        arr.push(v);
+      }
+      Array.prototype.forEach.call(root.querySelectorAll('.qs-opt'),function(b){b.setAttribute('aria-pressed',has(arr,b.getAttribute('data-v')))});
+      if(d.k==='svc'){var ow=document.getElementById('qs-other');ow.style.display=has(A.svc,'other')?'block':'none';
+        if(has(A.svc,'other'))setTimeout(function(){document.getElementById('qs-otext').focus()},0)}
+      syncCont();
+    } else if(d.t==='single'){
+      A[d.k]=v;
+      Array.prototype.forEach.call(root.querySelectorAll('.qs-opt'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-v')===v)});
+      setTimeout(next,170);
+    } else if(d.t==='date'){
+      A.dateOpt=v;
+      Array.prototype.forEach.call(root.querySelectorAll('.qs-opt'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-v')===v)});
+      if(v==='specific'){document.getElementById('qs-dates').style.display='block';document.getElementById('qs-dact').style.display='block'}
+      else {A.date='';A.date2='';setTimeout(next,170)}
+    } else if(d.t==='contact'){
+      A.contact=v;
+      Array.prototype.forEach.call(root.querySelectorAll('.qs-opt'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-v')===v)});
+      document.getElementById('qs-smsw').style.display=v==='Text message'?'flex':'none';
+      document.getElementById('qs-eopt').textContent=v==='Email'?'':'(optional)';
+    }
+  });
+  root.addEventListener('input',function(e){
+    var id=e.target.id;
+    if(id==='qs-otext'){A.other=e.target.value;syncCont()}
+    else if(id==='qs-zip'){A.zip=e.target.value.replace(/\D/g,'').slice(0,5);e.target.value=A.zip}
+    else if(id==='qs-name')A.name=e.target.value;
+    else if(id==='qs-phone')A.phone=e.target.value;
+    else if(id==='qs-email')A.email=e.target.value;
+    else if(id==='qs-d1')A.date=e.target.value;
+    else if(id==='qs-d2')A.date2=e.target.value;
+  });
+  root.addEventListener('change',function(e){
+    if(e.target.id==='qs-consent')A.consent=e.target.checked;
+    if(e.target.id==='qs-sms')A.sms=e.target.checked;
+  });
+  root.addEventListener('keydown',function(e){
+    if(e.key==='Enter'&&e.target.tagName==='INPUT'&&e.target.type!=='checkbox'){e.preventDefault();if(cur==='contact')submit();else cont()}
+  });
+
+  function cont(){
+    var d=def(cur);
+    if(d.t==='multi'){
+      if(!A[d.k].length) return showErr('Please select at least one option.');
+      if(d.k==='svc'&&has(A.svc,'other')&&!A.other.trim()) return showErr('Please tell us what you need help with.');
+    } else if(d.t==='date'){
+      var t=tomorrow();
+      if(!A.date) return showErr('Please choose your preferred date.');
+      if(A.date<t) return showErr('Please choose a future date.');
+      if(A.date2&&A.date2<t) return showErr('Your second date must be in the future.');
+    } else if(d.t==='zip'){
+      if(!/^\d{5}$/.test(A.zip)) return showErr('Please enter a valid 5-digit US ZIP code.');
+    }
+    next();
+  }
+
+  /* ---------- submit ---------- */
+  function line(a,k,v){if(v!==undefined&&v!==''&&v!==null)a.push(k+': '+v)}
+  function fmtDate(s){if(!s)return '';var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]).toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}
+  function build(){
+    var f=flow(),inF=function(x){return f.indexOf(x)>-1};
+    var ts=new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles',dateStyle:'full',timeStyle:'short'})+' (Los Angeles time)';
+    var names={home:'Home Cleaning',business:'Business Cleaning',org:'Home Organizing',other:'Something Else'};
+    var types=A.svc.map(function(x){return names[x]});
+    var ht={regular:'Regular home cleaning',movein:'Move-In Cleaning',moveout:'Move-Out Cleaning'}[A.homeType];
+    var m=[],c=[],s=[],x=[],sc=[];
+    line(c,'Name',A.name.trim()); line(c,'Phone',A.phone.trim()); line(c,'Email',A.email.trim()||'Not provided');
+    line(c,'Preferred contact method',A.contact); line(c,'ZIP code',A.zip);
+    line(c,'Consent to be contacted','Yes'+(A.contact==='Text message'?' (SMS consent given)':''));
+    line(s,'Service type',types.join(' + ')+(ht&&inF('homeType')?' — '+ht:''));
+    if(inF('other')||has(A.svc,'other')) line(s,'Something else (client\'s words)',A.other.trim());
+    if(inF('beds')){line(s,'Bedrooms',A.beds);line(s,'Bathrooms',A.baths)}
+    if(inF('last')){line(s,'Last professional cleaning',A.last);line(s,'Home condition',A.cond);line(s,'Frequency',A.freq)}
+    if(inF('spaceType')){line(s,'Space type',A.spaceType);line(s,'Approximate size',A.spaceSize);line(s,'Frequency',A.bizFreq)}
+    if(inF('extras')) line(x,'Selected add-ons',A.extras.join(', '));
+    if(inF('winSides')){line(x,'Window details','Sides: '+A.winSides+' | Count: '+A.winCount+' | Oversized/floor-to-ceiling: '+A.winBig+' (custom quote may be required)')}
+    if(inF('laundry')) line(x,'Laundry requested','Yes — $30 per load (number of loads to be agreed)');
+    if(inF('orgAreas')||inF('orgAreasHome')){
+      var al=orgList(inF('orgAreas')?'orgAreas':'orgAreasHome');
+      line(x,'Organizing details','Areas: '+A.orgAreas.filter(function(v){return has(al,v)}).join(', ')+(inF('orgAmt')?' | Amount of help: '+A.orgAmt:''));
+    }
+    var when=A.dateOpt==='specific'?fmtDate(A.date):(DATE.filter(function(d){return d[0]===A.dateOpt})[0]||[0,''])[1];
+    line(sc,'Preferred date or scheduling option',when); line(sc,'Preferred time',A.time);
+    if(A.date2) line(sc,'Alternative date',fmtDate(A.date2));
+    m.push('CUSTOMER\n'+c.join('\n')); m.push('SERVICE\n'+s.join('\n'));
+    if(x.length) m.push('EXTRAS\n'+x.join('\n'));
+    m.push('SCHEDULE\n'+sc.join('\n')+'\n(Preferences only — not a confirmed booking.)');
+    m.push('Submitted: '+ts);
+    var msg=m.join('\n\n');
+    return {msg:msg,ts:ts,service:types.join(' + ')+(ht?' — '+ht:''),when:when+(A.date2?' / alt: '+fmtDate(A.date2):''),
+      beds:A.beds||'N/A',baths:A.baths||'N/A'};
+  }
+  function submit(){
+    if(sending||done) return;
+    if(document.getElementById('qs-hp').value) return;  /* bot trap */
+    var name=A.name.trim(),ph=A.phone.replace(/\D/g,''),em=A.email.trim();
+    if(!name) return showErr('Please enter your first name.');
+    if(ph.length<10||ph.length>11||(ph.length===11&&ph[0]!=='1')) return showErr('Please enter a valid phone number.');
+    if(em&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) return showErr('Please enter a valid email address.');
+    if(!A.contact) return showErr('Please choose how you would prefer us to contact you.');
+    if(A.contact==='Email'&&!em) return showErr('Please enter your email address so we can reach you.');
+    if(!A.consent) return showErr('Please check the box to let us contact you about your request.');
+    if(A.contact==='Text message'&&!A.sms) return showErr('Please check the text message consent box, or choose another contact method.');
+    if(typeof emailjs==='undefined') return fail();
+    var r=build(), btn=document.getElementById('qs-submit');
+    sending=true; btn.disabled=true; btn.textContent='Sending...';
+    var p={to_email:TO_EMAIL,subject:'New Quote Request — Harmony Cleaning',message:r.msg,reply_to:em||'',
+      client_name:name,client_email:em||'Not provided',client_phone:A.phone.trim(),service:r.service,date:r.when,time:A.time,address:'ZIP '+A.zip,
+      beds:r.beds,baths:r.baths,price:'Quote requested (no price shown to client)',addons:r.msg,
+      agreed_to_terms:'N/A — quote request only, no booking agreement yet',confirmed_at:r.ts,policy_snapshot:''};
+    emailjs.send(EJ_SERVICE,QUOTE_TEMPLATE,p).then(function(){
+      done=true;sending=false;
+      root.innerHTML='<div class="qs"><div class="qs-done"><div class="ck">✓</div><h2>Thank You! Your Request Is In.</h2><p>We\'ve received your cleaning details. Our team will review your request and contact you with a personalized quote.</p></div></div>';
+    },function(){sending=false;fail()});
+  }
+  function fail(){
+    var b=document.getElementById('qs-submit'); if(b){b.disabled=false;b.textContent='Get My Free Quote'}
+    showErr('Sorry, we couldn\'t send your request. Please try again, or call us at '+PHONE+'.');
+  }
+
+  /* Get a Quote buttons: scroll to the start of the questionnaire */
+  function toStart(e){
+    if(e)e.preventDefault();
+    if(done){done=false;sending=false;A.svc=[];A.other='';A.extras=[];A.orgAreas=[];['homeType','beds','baths','last','cond','freq','winSides','winCount','winBig','orgAmt','spaceType','spaceSize','bizFreq','dateOpt','date','date2','time','zip','name','phone','email','contact'].forEach(function(k){A[k]=''});A.consent=A.sms=false;cur='svc';render()}
+    root.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  document.querySelectorAll('a[href="#quote"]').forEach(function(a){a.addEventListener('click',toStart)});
+  if(location.hash==='#quote') setTimeout(function(){root.scrollIntoView()},300);
+  render();
 })();
 </script>
 </body>

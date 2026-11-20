@@ -1468,7 +1468,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   var PHONE='(424) 235-7405';
 
   var A={svc:[],other:'',homeType:'',beds:'',baths:'',last:'',cond:'',freq:'',extras:[],winSides:'',winCount:'',winBig:'',
-    orgAreas:[],orgAmt:'',spaceType:'',spaceSize:'',bizFreq:'',dateOpt:'',date:'',date2:'',time:'',zip:'',
+    orgAreas:[],orgAmt:'',heard:'',spaceType:'',spaceSize:'',bizFreq:'',dateOpt:'',date:'',date2:'',time:'',zip:'',
     name:'',phone:'',email:'',contact:'',consent:false,sms:false};
   var cur='svc', sending=false, done=false;
 
@@ -1489,6 +1489,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     spaceType:['Office','Retail Store','Restaurant / Café','Airbnb / Short-term Rental','Other Commercial Space'],
     spaceSize:['Under 1,000 sq ft','1,000–3,000 sq ft','Over 3,000 sq ft','Not sure'],
     bizFreq:['One-time','Daily','Several times a week','Weekly','Not sure'],
+    heard:['Facebook','Instagram','Google','Thumbtack','TaskRabbit','Friend / Referral','Coffee Shop','Other'],
     time:['Morning (8 AM–12 PM)','Afternoon (12 PM–5 PM)','Evening (after 5 PM)','Any time']
   };
   var SVC=[['home','Home Cleaning','Houses, apartments & move-in/move-out'],['business','Business Cleaning','Airbnb, offices & commercial spaces'],['org','Home Organizing','Closets, kitchens & more'],['other','Something Else','Tell us what you need']];
@@ -1509,7 +1510,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     if(o) s.push('orgAreas','orgAmt');
     else if(h&&has(A.extras,'Home organizing')) s.push('orgAreasHome');
     if(b) s.push('spaceType','spaceSize','bizFreq');
-    s.push('date','time','zip','contact');
+    s.push('date','time','zip','heard','contact');
     return s;
   }
   function extrasList(){return (has(A.svc,'home')&&has(A.svc,'org'))?O.extras.filter(function(x){return x!=='Home organizing'}):O.extras}
@@ -1543,6 +1544,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
       case 'date': return {t:'date'};
       case 'time': return {t:'single',k:'time',title:'What time works best for you?',opts:O.time,one:true,
         note:'Your preferred date and time will be confirmed after we check availability with our cleaning team.'};
+      case 'heard': return {t:'single',k:'heard',title:'How did you hear about us?',opts:O.heard};
       case 'zip': return {t:'zip'};
       case 'contact': return {t:'contact'};
     }
@@ -1701,7 +1703,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     var ht={regular:'Regular home cleaning',movein:'Move-In Cleaning',moveout:'Move-Out Cleaning'}[A.homeType];
     var m=[],c=[],s=[],x=[],sc=[];
     line(c,'Name',A.name.trim()); line(c,'Phone',A.phone.trim()); line(c,'Email',A.email.trim()||'Not provided');
-    line(c,'Preferred contact method',A.contact); line(c,'ZIP code',A.zip);
+    line(c,'Preferred contact method',A.contact); line(c,'ZIP code',A.zip); line(c,'How they heard about us',A.heard);
     line(c,'Consent to be contacted','Yes'+(A.contact==='Text message'?' (SMS consent given)':''));
     line(s,'Service type',types.join(' + ')+(ht&&inF('homeType')?' — '+ht:''));
     if(inF('other')||has(A.svc,'other')) line(s,'Something else (client\'s words)',A.other.trim());
@@ -1758,7 +1760,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   /* Get a Quote buttons: scroll to the start of the questionnaire */
   function toStart(e){
     if(e)e.preventDefault();
-    if(done){done=false;sending=false;A.svc=[];A.other='';A.extras=[];A.orgAreas=[];['homeType','beds','baths','last','cond','freq','winSides','winCount','winBig','orgAmt','spaceType','spaceSize','bizFreq','dateOpt','date','date2','time','zip','name','phone','email','contact'].forEach(function(k){A[k]=''});A.consent=A.sms=false;cur='svc';render()}
+    if(done){done=false;sending=false;A.svc=[];A.other='';A.extras=[];A.orgAreas=[];['homeType','beds','baths','last','cond','freq','heard','winSides','winCount','winBig','orgAmt','spaceType','spaceSize','bizFreq','dateOpt','date','date2','time','zip','name','phone','email','contact'].forEach(function(k){A[k]=''});A.consent=A.sms=false;cur='svc';render()}
     root.scrollIntoView({behavior:'smooth',block:'start'});
   }
   document.querySelectorAll('a[href="#quote"]').forEach(function(a){a.addEventListener('click',toStart)});

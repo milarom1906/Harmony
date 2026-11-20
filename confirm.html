@@ -200,13 +200,13 @@ footer{background:#1E1C1A;padding:36px 40px;text-align:center;margin-top:60px}
           <label class="clbl">Full Name</label>
           <input class="cinput-light" type="text" id="client-name" placeholder="Your full name" required>
         </div>
-        <div class="cf-light">
+        <div class="cf-light full">
           <label class="clbl">Phone</label>
           <input class="cinput-light" type="tel" id="client-phone" placeholder="(xxx) xxx-xxxx">
         </div>
-        <div class="cf-light">
-          <label class="clbl">Email</label>
-          <input class="cinput-light" type="email" id="client-email" placeholder="your@email.com">
+        <div class="cf-light full" id="client-address-wrap" style="display:none">
+          <label class="clbl">Service Address</label>
+          <input class="cinput-light" type="text" id="client-address" placeholder="Street address, city, ZIP" autocomplete="street-address">
         </div>
       </div>
     </div>
@@ -218,7 +218,7 @@ footer{background:#1E1C1A;padding:36px 40px;text-align:center;margin-top:60px}
     </label>
 
     <button class="btn-confirm" id="confirmBtn" disabled onclick="submitConfirmation()">Confirm Booking</button>
-    <p class="submit-note">By confirming, your agreement is recorded with your name, email, and timestamp.</p>
+    <p class="submit-note">By confirming, your agreement is recorded with your name, phone, and timestamp.</p>
 
   </div>
 
@@ -321,7 +321,12 @@ window.addEventListener('DOMContentLoaded', function() {
   document.getElementById('d-service').textContent = formatService(p.service) || '—';
   document.getElementById('d-date').textContent = formatDate(p.date) || '—';
   document.getElementById('d-time').textContent = p.time || '—';
-  document.getElementById('d-address').textContent = decodeURIComponent(p.address) || '—';
+  document.getElementById('d-address').textContent = p.address ? decodeURIComponent(p.address) : '—';
+  if (!p.address) {
+    /* no address from the link: hide the empty row and ask the client for it */
+    document.getElementById('d-address').parentNode.style.display = 'none';
+    document.getElementById('client-address-wrap').style.display = '';
+  }
   document.getElementById('d-beds').textContent = p.beds ? (p.beds === 'studio' ? 'Studio' : p.beds + ' Bedroom(s)') : '—';
   document.getElementById('d-baths').textContent = p.baths ? p.baths + ' Bathroom(s)' : '—';
   document.getElementById('d-price').textContent = p.price ? '$' + p.price : '—';
@@ -421,7 +426,6 @@ document.getElementById('policyModal').addEventListener('click', function(e) {
 
 function submitConfirmation() {
   const name = document.getElementById('client-name').value.trim();
-  const email = document.getElementById('client-email').value.trim();
   const phone = document.getElementById('client-phone').value.trim();
 
   if (!name) {
@@ -435,6 +439,14 @@ function submitConfirmation() {
   }
 
   const p = getParams();
+  let address = p.address ? decodeURIComponent(p.address) : '';
+  if (!address) {
+    address = document.getElementById('client-address').value.trim();
+    if (address.length < 5) {
+      alert('Please enter the address where the cleaning will take place.');
+      return;
+    }
+  }
   const timestamp = new Date().toLocaleString('en-US', {timeZone:'America/Los_Angeles'});
 
   const POLICY_TEXT = `PAYMENT: Payment is due at arrival, BEFORE cleaning begins. Zelle: harmonycleaningla@gmail.com
@@ -452,12 +464,12 @@ PLATFORM NOTICE: Harmony Cleaning connects clients with independent cleaning pro
   const templateParams = {
     to_email: 'harmonycleaningla@gmail.com',
     client_name: name,
-    client_email: email || 'Not provided',
+    client_email: 'Not provided',
     client_phone: phone,
     service: formatService(p.service),
     date: formatDate(p.date),
     time: p.time || 'Not specified',
-    address: decodeURIComponent(p.address || 'Not specified'),
+    address: address,
     beds: p.beds ? (p.beds === 'studio' ? 'Studio' : p.beds + ' Bedroom(s)') : 'Not specified',
     baths: p.baths ? p.baths + ' Bathroom(s)' : 'Not specified',
     price: p.price ? '$' + p.price : 'Not specified',
